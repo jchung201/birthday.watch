@@ -63,3 +63,4 @@ typings/
 # Google apis ignore
 credentials.json
 token.json
+dist
