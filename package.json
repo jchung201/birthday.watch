@@ -1,0 +1,19 @@
+{
+  "name": "google-birthday-reminder",
+  "version": "1.0.0",
+  "description": "Easily adds birthday reminders to your google calendar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jchung201/google-birthday-reminder.git"
+  },
+  "author": "jchung201",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jchung201/google-birthday-reminder/issues"
+  },
+  "homepage": "https://github.com/jchung201/google-birthday-reminder#readme"
+}
