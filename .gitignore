@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# Google apis ignore
+credentials.json
+token.json
