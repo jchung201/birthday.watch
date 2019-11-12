@@ -4,11 +4,12 @@ const { google } = require("googleapis");
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 
-function listEvents(auth) {
+function listEvents(auth, calendarId) {
   const calendar = google.calendar({ version: "v3", auth });
+  console.log("FUCKKK", calendarId);
   calendar.events.list(
     {
-      calendarId: "primary",
+      calendarId: calendarId,
       timeMin: new Date().toISOString(),
       maxResults: 10,
       singleEvents: true,
