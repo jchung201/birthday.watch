@@ -9,7 +9,7 @@ function calendarCheck(auth, returncb) {
   calendar.calendarList.list({}, (err, list) => {
     const foundCalendar = list.data.items.find(calendar => {
       return (
-        calendar.summary === "birthday-list-reminder" &&
+        calendar.summary === "Birthday List Reminder" &&
         calendar.description === "Birthday Reminders"
       );
     });
@@ -19,7 +19,7 @@ function calendarCheck(auth, returncb) {
     } else {
       calendar.calendars.insert({
         requestBody: {
-          summary: "birthday-list-reminder", // required
+          summary: "Birthday List Reminder", // required
           timezone: "America/New_York", // optional
           description: "Birthday Reminders" // optional
         }

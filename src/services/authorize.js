@@ -17,7 +17,7 @@ const TOKEN_PATH = "token.json";
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
-function authorize(credentials, callback, returncb) {
+function authorize(credentials, callback, par1, par2) {
   const { client_secret, client_id, redirect_uris } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
@@ -29,7 +29,7 @@ function authorize(credentials, callback, returncb) {
   fs.readFile(TOKEN_PATH, (err, token) => {
     if (err) return getAccessToken(oAuth2Client, callback);
     oAuth2Client.setCredentials(JSON.parse(token));
-    return callback(oAuth2Client, returncb);
+    return callback(oAuth2Client, par1, par2);
   });
 }
 
