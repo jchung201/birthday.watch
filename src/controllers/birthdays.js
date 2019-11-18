@@ -2,6 +2,7 @@ const router = require("express").Router();
 import asyncHandler from "express-async-handler";
 const { listEvents } = require("../services/listEvents");
 const { createEvent } = require("../services/createEvent");
+const { deleteEvent } = require("../services/deleteEvent");
 const { calendarCheck } = require("../services/calendarCheck");
 
 router
@@ -47,7 +48,7 @@ router
         if (err) return next(err);
         deleteEvent(token, calendar.id, req.params.id, (err, message) => {
           if (err) return next(err);
-          res.send(message);
+          res.send({ status: 204, message: "Deleted!" });
         });
       });
     })

@@ -6,6 +6,10 @@ router
   .get(
     "/url",
     asyncHandler(async (req, res, next) => {
+      getAuthUrl((err, url) => {
+        if (err) return next(err);
+        res.send(url);
+      });
       res.send(await getAuthUrl());
     })
   )
