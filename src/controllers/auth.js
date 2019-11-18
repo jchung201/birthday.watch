@@ -2,9 +2,6 @@ const router = require("express").Router();
 import asyncHandler from "express-async-handler";
 const { getAuthUrl, getAuthToken } = require("../services/auth");
 
-const fs = require("fs");
-const { calendarCheck } = require("../services/calendarCheck");
-
 router
   .get(
     "/url",
@@ -21,11 +18,5 @@ router
       });
     })
   );
-// .get(
-//   "/calendar",
-//   asyncHandler(async (req, res, next) => {
-//     res.send(await getAuthUrl(credentials));
-//   })
-// );
 
 module.exports = router;

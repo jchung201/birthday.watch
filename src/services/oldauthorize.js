@@ -52,7 +52,7 @@ function getAccessToken(oAuth2Client, callback) {
   rl.question("Enter the code from that page here: ", code => {
     rl.close();
     oAuth2Client.getToken(code, 
-      callback(oAuth2Client);
+      callback(oAuth2Client)
     });
   });
 }

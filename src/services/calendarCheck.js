@@ -1,12 +1,18 @@
 const { google } = require("googleapis");
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
+import { credentials } from "../lib/credentials.js";
 
-function calendarCheck(auth, returncb) {
-  const calendar = google.calendar({ version: "v3", auth });
+const calendarCheck = async (token, cb) => {
+  // yes
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
+  const calendar = await google.calendar({ version: "v3", auth: oAuth2Client });
   calendar.calendarList.list({}, (err, list) => {
+    if (err) return cb(err);
     const foundCalendar = list.data.items.find(calendar => {
       return (
         calendar.summary === "Birthday List Reminder" &&
@@ -15,19 +21,20 @@ function calendarCheck(auth, returncb) {
     });
     if (foundCalendar) {
       console.log("Exists");
-      returncb(foundCalendar);
+      cb(null, foundCalendar);
     } else {
-      calendar.calendars.insert({
+      const madeCalendar = calendar.calendars.insert({
         requestBody: {
           summary: "Birthday List Reminder", // required
           timezone: "America/New_York", // optional
           description: "Birthday Reminders" // optional
         }
       });
+      cb(null, madeCalendar);
       console.log("created");
     }
   });
-}
+};
 module.exports = {
   calendarCheck
 };

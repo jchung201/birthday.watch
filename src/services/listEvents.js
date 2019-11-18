@@ -4,9 +4,15 @@ const { google } = require("googleapis");
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 
-function listEvents(auth, calendarId) {
-  const calendar = google.calendar({ version: "v3", auth });
-  console.log("FUCKKK", calendarId);
+function listEvents(token, calendarId) {
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
+  const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
   calendar.events.list(
     {
       calendarId: calendarId,
