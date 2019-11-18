@@ -21,15 +21,35 @@ router
   .post(
     "/",
     asyncHandler(async (req, res, next) => {
+      let { token, dates } = req.body;
+      dates = [
+        {
+          date: "11/30/2019",
+          name: "John Daniel",
+          description: "description is awesome",
+          days: 5
+        }
+      ];
       await calendarCheck(req.body.token, (err, calendar) => {
-        const { token, date } = req.body;
         if (err) return next(err);
-        createEvent(token, calendar.id, date, (err, events) => {
+        createEvent(token, calendar.id, dates, (err, events) => {
           if (err) return next(err);
           res.send(events);
         });
       });
-      console.log("hi");
+    })
+  )
+  .delete(
+    "/:id",
+    asyncHandler(async (req, res, next) => {
+      let { token } = req.body;
+      await calendarCheck(req.body.token, (err, calendar) => {
+        if (err) return next(err);
+        deleteEvent(token, calendar.id, req.params.id, (err, message) => {
+          if (err) return next(err);
+          res.send(message);
+        });
+      });
     })
   );
 

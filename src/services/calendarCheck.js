@@ -19,7 +19,6 @@ const calendarCheck = async (token, cb) => {
       );
     });
     if (foundCalendar) {
-      console.log("Exists");
       cb(null, foundCalendar);
     } else {
       const madeCalendar = calendar.calendars.insert({
