@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { authorize } = require("./services/authorize");
+const { authorize } = require("./services/oldauthorize");
 const { listEvents } = require("./services/listEvents");
 const { createEvent } = require("./services/createEvent");
 const { calendarCheck } = require("./services/calendarCheck");
