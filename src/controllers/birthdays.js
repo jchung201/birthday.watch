@@ -10,7 +10,7 @@ router
     "/",
     asyncHandler(async (req, res, next) => {
       const { token } = req.body;
-      await calendarCheck(token, (err, calendar) => {
+      calendarCheck(token, (err, calendar) => {
         if (err) return next(err);
         listEvents(token, calendar.id, (err, events) => {
           if (err) return next(err);
@@ -31,7 +31,7 @@ router
           days: 5
         }
       ];
-      await calendarCheck(req.body.token, (err, calendar) => {
+      calendarCheck(req.body.token, (err, calendar) => {
         if (err) return next(err);
         createEvent(token, calendar.id, dates, (err, events) => {
           if (err) return next(err);

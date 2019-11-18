@@ -23,12 +23,10 @@ const createEvent = async (token, calendarId, dates, cb) => {
         location: "Birthday",
         description: description,
         start: {
-          dateTime: first,
-          timeZone: "America/New_York"
+          dateTime: first
         },
         end: {
-          dateTime: second,
-          timeZone: "America/New_York"
+          dateTime: second
         },
         recurrence: ["RRULE:FREQ=YEARLY"],
         reminders: {

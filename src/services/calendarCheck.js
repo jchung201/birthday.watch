@@ -24,13 +24,11 @@ const calendarCheck = async (token, cb) => {
       } else {
         const madeCalendar = calendar.calendars.insert({
           requestBody: {
-            summary: "Birthday List Reminder", // required
-            timezone: "America/New_York", // optional
+            summary: "Birthday List Reminder",
             description: "Birthday Reminders" // optional
           }
         });
         cb(null, madeCalendar);
-        console.log("created");
       }
     });
   } catch (error) {
