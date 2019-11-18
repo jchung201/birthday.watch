@@ -1,10 +1,7 @@
 const { google } = require("googleapis");
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
+import { credentials } from "../lib/credentials.js";
 
-function listEvents(token, calendarId) {
+function listEvents(token, calendarId, cb) {
   const { client_secret, client_id, redirect_uris } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
     client_id,
@@ -17,21 +14,17 @@ function listEvents(token, calendarId) {
     {
       calendarId: calendarId,
       timeMin: new Date().toISOString(),
-      maxResults: 10,
+      maxResults: 100,
       singleEvents: true,
       orderBy: "startTime"
     },
     (err, res) => {
-      if (err) return console.log("The API returned an error: " + err);
+      if (err) cb(err);
       const events = res.data.items;
       if (events.length) {
-        console.log("Upcoming 10 events:");
-        events.map((event, i) => {
-          const start = event.start.dateTime || event.start.date;
-          console.log(`${start} - ${event.summary}`);
-        });
+        cb(null, events);
       } else {
-        console.log("No upcoming events found.");
+        cb(null, []);
       }
     }
   );

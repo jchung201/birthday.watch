@@ -1,11 +1,15 @@
 const { google } = require("googleapis");
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
+import { credentials } from "../lib/credentials.js";
 
 const createEvent = async (auth, calendarId, dates) => {
-  const calendar = google.calendar({ version: "v3", auth });
+  const { client_secret, client_id, redirect_uris } = credentials.installed;
+  const oAuth2Client = new google.auth.OAuth2(
+    client_id,
+    client_secret,
+    redirect_uris[0]
+  );
+  oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
+  const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
   for (let i = 0; i < dates.length; i++) {
     const { date, name, description } = dates[i];
     const first = new Date(date);
