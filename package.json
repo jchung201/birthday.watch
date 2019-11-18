@@ -2,12 +2,12 @@
   "name": "google-birthday-reminder",
   "version": "1.0.0",
   "description": "Easily adds birthday reminders to your google calendar.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js --exec babel-node --presets babel-preset-env",
+    "dev": "nodemon src/server.js --exec babel-node --presets babel-preset-env",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "googleapis": "^39.2.0",
     "morgan": "^1.9.1"
   },
