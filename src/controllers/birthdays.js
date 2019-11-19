@@ -39,7 +39,7 @@ router
     '/',
     asyncHandler(async (req, res, next) => {
       const { events } = req.body;
-      // if (!events) throw createError(400, 'Forgot events to be created!');
+      if (!events) throw createError(400, 'Forgot events to be created!');
       // events = [
       //   {
       //     date: "11/30/2019",
