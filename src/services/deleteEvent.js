@@ -4,7 +4,7 @@ const deleteEvent = async (auth, calendarId, eventId, cb) => {
   try {
     const calendar = google.calendar({ version: "v3", auth });
     const deletedEvent = await calendar.events.delete({
-      auth: oAuth2Client,
+      auth,
       calendarId,
       eventId
     });

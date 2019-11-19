@@ -67,6 +67,7 @@ router
         name: "John Daniel",
         description: "description is awesome",
         days: 5
+        // eventId:
       };
       calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);

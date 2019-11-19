@@ -5,7 +5,7 @@ function listEvents(auth, calendarId, cb) {
     const calendar = google.calendar({ version: "v3", auth });
     calendar.events.list(
       {
-        calendarId: calendarId,
+        calendarId,
         timeMin: new Date().toISOString(),
         maxResults: 100,
         singleEvents: true,

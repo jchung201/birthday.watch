@@ -17,7 +17,7 @@ const calendarCheck = async (auth, cb) => {
         const madeCalendar = calendar.calendars.insert({
           requestBody: {
             summary: "Birthday List Reminder",
-            description: "Birthday Reminders" // optional
+            description: "Birthday Reminders"
           }
         });
         cb(null, madeCalendar);

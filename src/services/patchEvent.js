@@ -13,10 +13,12 @@ const patchEvent = async (auth, calendarId, event, cb) => {
       location: "Birthday",
       description: description,
       start: {
-        dateTime: first
+        dateTime: first,
+        timeZone: "America/New_York"
       },
       end: {
-        dateTime: second
+        dateTime: second,
+        timeZone: "America/New_York"
       },
       recurrence: ["RRULE:FREQ=YEARLY"],
       reminders: {
@@ -25,8 +27,8 @@ const patchEvent = async (auth, calendarId, event, cb) => {
       }
     };
     const insertedDate = await calendar.events.insert({
-      auth: oAuth2Client,
-      calendarId: calendarId,
+      auth,
+      calendarId,
       resource: event
     });
     cb(null, insertedDate);
