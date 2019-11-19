@@ -5,6 +5,9 @@ const calendarCheck = async (auth, cb) => {
     const calendar = google.calendar({ version: "v3", auth });
     calendar.calendarList.list({}, (err, list) => {
       if (err) return cb(err);
+      const primaryCalendar = list.data.items.find(calendar => {
+        return calendar.primary === true;
+      });
       const foundCalendar = list.data.items.find(calendar => {
         return (
           calendar.summary === "Birthday List Reminder" &&
@@ -12,15 +15,16 @@ const calendarCheck = async (auth, cb) => {
         );
       });
       if (foundCalendar) {
-        cb(null, foundCalendar);
+        cb(null, foundCalendar, primaryCalendar.timeZone);
       } else {
         const madeCalendar = calendar.calendars.insert({
           requestBody: {
             summary: "Birthday List Reminder",
-            description: "Birthday Reminders"
+            description: "Birthday Reminders",
+            timeZone: primaryCalendar.timeZone
           }
         });
-        cb(null, madeCalendar);
+        cb(null, madeCalendar, primaryCalendar.timeZone);
       }
     });
   } catch (error) {

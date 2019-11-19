@@ -1,6 +1,6 @@
 const { google } = require("googleapis");
 
-const patchEvent = async (auth, calendarId, eventId, event, cb) => {
+const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
   try {
     const calendar = google.calendar({ version: "v3", auth });
     const { date, name, description, days } = event;
@@ -14,11 +14,11 @@ const patchEvent = async (auth, calendarId, eventId, event, cb) => {
       description: description,
       start: {
         dateTime: first,
-        timeZone: "America/New_York"
+        timeZone
       },
       end: {
         dateTime: second,
-        timeZone: "America/New_York"
+        timeZone
       },
       recurrence: ["RRULE:FREQ=YEARLY"],
       reminders: {

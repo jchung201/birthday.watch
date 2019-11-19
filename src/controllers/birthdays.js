@@ -40,39 +40,46 @@ router
   .post(
     "/",
     asyncHandler(async (req, res, next) => {
-      let { events } = req.body;
-      events = [
-        {
-          date: "11/30/2019",
-          name: "John Daniel",
-          description: "description is awesome",
-          days: 5
-        }
-      ];
-      calendarCheck(req.auth, (err, calendar) => {
+      const { events } = req.body;
+      // events = [
+      //   {
+      //     date: "11/30/2019",
+      //     name: "John Daniel",
+      //     description: "description is awesome",
+      //     days: 5
+      //   }
+      // ];
+      calendarCheck(req.auth, (err, calendar, timeZone) => {
         if (err) return next(err);
-        createEvent(req.auth, calendar.id, events, (err, createdEvents) => {
-          if (err) return next(err);
-          res.send(createdEvents);
-        });
+        createEvent(
+          req.auth,
+          calendar.id,
+          timeZone,
+          events,
+          (err, createdEvents) => {
+            if (err) return next(err);
+            res.send(createdEvents);
+          }
+        );
       });
     })
   )
   .patch(
     "/:id",
     asyncHandler(async (req, res, next) => {
-      let { event } = req.body;
-      event = {
-        date: "11/30/2019",
-        name: "Jefferson Daniel",
-        description: "This has been patched AGAIN!!!",
-        days: 11
-      };
-      calendarCheck(req.auth, (err, calendar) => {
+      const { event } = req.body;
+      // event = {
+      //   date: "11/30/2019",
+      //   name: "Jefferson Daniel",
+      //   description: "This has 125125125N!!!",
+      //   days: 11
+      // };
+      calendarCheck(req.auth, (err, calendar, timeZone) => {
         if (err) return next(err);
         patchEvent(
           req.auth,
           calendar.id,
+          timeZone,
           req.params.id,
           event,
           (err, patchedEvent) => {
