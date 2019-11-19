@@ -3,16 +3,34 @@ import asyncHandler from "express-async-handler";
 const { listEvents } = require("../services/listEvents");
 const { createEvent } = require("../services/createEvent");
 const { deleteEvent } = require("../services/deleteEvent");
+import { credentials } from "../lib/credentials.js";
+const { patchEvent } = require("../services/patchEvent");
 const { calendarCheck } = require("../services/calendarCheck");
+const { google } = require("googleapis");
+
+router.use(
+  "/",
+  asyncHandler(async (req, res, next) => {
+    const { token } = req.body;
+    const { client_secret, client_id, redirect_uris } = credentials.installed;
+    const oAuth2Client = new google.auth.OAuth2(
+      client_id,
+      client_secret,
+      redirect_uris[0]
+    );
+    oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
+    req.auth = oAuth2Client;
+    next();
+  })
+);
 
 router
   .get(
     "/",
     asyncHandler(async (req, res, next) => {
-      const { token } = req.body;
-      calendarCheck(token, (err, calendar) => {
+      calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        listEvents(token, calendar.id, (err, events) => {
+        listEvents(req.auth, calendar.id, (err, events) => {
           if (err) return next(err);
           res.send(events);
         });
@@ -22,8 +40,8 @@ router
   .post(
     "/",
     asyncHandler(async (req, res, next) => {
-      let { token, dates } = req.body;
-      dates = [
+      let { events } = req.body;
+      events = [
         {
           date: "11/30/2019",
           name: "John Daniel",
@@ -31,9 +49,28 @@ router
           days: 5
         }
       ];
-      calendarCheck(req.body.token, (err, calendar) => {
+      calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        createEvent(token, calendar.id, dates, (err, events) => {
+        createEvent(req.auth, calendar.id, events, (err, events) => {
+          if (err) return next(err);
+          res.send(events);
+        });
+      });
+    })
+  )
+  .patch(
+    "/",
+    asyncHandler(async (req, res, next) => {
+      let { event } = req.body;
+      event = {
+        date: "11/30/2019",
+        name: "John Daniel",
+        description: "description is awesome",
+        days: 5
+      };
+      calendarCheck(req.auth, (err, calendar) => {
+        if (err) return next(err);
+        patchEvent(req.auth, calendar.id, event, (err, events) => {
           if (err) return next(err);
           res.send(events);
         });
@@ -43,10 +80,9 @@ router
   .delete(
     "/:id",
     asyncHandler(async (req, res, next) => {
-      let { token } = req.body;
-      await calendarCheck(req.body.token, (err, calendar) => {
+      await calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        deleteEvent(token, calendar.id, req.params.id, (err, message) => {
+        deleteEvent(req.auth, calendar.id, req.params.id, (err, message) => {
           if (err) return next(err);
           res.send({ status: 204, message: "Deleted!" });
         });
