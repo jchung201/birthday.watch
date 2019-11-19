@@ -1,9 +1,9 @@
 const { google } = require("googleapis");
 
-const patchEvent = async (auth, calendarId, event, cb) => {
+const patchEvent = async (auth, calendarId, eventId, event, cb) => {
   try {
     const calendar = google.calendar({ version: "v3", auth });
-    const { date, name, description, days, eventId } = event;
+    const { date, name, description, days } = event;
     const first = new Date(date);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);

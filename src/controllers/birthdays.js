@@ -59,22 +59,27 @@ router
     })
   )
   .patch(
-    "/",
+    "/:id",
     asyncHandler(async (req, res, next) => {
       let { event } = req.body;
       event = {
         date: "11/30/2019",
         name: "Jefferson Daniel",
-        description: "This has been patched",
-        days: 11,
-        eventId: "3ek5inrb21e0j3urq2r5s7umhs"
+        description: "This has been patched AGAIN!!!",
+        days: 11
       };
       calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        patchEvent(req.auth, calendar.id, event, (err, patchedEvent) => {
-          if (err) return next(err);
-          res.send(patchedEvent);
-        });
+        patchEvent(
+          req.auth,
+          calendar.id,
+          req.params.id,
+          event,
+          (err, patchedEvent) => {
+            if (err) return next(err);
+            res.send(patchedEvent);
+          }
+        );
       });
     })
   )
