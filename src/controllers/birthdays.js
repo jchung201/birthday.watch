@@ -1,5 +1,6 @@
 const router = require('express').Router();
 import asyncHandler from 'express-async-handler';
+import createError from 'http-errors';
 const { listEvents } = require('../services/listEvents');
 const { createEvent } = require('../services/createEvent');
 const { deleteEvent } = require('../services/deleteEvent');
@@ -12,6 +13,7 @@ router.use(
   '/',
   asyncHandler(async (req, res, next) => {
     const { token } = req.body;
+    if (!token) return next(createError(400, 'Forgot token!'));
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
     oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
@@ -37,6 +39,7 @@ router
     '/',
     asyncHandler(async (req, res, next) => {
       const { events } = req.body;
+      if (!events) return next(createError(400, 'Forgot events to be created!'));
       // events = [
       //   {
       //     date: "11/30/2019",
@@ -58,6 +61,7 @@ router
     '/:id',
     asyncHandler(async (req, res, next) => {
       const { event } = req.body;
+      if (!event) return next(createError(400, 'Forgot event update details!'));
       // event = {
       //   date: "11/30/2019",
       //   name: "Jefferson Daniel",

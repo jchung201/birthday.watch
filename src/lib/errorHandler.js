@@ -1,7 +1,11 @@
+import createError from 'http-errors';
+
 export default (error, req, res, next) => {
-  console.log(error);
+  let message;
   if (error.status) {
-    return res.status(error.status).json(error);
+    message = error;
+  } else {
+    message = createError(500, 'Sorry, there was an internal error.');
   }
-  res.status(500).json({ status: 500, message: 'I apologize for this error!' });
+  res.status(message.statusCode || message.status || 500).json(message);
 };

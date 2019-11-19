@@ -4,9 +4,10 @@ import app from './lib/app';
 const router = require('./routes/index');
 app.use('/rest', router);
 
-// Catch all if not found
+// Catch all 404 if not found
+import createError from 'http-errors';
 app.use((req, res, next) => {
-  next({ status: 404, message: '404 Not Found' });
+  next(createError(404, '404 Not Found!'));
 });
 
 import errorHandler from './lib/errorHandler';
