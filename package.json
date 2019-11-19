@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js --exec babel-node --presets babel-preset-env",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/server.js"
+    "start": "npm run build && node dist/src/server.js"
   },
   "repository": {
     "type": "git",
