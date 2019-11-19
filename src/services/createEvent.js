@@ -1,8 +1,8 @@
-const { google } = require("googleapis");
+const { google } = require('googleapis');
 
 const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
   try {
-    const calendar = google.calendar({ version: "v3", auth });
+    const calendar = google.calendar({ version: 'v3', auth });
     const insertedDates = [];
     for (let i = 0; i < dates.length; i++) {
       const { date, name, description, days } = dates[i];
@@ -12,7 +12,7 @@ const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
       const summary = `${name}'s Birthday!`;
       var event = {
         summary: summary,
-        location: "Birthday",
+        location: 'Birthday',
         description: description,
         start: {
           dateTime: first,
@@ -22,10 +22,10 @@ const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
           dateTime: second,
           timeZone
         },
-        recurrence: ["RRULE:FREQ=YEARLY"],
+        recurrence: ['RRULE:FREQ=YEARLY'],
         reminders: {
           useDefault: false,
-          overrides: [{ method: "email", minutes: 24 * days * 60 }]
+          overrides: [{ method: 'email', minutes: 24 * days * 60 }]
         }
       };
       const insertedDate = await calendar.events.insert({

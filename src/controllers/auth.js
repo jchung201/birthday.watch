@@ -1,10 +1,10 @@
-const router = require("express").Router();
-import asyncHandler from "express-async-handler";
-const { getAuthUrl, getAuthToken } = require("../services/auth");
+const router = require('express').Router();
+import asyncHandler from 'express-async-handler';
+const { getAuthUrl, getAuthToken } = require('../services/auth');
 
 router
   .get(
-    "/url",
+    '/url',
     asyncHandler(async (req, res, next) => {
       getAuthUrl((err, url) => {
         if (err) return next(err);
@@ -14,7 +14,7 @@ router
     })
   )
   .get(
-    "/token",
+    '/token',
     asyncHandler(async (req, res, next) => {
       getAuthToken(req.query.code, (err, token) => {
         if (err) return next(err);

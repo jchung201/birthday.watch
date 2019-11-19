@@ -1,23 +1,19 @@
-const router = require("express").Router();
-import asyncHandler from "express-async-handler";
-const { listEvents } = require("../services/listEvents");
-const { createEvent } = require("../services/createEvent");
-const { deleteEvent } = require("../services/deleteEvent");
-import { credentials } from "../lib/credentials.js";
-const { patchEvent } = require("../services/patchEvent");
-const { calendarCheck } = require("../services/calendarCheck");
-const { google } = require("googleapis");
+const router = require('express').Router();
+import asyncHandler from 'express-async-handler';
+const { listEvents } = require('../services/listEvents');
+const { createEvent } = require('../services/createEvent');
+const { deleteEvent } = require('../services/deleteEvent');
+import { credentials } from '../lib/credentials.js';
+const { patchEvent } = require('../services/patchEvent');
+const { calendarCheck } = require('../services/calendarCheck');
+const { google } = require('googleapis');
 
 router.use(
-  "/",
+  '/',
   asyncHandler(async (req, res, next) => {
     const { token } = req.body;
     const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-      client_id,
-      client_secret,
-      redirect_uris[0]
-    );
+    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
     oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
     req.auth = oAuth2Client;
     next();
@@ -26,7 +22,7 @@ router.use(
 
 router
   .get(
-    "/",
+    '/',
     asyncHandler(async (req, res, next) => {
       calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
@@ -38,7 +34,7 @@ router
     })
   )
   .post(
-    "/",
+    '/',
     asyncHandler(async (req, res, next) => {
       const { events } = req.body;
       // events = [
@@ -51,21 +47,15 @@ router
       // ];
       calendarCheck(req.auth, (err, calendar, timeZone) => {
         if (err) return next(err);
-        createEvent(
-          req.auth,
-          calendar.id,
-          timeZone,
-          events,
-          (err, createdEvents) => {
-            if (err) return next(err);
-            res.send(createdEvents);
-          }
-        );
+        createEvent(req.auth, calendar.id, timeZone, events, (err, createdEvents) => {
+          if (err) return next(err);
+          res.send(createdEvents);
+        });
       });
     })
   )
   .patch(
-    "/:id",
+    '/:id',
     asyncHandler(async (req, res, next) => {
       const { event } = req.body;
       // event = {
@@ -76,28 +66,21 @@ router
       // };
       calendarCheck(req.auth, (err, calendar, timeZone) => {
         if (err) return next(err);
-        patchEvent(
-          req.auth,
-          calendar.id,
-          timeZone,
-          req.params.id,
-          event,
-          (err, patchedEvent) => {
-            if (err) return next(err);
-            res.send(patchedEvent);
-          }
-        );
+        patchEvent(req.auth, calendar.id, timeZone, req.params.id, event, (err, patchedEvent) => {
+          if (err) return next(err);
+          res.send(patchedEvent);
+        });
       });
     })
   )
   .delete(
-    "/:id",
+    '/:id',
     asyncHandler(async (req, res, next) => {
       await calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
         deleteEvent(req.auth, calendar.id, req.params.id, (err, message) => {
           if (err) return next(err);
-          res.send({ status: 204, message: "Deleted!" });
+          res.send({ status: 204, message: 'Deleted!' });
         });
       });
     })

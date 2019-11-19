@@ -1,9 +1,9 @@
-require("dotenv").config();
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
+require('dotenv').config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
 class App {
   constructor() {
@@ -12,10 +12,10 @@ class App {
   }
 
   config() {
-    this.app.use(logger("combined"));
+    this.app.use(logger('combined'));
     this.app.use(cors());
-    this.app.options("*", cors());
-    this.app.enable("trust proxy");
+    this.app.options('*', cors());
+    this.app.enable('trust proxy');
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());

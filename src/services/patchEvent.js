@@ -1,8 +1,8 @@
-const { google } = require("googleapis");
+const { google } = require('googleapis');
 
 const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
   try {
-    const calendar = google.calendar({ version: "v3", auth });
+    const calendar = google.calendar({ version: 'v3', auth });
     const { date, name, description, days } = event;
     const first = new Date(date);
     const second = new Date(first);
@@ -10,7 +10,7 @@ const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
     const summary = `${name}'s Birthday!`;
     var event = {
       summary: summary,
-      location: "Birthday",
+      location: 'Birthday',
       description: description,
       start: {
         dateTime: first,
@@ -20,10 +20,10 @@ const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
         dateTime: second,
         timeZone
       },
-      recurrence: ["RRULE:FREQ=YEARLY"],
+      recurrence: ['RRULE:FREQ=YEARLY'],
       reminders: {
         useDefault: false,
-        overrides: [{ method: "email", minutes: 24 * days * 60 }]
+        overrides: [{ method: 'email', minutes: 24 * days * 60 }]
       }
     };
     const patchedDate = await calendar.events.patch({
