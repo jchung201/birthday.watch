@@ -3,7 +3,7 @@ const { google } = require("googleapis");
 const patchEvent = async (auth, calendarId, event, cb) => {
   try {
     const calendar = google.calendar({ version: "v3", auth });
-    const { date, name, description, days } = event;
+    const { date, name, description, days, eventId } = event;
     const first = new Date(date);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
@@ -26,12 +26,13 @@ const patchEvent = async (auth, calendarId, event, cb) => {
         overrides: [{ method: "email", minutes: 24 * days * 60 }]
       }
     };
-    const insertedDate = await calendar.events.insert({
+    const patchedDate = await calendar.events.patch({
       auth,
       calendarId,
+      eventId,
       resource: event
     });
-    cb(null, insertedDate);
+    cb(null, patchedDate.data);
   } catch (error) {
     cb(error);
   }

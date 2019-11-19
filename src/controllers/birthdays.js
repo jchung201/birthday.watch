@@ -51,9 +51,9 @@ router
       ];
       calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        createEvent(req.auth, calendar.id, events, (err, events) => {
+        createEvent(req.auth, calendar.id, events, (err, createdEvents) => {
           if (err) return next(err);
-          res.send(events);
+          res.send(createdEvents);
         });
       });
     })
@@ -64,16 +64,16 @@ router
       let { event } = req.body;
       event = {
         date: "11/30/2019",
-        name: "John Daniel",
-        description: "description is awesome",
-        days: 5
-        // eventId:
+        name: "Jefferson Daniel",
+        description: "This has been patched",
+        days: 11,
+        eventId: "3ek5inrb21e0j3urq2r5s7umhs"
       };
       calendarCheck(req.auth, (err, calendar) => {
         if (err) return next(err);
-        patchEvent(req.auth, calendar.id, event, (err, events) => {
+        patchEvent(req.auth, calendar.id, event, (err, patchedEvent) => {
           if (err) return next(err);
-          res.send(events);
+          res.send(patchedEvent);
         });
       });
     })
