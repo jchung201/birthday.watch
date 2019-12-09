@@ -1,3 +1,7 @@
 {
-  "presets": ["es2015"]
+  "presets": ["@emotion/babel-preset-css-prop"],
+  "plugins": [
+    ["import", { "libraryName": "antd", "style": "css" }],
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
