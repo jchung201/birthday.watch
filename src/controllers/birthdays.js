@@ -13,10 +13,11 @@ router.use(
   '/',
   asyncHandler(async (req, res, next) => {
     const { token } = req.body;
+    // Include entire response from the POST get token response
     if (!token) throw createError(400, 'Forgot token!');
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-    oAuth2Client.setCredentials(JSON.parse(JSON.stringify(token)));
+    oAuth2Client.setCredentials(token);
     req.auth = oAuth2Client;
     next();
   })

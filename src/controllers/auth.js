@@ -11,7 +11,6 @@ router
         if (err) return next(err);
         res.send(url);
       });
-      res.send(await getAuthUrl());
     })
   )
   .post(
