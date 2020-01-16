@@ -51,7 +51,7 @@ router
       //     days: 5
       //   }
       // ];
-      createEvent(req.auth, calendar.id, timeZone, events, (err, createdEvents) => {
+      createEvent(req.auth, req.calendar.id, req.timeZone, events, (err, createdEvents) => {
         if (err) return next(err);
         res.send(createdEvents);
       });
@@ -68,8 +68,7 @@ router
       //   description: "This has 125125125N!!!",
       //   days: 11
       // };
-
-      patchEvent(req.auth, calendar.id, timeZone, req.params.id, event, (err, patchedEvent) => {
+      patchEvent(req.auth, req.calendar.id, req.timeZone, req.params.id, event, (err, patchedEvent) => {
         if (err) return next(err);
         res.send(patchedEvent);
       });
@@ -78,7 +77,7 @@ router
   .delete(
     '/:id',
     asyncHandler(async (req, res, next) => {
-      deleteEvent(req.auth, calendar.id, req.params.id, (err, message) => {
+      deleteEvent(req.auth, req.calendar.id, req.params.id, (err, message) => {
         if (err) return next(err);
         res.send({ status: 204, message: 'Deleted!' });
       });
