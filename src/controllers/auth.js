@@ -17,7 +17,7 @@ router
     '/token',
     asyncHandler(async (req, res, next) => {
       const { code } = req.body;
-      if (!code) return next(createError(404, '404 Not Found!'));
+      if (!code) return next(createError(401, 'Did not include code!'));
       getAuthToken(code, (err, token) => {
         if (err) return next(err);
         res.send(token);
