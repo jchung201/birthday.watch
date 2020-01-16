@@ -19,7 +19,12 @@ router.use(
     const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
     oAuth2Client.setCredentials(token);
     req.auth = oAuth2Client;
-    next();
+    calendarCheck(req.auth, (err, calendar, timeZone) => {
+      if (err) return next(err);
+      req.calendar = calendar;
+      req.timeZone = timeZone;
+      next();
+    });
   })
 );
 
@@ -27,12 +32,9 @@ router
   .get(
     '/',
     asyncHandler(async (req, res, next) => {
-      calendarCheck(req.auth, (err, calendar) => {
+      listEvents(req.auth, req.calendar.id, (err, events) => {
         if (err) return next(err);
-        listEvents(req.auth, calendar.id, (err, events) => {
-          if (err) return next(err);
-          res.send(events);
-        });
+        res.send(events);
       });
     })
   )
@@ -49,12 +51,9 @@ router
       //     days: 5
       //   }
       // ];
-      calendarCheck(req.auth, (err, calendar, timeZone) => {
+      createEvent(req.auth, calendar.id, timeZone, events, (err, createdEvents) => {
         if (err) return next(err);
-        createEvent(req.auth, calendar.id, timeZone, events, (err, createdEvents) => {
-          if (err) return next(err);
-          res.send(createdEvents);
-        });
+        res.send(createdEvents);
       });
     })
   )
@@ -69,24 +68,19 @@ router
       //   description: "This has 125125125N!!!",
       //   days: 11
       // };
-      calendarCheck(req.auth, (err, calendar, timeZone) => {
+
+      patchEvent(req.auth, calendar.id, timeZone, req.params.id, event, (err, patchedEvent) => {
         if (err) return next(err);
-        patchEvent(req.auth, calendar.id, timeZone, req.params.id, event, (err, patchedEvent) => {
-          if (err) return next(err);
-          res.send(patchedEvent);
-        });
+        res.send(patchedEvent);
       });
     })
   )
   .delete(
     '/:id',
     asyncHandler(async (req, res, next) => {
-      await calendarCheck(req.auth, (err, calendar) => {
+      deleteEvent(req.auth, calendar.id, req.params.id, (err, message) => {
         if (err) return next(err);
-        deleteEvent(req.auth, calendar.id, req.params.id, (err, message) => {
-          if (err) return next(err);
-          res.send({ status: 204, message: 'Deleted!' });
-        });
+        res.send({ status: 204, message: 'Deleted!' });
       });
     })
   );
