@@ -17,5 +17,5 @@ class HomeContainer extends Component {
 }
 export default HomeContainer;
 
-const wrapper = document.getElementById("root");
+const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(<HomeContainer />, wrapper) : false;
