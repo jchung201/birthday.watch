@@ -4,7 +4,7 @@ import createError from 'http-errors';
 const { listEvents } = require('../services/listEvents');
 const { createEvent } = require('../services/createEvent');
 const { deleteEvent } = require('../services/deleteEvent');
-import { credentials } from '../lib/credentials.js';
+import { credentials } from '../lib/credentials';
 const { patchEvent } = require('../services/patchEvent');
 const { calendarCheck } = require('../services/calendarCheck');
 const { google } = require('googleapis');
@@ -16,7 +16,11 @@ router.use(
     // Include entire response from the POST get token response
     if (!token) throw createError(400, 'Forgot token!');
     const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
+    const oAuth2Client = new google.auth.OAuth2(
+      client_id,
+      client_secret,
+      redirect_uris[0],
+    );
     oAuth2Client.setCredentials(token);
     req.auth = oAuth2Client;
     calendarCheck(req.auth, (err, calendar, timeZone) => {
@@ -25,7 +29,7 @@ router.use(
       req.timeZone = timeZone;
       next();
     });
-  })
+  }),
 );
 
 router
@@ -36,7 +40,7 @@ router
         if (err) return next(err);
         res.send(events);
       });
-    })
+    }),
   )
   .post(
     '/',
@@ -51,11 +55,17 @@ router
       //     days: 5
       //   }
       // ];
-      createEvent(req.auth, req.calendar.id, req.timeZone, events, (err, createdEvents) => {
-        if (err) return next(err);
-        res.send(createdEvents);
-      });
-    })
+      createEvent(
+        req.auth,
+        req.calendar.id,
+        req.timeZone,
+        events,
+        (err, createdEvents) => {
+          if (err) return next(err);
+          res.send(createdEvents);
+        },
+      );
+    }),
   )
   .patch(
     '/:id',
@@ -68,11 +78,18 @@ router
       //   description: "This has 125125125N!!!",
       //   days: 11
       // };
-      patchEvent(req.auth, req.calendar.id, req.timeZone, req.params.id, event, (err, patchedEvent) => {
-        if (err) return next(err);
-        res.send(patchedEvent);
-      });
-    })
+      patchEvent(
+        req.auth,
+        req.calendar.id,
+        req.timeZone,
+        req.params.id,
+        event,
+        (err, patchedEvent) => {
+          if (err) return next(err);
+          res.send(patchedEvent);
+        },
+      );
+    }),
   )
   .delete(
     '/:id',
@@ -81,7 +98,7 @@ router
         if (err) return next(err);
         res.send({ status: 204, message: 'Deleted!' });
       });
-    })
+    }),
   );
 
 module.exports = router;
