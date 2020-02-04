@@ -66,3 +66,4 @@ token.json
 dist
 .DS_Store
 js/
+build
