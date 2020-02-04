@@ -65,5 +65,4 @@ credentials.json
 token.json
 dist
 .DS_Store
-build/
 js/
