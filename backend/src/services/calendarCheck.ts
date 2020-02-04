@@ -1,6 +1,6 @@
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 
-const calendarCheck = async (auth, cb) => {
+export const calendarCheck = async (auth, cb) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
     calendar.calendarList.list({}, (err, list) => {
@@ -21,8 +21,8 @@ const calendarCheck = async (auth, cb) => {
           requestBody: {
             summary: 'Birthday List Reminder',
             description: 'Birthday Reminders',
-            timeZone: primaryCalendar.timeZone
-          }
+            timeZone: primaryCalendar.timeZone,
+          },
         });
         cb(null, madeCalendar, primaryCalendar.timeZone);
       }
@@ -30,7 +30,4 @@ const calendarCheck = async (auth, cb) => {
   } catch (error) {
     cb(error);
   }
-};
-module.exports = {
-  calendarCheck
 };

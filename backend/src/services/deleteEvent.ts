@@ -1,18 +1,15 @@
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 
-const deleteEvent = async (auth, calendarId, eventId, cb) => {
+export const deleteEvent = async (auth, calendarId, eventId, cb) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
     const deletedEvent = await calendar.events.delete({
       auth,
       calendarId,
-      eventId
+      eventId,
     });
     cb(null, deletedEvent);
   } catch (error) {
     cb(error);
   }
-};
-module.exports = {
-  deleteEvent
 };

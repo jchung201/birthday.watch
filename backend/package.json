@@ -3,12 +3,9 @@
   "version": "1.0.0",
   "description": "Easily adds birthday reminders to your google calendar.",
   "main": "server.js",
-  "type": "module",
   "scripts": {
-    "postinstall": "tsc",
-    "start": "node build/server.js",
+    "start": "tsc && node build/server.js",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
-    "prod": "tsc && node ./build/server.js",
     "tslint": "tslint --project tsconfig.json"
   },
   "repository": {

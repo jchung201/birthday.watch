@@ -1,9 +1,16 @@
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 
-const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
+export const patchEvent = async (
+  auth,
+  calendarId,
+  timeZone,
+  eventId,
+  eventObj,
+  cb,
+) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
-    const { date, name, description, days } = event;
+    const { date, name, description, days } = eventObj;
     const first = new Date(date);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
@@ -14,29 +21,27 @@ const patchEvent = async (auth, calendarId, timeZone, eventId, event, cb) => {
       description: description,
       start: {
         dateTime: first,
-        timeZone
+        timeZone,
       },
       end: {
         dateTime: second,
-        timeZone
+        timeZone,
       },
       recurrence: ['RRULE:FREQ=YEARLY'],
       reminders: {
         useDefault: false,
-        overrides: [{ method: 'email', minutes: 24 * days * 60 }]
-      }
+        overrides: [{ method: 'email', minutes: 24 * days * 60 }],
+      },
     };
-    const patchedDate = await calendar.events.patch({
+    const formattedInformation = {
       auth,
       calendarId,
       eventId,
-      resource: event
-    });
+      resource: event,
+    };
+    const patchedDate = await calendar.events.patch(formattedInformation);
     cb(null, patchedDate.data);
   } catch (error) {
     cb(error);
   }
-};
-module.exports = {
-  patchEvent
 };

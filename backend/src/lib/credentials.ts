@@ -1,5 +1,6 @@
-require('dotenv').config();
-const credentials = {
+import dotenv from 'dotenv';
+dotenv.config();
+export const credentials = {
   installed: {
     client_id: process.env.CLIENT_ID,
     project_id: process.env.project_id,
@@ -9,7 +10,4 @@ const credentials = {
     client_secret: process.env.CLIENT_SECRET,
     redirect_uris: [`${process.env.WEB_URL}/token`],
   },
-};
-module.exports = {
-  credentials,
 };

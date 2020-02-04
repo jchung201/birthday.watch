@@ -1,4 +1,4 @@
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 import { credentials } from '../lib/credentials';
 
 const SCOPES = [
@@ -6,7 +6,7 @@ const SCOPES = [
   'https://www.googleapis.com/auth/calendar',
 ];
 
-const getAuthUrl = async cb => {
+export const getAuthUrl = async cb => {
   try {
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
@@ -23,7 +23,7 @@ const getAuthUrl = async cb => {
     return cb(error);
   }
 };
-const getAuthToken = async (code, cb) => {
+export const getAuthToken = async (code, cb) => {
   try {
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
@@ -38,9 +38,4 @@ const getAuthToken = async (code, cb) => {
   } catch (error) {
     return cb(error);
   }
-};
-
-module.exports = {
-  getAuthUrl,
-  getAuthToken,
 };

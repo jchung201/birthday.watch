@@ -1,6 +1,6 @@
-const { google } = require('googleapis');
+import { google } from 'googleapis';
 
-const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
+export const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
     const insertedDates = [];
@@ -16,30 +16,28 @@ const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
         description: description,
         start: {
           dateTime: first,
-          timeZone
+          timeZone,
         },
         end: {
           dateTime: second,
-          timeZone
+          timeZone,
         },
         recurrence: ['RRULE:FREQ=YEARLY'],
         reminders: {
           useDefault: false,
-          overrides: [{ method: 'email', minutes: 24 * days * 60 }]
-        }
+          overrides: [{ method: 'email', minutes: 24 * days * 60 }],
+        },
       };
-      const insertedDate = await calendar.events.insert({
+      const formattedInformation = {
         auth,
-        calendarId: calendarId,
-        resource: event
-      });
+        calendarId,
+        resource: event,
+      };
+      const insertedDate = await calendar.events.insert(formattedInformation);
       insertedDates.push(insertedDate.data);
     }
     cb(null, insertedDates);
   } catch (error) {
     cb(error);
   }
-};
-module.exports = {
-  createEvent
 };

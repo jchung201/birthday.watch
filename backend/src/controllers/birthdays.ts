@@ -1,20 +1,27 @@
-const router = require('express').Router();
-import asyncHandler from 'express-async-handler';
-import createError from 'http-errors';
-const { listEvents } = require('../services/listEvents');
-const { createEvent } = require('../services/createEvent');
-const { deleteEvent } = require('../services/deleteEvent');
+import * as express from 'express';
+const router = express.Router();
+import expressAsyncHandler from 'express-async-handler';
+import httpErrors from 'http-errors';
+import { listEvents } from '../services/listEvents';
+import { createEvent } from '../services/createEvent';
+import { deleteEvent } from '../services/deleteEvent';
 import { credentials } from '../lib/credentials';
-const { patchEvent } = require('../services/patchEvent');
-const { calendarCheck } = require('../services/calendarCheck');
-const { google } = require('googleapis');
+import { patchEvent } from '../services/patchEvent';
+import { calendarCheck } from '../services/calendarCheck';
+import { google } from 'googleapis';
+
+interface IUserRequest extends express.Request {
+  auth: any;
+  calendar: any;
+  timeZone: any;
+}
 
 router.use(
   '/',
-  asyncHandler(async (req, res, next) => {
+  expressAsyncHandler(async (req: IUserRequest, _res, next) => {
     const { token } = req.body;
     // Include entire response from the POST get token response
-    if (!token) throw createError(400, 'Forgot token!');
+    if (!token) throw httpErrors(400, 'Forgot token!');
     const { client_secret, client_id, redirect_uris } = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
       client_id,
@@ -35,7 +42,7 @@ router.use(
 router
   .get(
     '/',
-    asyncHandler(async (req, res, next) => {
+    expressAsyncHandler(async (req: IUserRequest, res, next) => {
       listEvents(req.auth, req.calendar.id, (err, events) => {
         if (err) return next(err);
         res.send(events);
@@ -44,9 +51,9 @@ router
   )
   .post(
     '/',
-    asyncHandler(async (req, res, next) => {
+    expressAsyncHandler(async (req: IUserRequest, res, next) => {
       const { events } = req.body;
-      if (!events) throw createError(400, 'Forgot events to be created!');
+      if (!events) throw httpErrors(400, 'Forgot events to be created!');
       // events = [
       //   {
       //     date: "11/30/2019",
@@ -69,9 +76,9 @@ router
   )
   .patch(
     '/:id',
-    asyncHandler(async (req, res, next) => {
+    expressAsyncHandler(async (req: IUserRequest, res, next) => {
       const { event } = req.body;
-      if (!event) throw createError(400, 'Forgot event update details!');
+      if (!event) throw httpErrors(400, 'Forgot event update details!');
       // event = {
       //   date: "11/30/2019",
       //   name: "Jefferson Daniel",
@@ -93,12 +100,12 @@ router
   )
   .delete(
     '/:id',
-    asyncHandler(async (req, res, next) => {
-      deleteEvent(req.auth, req.calendar.id, req.params.id, (err, message) => {
+    expressAsyncHandler(async (req: IUserRequest, res, next) => {
+      deleteEvent(req.auth, req.calendar.id, req.params.id, err => {
         if (err) return next(err);
         res.send({ status: 204, message: 'Deleted!' });
       });
     }),
   );
 
-module.exports = router;
+export default router;
