@@ -1,6 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-
+const path = require("path");
 module.exports = {
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+    filename: "bundle.js"
+  },
   module: {
     rules: [
       {
@@ -19,11 +24,8 @@ module.exports = {
         ]
       },
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader"
-        }
+        test: /.(png|jp(e*)g|svg|gif)$/,
+        use: [{ loader: "url-loader?limit=8192" }]
       },
       {
         test: /\.css$/,
