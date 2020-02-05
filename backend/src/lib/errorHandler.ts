@@ -1,6 +1,6 @@
 import httpErrors from 'http-errors';
 
-export default (error, _req, res) => {
+export default (error, _req, res, _next) => {
   let message;
   if (error.status) {
     message = error;
