@@ -6,7 +6,16 @@ const Wrapper = styled.section`
   flex-direction: row;
   align-items: stretch;
   flex-wrap: wrap;
+  background-color: #edd6ff;
+  min-height: 100vh;
 `;
 
-const Home = () => <Wrapper>Excel Spreadsheet</Wrapper>;
+const Home = ({ logOut }) => (
+  <Wrapper>
+    <button type="button" onClick={logOut}>
+      Log Out
+    </button>
+    Excel Spreadsheet
+  </Wrapper>
+);
 export default Home;

@@ -9,6 +9,9 @@ class App extends Component {
   logIn = () => {
     this.setState({ loggedIn: true });
   };
+  logOut = () => {
+    this.setState({ loggedIn: false });
+  };
   render() {
     const { loggedIn } = this.state;
     if (loggedIn) {
