@@ -46,7 +46,7 @@ const RightContainer = styled.div`
   flex-grow: 1;
 `;
 
-const Home = () => (
+const Home = ({ logIn }) => (
   <Wrapper>
     <LeftContainer>
       <Logo src={"../../public/logo.png"}></Logo>
@@ -55,7 +55,7 @@ const Home = () => (
         INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY
         REMINDERS
       </Description>
-      <SignInButton>Sign In With Google</SignInButton>
+      <SignInButton onClick={logIn}>Sign In With Google</SignInButton>
     </LeftContainer>
     <RightContainer>Why</RightContainer>
   </Wrapper>

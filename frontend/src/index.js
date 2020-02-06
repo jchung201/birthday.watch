@@ -6,12 +6,15 @@ import CalendarContainer from "./components/container/CalendarContainer.jsx";
 
 class App extends Component {
   state = { loggedIn: false };
+  logIn = () => {
+    this.setState({ loggedIn: true });
+  };
   render() {
     const { loggedIn } = this.state;
     if (loggedIn) {
       return <CalendarContainer />;
     }
-    return <HomeContainer />;
+    return <HomeContainer logIn={this.logIn} />;
   }
 }
 
