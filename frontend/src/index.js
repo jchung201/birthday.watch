@@ -7,11 +7,11 @@ import CalendarContainer from "./components/container/CalendarContainer.jsx";
 class App extends Component {
   state = { loggedIn: false };
   render() {
-    const { loggedIn } = state;
-    if (loggedIn) {
-      return <HomeContainer />;
-    }
-    return <Calendar />;
+    const { loggedIn } = this.state;
+    // if (loggedIn) {
+    return <HomeContainer />;
+    // }
+    return <CalendarContainer />;
   }
 }
 
