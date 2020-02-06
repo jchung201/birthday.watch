@@ -5,7 +5,7 @@ import HomeContainer from "./components/container/HomeContainer.jsx";
 import CalendarContainer from "./components/container/CalendarContainer.jsx";
 
 class App extends Component {
-  state = { loggedIn: false };
+  state = { loggedIn: true };
   logIn = () => {
     this.setState({ loggedIn: true });
   };
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     const { loggedIn } = this.state;
     if (loggedIn) {
-      return <CalendarContainer />;
+      return <CalendarContainer logOut={this.logOut} />;
     }
     return <HomeContainer logIn={this.logIn} />;
   }

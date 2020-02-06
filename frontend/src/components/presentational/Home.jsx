@@ -5,7 +5,7 @@ const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  height: 100vh;
+  min-height: 100vh;
   flex-wrap: wrap;
 `;
 const LeftContainer = styled.div`
