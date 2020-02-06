@@ -43,7 +43,7 @@ const SignInButton = styled.div`
   background-color: orange;
 `;
 const RightContainer = styled.div`
-  background-color: purple;
+  background-color: #9dd6ee;
   flex-grow: 1;
 `;
 
