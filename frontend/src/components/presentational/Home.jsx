@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -47,7 +46,7 @@ const RightContainer = styled.div`
   flex-grow: 1;
 `;
 
-const Home = ({ loggedIn }) => (
+const Home = () => (
   <Wrapper>
     <LeftContainer>
       <Logo src={"../../public/logo.png"}></Logo>
@@ -61,7 +60,4 @@ const Home = ({ loggedIn }) => (
     <RightContainer>Why</RightContainer>
   </Wrapper>
 );
-Home.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
-};
 export default Home;
