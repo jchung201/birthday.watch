@@ -8,10 +8,10 @@ class App extends Component {
   state = { loggedIn: false };
   render() {
     const { loggedIn } = this.state;
-    // if (loggedIn) {
+    if (loggedIn) {
+      return <CalendarContainer />;
+    }
     return <HomeContainer />;
-    // }
-    return <CalendarContainer />;
   }
 }
 
