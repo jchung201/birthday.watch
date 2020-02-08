@@ -12,6 +12,7 @@ class App extends Component {
     const url = axios
       .get(`${API_URL}/rest/auth/url`)
       .then(({ data }) => {
+        localStorage.setItem("credentials", "credentials");
         console.log(data);
         this.setState({ loggedIn: true });
       })
@@ -20,6 +21,7 @@ class App extends Component {
       });
   };
   logOut = () => {
+    localStorage.removeItem("credentials");
     this.setState({ loggedIn: false });
   };
   render() {
