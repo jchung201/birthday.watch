@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { API_URL } from "./utilities/API";
 
 import HomeContainer from "./components/container/HomeContainer.jsx";
 import CalendarContainer from "./components/container/CalendarContainer.jsx";
@@ -20,5 +21,6 @@ class App extends Component {
     return <HomeContainer logIn={this.logIn} />;
   }
 }
+console.log(API_URL);
 
 ReactDOM.render(<App />, document.getElementById("app"));
