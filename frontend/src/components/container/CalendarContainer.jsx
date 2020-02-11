@@ -11,13 +11,7 @@ class CalendarContainer extends Component {
     const token_type = localStorage.getItem("token_type");
     const expiry_date = localStorage.getItem("expiry_date");
 
-    if (
-      access_token !== "undefined" &&
-      refresh_token !== "undefined" &&
-      scope !== "undefined" &&
-      token_type !== "undefined" &&
-      expiry_date !== "undefined"
-    ) {
+    if (access_token && refresh_token && scope && token_type && expiry_date) {
       axios
         .get(`${API_URL}/rest/birthdays/`, {
           headers: {
@@ -35,6 +29,7 @@ class CalendarContainer extends Component {
         })
         .catch(error => {
           console.error(error);
+          this.props.logOut();
         });
     } else {
       this.props.logOut();
