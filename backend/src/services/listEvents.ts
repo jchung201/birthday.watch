@@ -8,8 +8,8 @@ export const listEvents = (auth, calendarId, cb) => {
         calendarId,
         timeMin: new Date().toISOString(),
         maxResults: 100,
-        singleEvents: true,
-        orderBy: 'startTime',
+        // singleEvents: false,
+        // orderBy: 'startTime',
       },
       (err, res) => {
         if (err) cb(err);
