@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.section`
-  background-color: #edd6ff;
+  background-color: #9dd6ee;
   min-height: 100vh;
 `;
 const Header = styled.div`

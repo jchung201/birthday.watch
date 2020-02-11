@@ -7,6 +7,10 @@ const Wrapper = styled.section`
   align-items: stretch;
   min-height: 100vh;
   flex-wrap: wrap;
+  background-image: url("../../../public/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 const LeftContainer = styled.div`
   display: flex;
@@ -42,7 +46,6 @@ const SignInButton = styled.div`
   background-color: orange;
 `;
 const RightContainer = styled.div`
-  background-color: #9dd6ee;
   flex-grow: 1;
 `;
 
