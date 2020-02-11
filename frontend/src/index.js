@@ -9,11 +9,11 @@ import CalendarContainer from "./components/container/CalendarContainer.jsx";
 class App extends Component {
   state = { loggedIn: false };
   componentDidMount() {
-    let access_token = localStorage.getItem("access_token");
-    let refresh_token = localStorage.getItem("refresh_token");
-    let scope = localStorage.getItem("scope");
-    let token_type = localStorage.getItem("token_type");
-    let expiry_date = localStorage.getItem("expiry_date");
+    const access_token = localStorage.getItem("access_token");
+    const refresh_token = localStorage.getItem("refresh_token");
+    const scope = localStorage.getItem("scope");
+    const token_type = localStorage.getItem("token_type");
+    const expiry_date = localStorage.getItem("expiry_date");
     if (
       access_token !== "undefined" &&
       refresh_token !== "undefined" &&
