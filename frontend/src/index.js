@@ -7,21 +7,27 @@ import HomeContainer from "./components/container/HomeContainer.jsx";
 import CalendarContainer from "./components/container/CalendarContainer.jsx";
 
 class App extends Component {
-  state = { loggedIn: true };
+  state = { loggedIn: false };
   componentDidMount() {
     let access_token = localStorage.getItem("access_token");
     let refresh_token = localStorage.getItem("refresh_token");
     let scope = localStorage.getItem("scope");
     let token_type = localStorage.getItem("token_type");
     let expiry_date = localStorage.getItem("expiry_date");
-    if (access_token && refresh_token && scope && token_type && expiry_date) {
+    if (
+      access_token !== "undefined" &&
+      refresh_token !== "undefined" &&
+      scope !== "undefined" &&
+      token_type !== "undefined" &&
+      expiry_date !== "undefined"
+    ) {
       this.setState({ loggedIn: true });
     } else {
       let search = window.location.search;
       let params = new URLSearchParams(search);
       let code = params.get("code");
       axios
-        .post(`${API_URL}/rest/auth/code`, { code })
+        .post(`${API_URL}/rest/auth/token`, { code })
         .then(
           ({
             data: {
@@ -49,16 +55,13 @@ class App extends Component {
     axios
       .get(`${API_URL}/rest/auth/url`)
       .then(({ data }) => {
-        localStorage.setItem("credentials", "credentials");
-        console.log(data);
-        this.setState({ loggedIn: true });
+        window.location = data;
       })
       .catch(error => {
         console.error(error);
       });
   };
   logOut = () => {
-    localStorage.removeItem("credentials");
     this.setState({ loggedIn: false });
   };
   render() {
