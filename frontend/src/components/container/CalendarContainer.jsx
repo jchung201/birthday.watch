@@ -36,7 +36,6 @@ class CalendarContainer extends Component {
         .catch(error => {
           console.error(error);
         });
-      console.log("yeeaaaa", token);
     } else {
       this.props.logOut();
     }

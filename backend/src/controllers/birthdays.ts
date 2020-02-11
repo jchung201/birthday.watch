@@ -19,7 +19,7 @@ interface IUserRequest extends express.Request {
 router.use(
   '/',
   expressAsyncHandler(async (req: IUserRequest, _res, next) => {
-    const { token } = req.body;
+    const token = JSON.parse(req.headers.authorization);
     // Include entire response from the POST get token response
     if (!token) throw httpErrors(400, 'Forgot token!');
     const { client_secret, client_id, redirect_uris } = credentials.installed;
