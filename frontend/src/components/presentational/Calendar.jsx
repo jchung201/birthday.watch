@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Table from "./Table.jsx";
 
 const Wrapper = styled.section`
   background-color: #9dd6ee;
@@ -21,7 +22,7 @@ const HLogo = styled.img`
   width: 100px;
 `;
 
-const Home = ({ logOut }) => (
+const Calendar = ({ logOut, dates }) => (
   <Wrapper>
     <Header>
       <HTitle>BIRTHDAY.WATCH</HTitle>
@@ -34,6 +35,7 @@ const Home = ({ logOut }) => (
         Log Out
       </button>
     </Header>
+    <Table dates={dates} />
   </Wrapper>
 );
-export default Home;
+export default Calendar;
