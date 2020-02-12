@@ -1,26 +1,16 @@
 import { google } from 'googleapis';
 
-export const listEvents = (auth, calendarId, cb) => {
+export const listEvents = async (auth, calendarId, cb) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
-    calendar.events.list(
-      {
-        calendarId,
-        timeMin: new Date().toISOString(),
-        maxResults: 100,
-        // singleEvents: false,
-        // orderBy: 'startTime',
-      },
-      (err, res) => {
-        if (err) cb(err);
-        const events = res.data.items;
-        if (events.length) {
-          cb(null, events);
-        } else {
-          cb(null, []);
-        }
-      },
-    );
+    const foundEvents = await calendar.events.list({
+      calendarId,
+      timeMin: new Date().toISOString(),
+      maxResults: 100,
+      // singleEvents: false,
+      // orderBy: 'startTime',
+    });
+    cb(null, foundEvents.data.items);
   } catch (error) {
     cb(error);
   }
