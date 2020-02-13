@@ -95,7 +95,11 @@ const Table = ({ dates }) => (
           <ContentText>{date.location}</ContentText>
         </ContentColumn>
         <ContentColumn color="#e37dbc">
-          <ContentText>Modify</ContentText>
+          <ContentText>
+            <div style={{ textDecoration: "underline", color: "blue" }}>
+              Modify
+            </div>
+          </ContentText>
         </ContentColumn>
       </ContentRow>
     ))}
