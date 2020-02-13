@@ -73,7 +73,9 @@ const Table = ({ dates }) => (
     {dates.map(date => (
       <ContentRow key={date.id}>
         <ContentColumn color="#c3a7d8">
-          <ContentText>{date.summary}</ContentText>
+          <ContentText>
+            {date.summary.substring(0, date.summary.length - 12)}
+          </ContentText>
         </ContentColumn>
         <ContentColumn color="#ffa7ba">
           <ContentText>
