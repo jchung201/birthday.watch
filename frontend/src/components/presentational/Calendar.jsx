@@ -21,6 +21,12 @@ const HLogo = styled.img`
   margin-top: 40px;
   width: 100px;
 `;
+const Content = styled.section`
+  background-color: #9dd6ee;
+  padding-left: 196px;
+  padding-right: 196px;
+  padding-top: 50px;
+`;
 
 const Calendar = ({ logOut, dates }) => (
   <Wrapper>
@@ -35,7 +41,9 @@ const Calendar = ({ logOut, dates }) => (
         Log Out
       </button>
     </Header>
-    <Table dates={dates} />
+    <Content>
+      <Table dates={dates} />
+    </Content>
   </Wrapper>
 );
 export default Calendar;
