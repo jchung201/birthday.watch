@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Table from "./Table.jsx";
 
 const Wrapper = styled.section`
-  background-color: #9dd6ee;
+  background-color: #dff7ff;
   min-height: 100vh;
 `;
 const Header = styled.div`
@@ -22,7 +22,6 @@ const HLogo = styled.img`
   width: 100px;
 `;
 const Content = styled.section`
-  background-color: #9dd6ee;
   padding-left: 196px;
   padding-right: 196px;
   padding-top: 50px;

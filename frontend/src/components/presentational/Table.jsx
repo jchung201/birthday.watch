@@ -5,24 +5,47 @@ const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const HeaderTitle = styled.div`
+const Title = styled.div`
   width: 220px;
-  height: 120px;
+  height: 110px;
+  margin-right: 25px;
   border-radius: 12px;
   box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: ${props => props.color};
-  margin-right: 31px;
+  display: flex;
+`;
+const TitleText = styled.div`
+  color: white;
+  font-size: 28px;
+  font-family: Roboto Slab;
+  margin: auto;
+  text-align: center;
 `;
 
 const Table = ({ dates }) => (
   <div>
     <TableHeader>
-      <HeaderTitle color={"orange"}>Name</HeaderTitle>
-      <HeaderTitle>Birth Date</HeaderTitle>
-      <HeaderTitle>Reminder (Days Ahead)</HeaderTitle>
-      <HeaderTitle>Reminder (Time)</HeaderTitle>
-      <HeaderTitle>Note</HeaderTitle>
-      <HeaderTitle>Modify</HeaderTitle>
+      <Title color="#c3a7d8">
+        <TitleText>Name</TitleText>
+      </Title>
+      <Title color="#ffa7ba">
+        <TitleText>Birth Date</TitleText>
+      </Title>
+      <Title color="#9dd6ee">
+        <TitleText>
+          Reminder <br />
+          (Days Ahead)
+        </TitleText>
+      </Title>
+      <Title color="#9ad6ca">
+        <TitleText>Reminder (Time)</TitleText>
+      </Title>
+      <Title color="#f89f9f">
+        <TitleText>Note</TitleText>
+      </Title>
+      <Title color="#e37dbc">
+        <TitleText>Modify</TitleText>
+      </Title>
     </TableHeader>
     {dates.map(date => (
       <div key={date.id}>{date.summary}</div>
