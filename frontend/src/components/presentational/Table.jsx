@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import dateFormat from "dateformat";
+import Row from "./Row.jsx";
 
 const TableHeader = styled.div`
   display: flex;
@@ -71,39 +71,7 @@ const Table = ({ dates }) => (
       </Title>
     </TableHeader>
     {dates.map(date => (
-      <ContentRow key={date.id}>
-        <ContentColumn color="#c3a7d8">
-          <ContentText>
-            {date.summary.substring(0, date.summary.length - 12)}
-          </ContentText>
-        </ContentColumn>
-        <ContentColumn color="#ffa7ba">
-          <ContentText>
-            {dateFormat(date.start.dateTime, "mmmm dS")}
-          </ContentText>
-        </ContentColumn>
-        <ContentColumn color="#9dd6ee">
-          <ContentText>
-            {date.reminders.overrides && date.reminders.overrides[0].minutes}
-          </ContentText>
-        </ContentColumn>
-        <ContentColumn color="#9ad6ca">
-          <ContentText>
-            {" "}
-            {date.reminders.overrides && date.reminders.overrides[0].minutes}
-          </ContentText>
-        </ContentColumn>
-        <ContentColumn color="#f89f9f">
-          <ContentText>{date.location}</ContentText>
-        </ContentColumn>
-        <ContentColumn color="#e37dbc">
-          <ContentText>
-            <div style={{ textDecoration: "underline", color: "blue" }}>
-              Modify
-            </div>
-          </ContentText>
-        </ContentColumn>
-      </ContentRow>
+      <Row date={date} />
     ))}
   </React.Fragment>
 );
