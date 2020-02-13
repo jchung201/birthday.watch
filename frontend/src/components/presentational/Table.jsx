@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import dateFormat from "dateformat";
 
 const TableHeader = styled.div`
   display: flex;
@@ -75,7 +76,9 @@ const Table = ({ dates }) => (
           <ContentText>{date.summary}</ContentText>
         </ContentColumn>
         <ContentColumn color="#ffa7ba">
-          <ContentText>{date.start.dateTime}</ContentText>
+          <ContentText>
+            {dateFormat(date.start.dateTime, "mmmm dS")}
+          </ContentText>
         </ContentColumn>
         <ContentColumn color="#9dd6ee">
           <ContentText>
@@ -87,7 +90,7 @@ const Table = ({ dates }) => (
           <ContentText>Reminder (Time)</ContentText>
         </ContentColumn>
         <ContentColumn color="#f89f9f">
-          <ContentText>{date.description}</ContentText>
+          <ContentText>{date.location}</ContentText>
         </ContentColumn>
         <ContentColumn color="#e37dbc">
           <ContentText>Modify</ContentText>
