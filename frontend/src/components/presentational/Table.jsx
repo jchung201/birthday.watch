@@ -4,6 +4,7 @@ import styled from "styled-components";
 const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 const Title = styled.div`
   width: 220px;
@@ -21,9 +22,30 @@ const TitleText = styled.div`
   margin: auto;
   text-align: center;
 `;
+const ContentRow = styled.div`
+  display: flex;
+  margin-top: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+const ContentColumn = styled.div`
+  width: 220px;
+  height: 110px;
+  margin-right: 25px;
+  border-radius: 12px;
+  background-color: white;
+  display: flex;
+`;
+const ContentText = styled.div`
+  color: #7d7c81;
+  font-size: 20px;
+  font-family: Roboto;
+  margin: auto;
+  text-align: center;
+`;
 
 const Table = ({ dates }) => (
-  <div>
+  <React.Fragment>
     <TableHeader>
       <Title color="#c3a7d8">
         <TitleText>Name</TitleText>
@@ -48,8 +70,30 @@ const Table = ({ dates }) => (
       </Title>
     </TableHeader>
     {dates.map(date => (
-      <div key={date.id}>{date.summary}</div>
+      <ContentRow key={date.id}>
+        <ContentColumn color="#c3a7d8">
+          <ContentText>{date.summary}</ContentText>
+        </ContentColumn>
+        <ContentColumn color="#ffa7ba">
+          <ContentText>{date.start.dateTime}</ContentText>
+        </ContentColumn>
+        <ContentColumn color="#9dd6ee">
+          <ContentText>
+            Reminder <br />
+            (Days Ahead)
+          </ContentText>
+        </ContentColumn>
+        <ContentColumn color="#9ad6ca">
+          <ContentText>Reminder (Time)</ContentText>
+        </ContentColumn>
+        <ContentColumn color="#f89f9f">
+          <ContentText>{date.description}</ContentText>
+        </ContentColumn>
+        <ContentColumn color="#e37dbc">
+          <ContentText>Modify</ContentText>
+        </ContentColumn>
+      </ContentRow>
     ))}
-  </div>
+  </React.Fragment>
 );
 export default Table;
