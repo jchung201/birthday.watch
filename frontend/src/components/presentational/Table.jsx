@@ -84,12 +84,14 @@ const Table = ({ dates }) => (
         </ContentColumn>
         <ContentColumn color="#9dd6ee">
           <ContentText>
-            Reminder <br />
-            (Days Ahead)
+            {date.reminders.overrides && date.reminders.overrides[0].minutes}
           </ContentText>
         </ContentColumn>
         <ContentColumn color="#9ad6ca">
-          <ContentText>Reminder (Time)</ContentText>
+          <ContentText>
+            {" "}
+            {date.reminders.overrides && date.reminders.overrides[0].minutes}
+          </ContentText>
         </ContentColumn>
         <ContentColumn color="#f89f9f">
           <ContentText>{date.location}</ContentText>
