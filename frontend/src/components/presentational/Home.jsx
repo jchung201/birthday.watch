@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogoImg from "../../../public/logo.png";
+import BackgroundImg from "../../../public/background.png";
 
 const Wrapper = styled.section`
   display: flex;
@@ -8,7 +9,7 @@ const Wrapper = styled.section`
   align-items: stretch;
   min-height: 100vh;
   flex-wrap: wrap;
-  background-image: url("../../../public/background.png");
+  background-image: url(${BackgroundImg});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
