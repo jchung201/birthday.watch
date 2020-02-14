@@ -50,7 +50,7 @@ const Table = ({ dates }) => (
       </Title>
     </TableHeader>
     {dates.map(date => (
-      <Row date={date} />
+      <Row date={date} key={date.id} />
     ))}
   </React.Fragment>
 );

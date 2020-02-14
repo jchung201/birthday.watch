@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import LogoImg from "../../../public/logo.png";
 
 const Wrapper = styled.section`
   display: flex;
@@ -52,7 +53,7 @@ const RightContainer = styled.div`
 const Home = ({ logIn }) => (
   <Wrapper>
     <LeftContainer>
-      <Logo src={"../../public/logo.png"}></Logo>
+      <Logo src={LogoImg}></Logo>
       <Header>BIRTHDAY.WATCH</Header>
       <Description>
         INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY

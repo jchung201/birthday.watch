@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Table from "./Table.jsx";
+import LogoImg from "../../../public/logo.png";
 
 const Wrapper = styled.section`
   background-color: #dff7ff;
@@ -31,7 +32,7 @@ const Calendar = ({ logOut, dates }) => (
   <Wrapper>
     <Header>
       <HTitle>BIRTHDAY.WATCH</HTitle>
-      <HLogo src="../../../public/logo.png" alt="logo"></HLogo>
+      <HLogo src={LogoImg} alt="logo"></HLogo>
       <button
         type="button"
         onClick={logOut}
