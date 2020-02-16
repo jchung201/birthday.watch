@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Row from "./Row.jsx";
+import RowContainer from "../container/RowContainer.jsx";
 
 const TableHeader = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ const Table = ({ dates }) => (
       </Title>
     </TableHeader>
     {dates.map(date => (
-      <Row date={date} key={date.id} />
+      <RowContainer date={date} />
     ))}
   </React.Fragment>
 );

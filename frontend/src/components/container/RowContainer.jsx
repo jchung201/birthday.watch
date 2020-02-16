@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Home from "../presentational/Home.jsx";
+import Row from "../presentational/Row.jsx";
 class RowContainer extends Component {
   render() {
-    const { logIn } = this.props;
-    return <Home logIn={logIn} />;
+    const { date } = this.props;
+    return <Row date={date} />;
   }
 }
 export default RowContainer;
