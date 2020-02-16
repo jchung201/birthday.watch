@@ -25,22 +25,22 @@ const ContentText = styled.div`
 
 const Table = ({ name, birthDate, days, time, note, edit }) => (
   <ContentRow>
-    <ContentColumn color="#c3a7d8">
+    <ContentColumn>
       <ContentText>{name}</ContentText>
     </ContentColumn>
-    <ContentColumn color="#ffa7ba">
+    <ContentColumn>
       <ContentText>{birthDate}</ContentText>
     </ContentColumn>
-    <ContentColumn color="#9dd6ee">
+    <ContentColumn>
       <ContentText>{days}</ContentText>
     </ContentColumn>
-    <ContentColumn color="#9ad6ca">
+    <ContentColumn>
       <ContentText>{time}</ContentText>
     </ContentColumn>
-    <ContentColumn color="#f89f9f">
+    <ContentColumn>
       <ContentText>{note}</ContentText>
     </ContentColumn>
-    <ContentColumn color="#e37dbc">
+    <ContentColumn>
       <ContentText>
         <div
           style={{ textDecoration: "underline", color: "blue" }}
