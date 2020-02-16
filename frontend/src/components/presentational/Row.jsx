@@ -23,7 +23,7 @@ const ContentText = styled.div`
   text-align: center;
 `;
 
-const Table = ({ name, birthDate, days, time, note, edit }) => (
+const Row = ({ name, birthDate, days, time, note, edit }) => (
   <ContentRow>
     <ContentColumn>
       <ContentText>{name}</ContentText>
@@ -52,4 +52,4 @@ const Table = ({ name, birthDate, days, time, note, edit }) => (
     </ContentColumn>
   </ContentRow>
 );
-export default Table;
+export default Row;
