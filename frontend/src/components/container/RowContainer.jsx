@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Row from "../presentational/Row.jsx";
-import dateFormat from "dateformat";
+import moment from "moment";
 
 class RowContainer extends Component {
   state = { editing: false };
@@ -14,11 +14,12 @@ class RowContainer extends Component {
   render() {
     const { date } = this.props;
     const name = date.summary.substring(0, date.summary.length - 12);
-    const birthDate = dateFormat(date.start.dateTime, "mmmm dS");
+    const birthDate = moment(date.start.dateTime).format("MMM Do");
     const days =
-      date.reminders.overrides && date.reminders.overrides[0].minutes;
+      date.reminders.overrides &&
+      Math.ceil(date.reminders.overrides[0].minutes / 60 / 24);
     const time =
-      date.reminders.overrides && date.reminders.overrides[0].minutes;
+      date.reminders.overrides && moment(date.start.dateTime).format("h:mm a");
     const note = date.location;
     return (
       <Row
