@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Row from "../presentational/Row.jsx";
+import RowEdit from "../presentational/RowEdit.jsx";
 import moment from "moment";
 
 class RowContainer extends Component {
@@ -34,6 +35,18 @@ class RowContainer extends Component {
 
   render() {
     const { name, birthDate, days, time, note, editing } = this.state;
+    if (editing) {
+      return (
+        <RowEdit
+          name={name}
+          birthDate={birthDate}
+          days={days}
+          time={time}
+          note={note}
+          edit={this.edit}
+        />
+      );
+    }
     return (
       <Row
         name={name}

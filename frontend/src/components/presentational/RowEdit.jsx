@@ -7,12 +7,12 @@ const ContentRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-const ContentColumn = styled.input`
+const ContentColumn = styled.div`
   width: 220px;
   height: 110px;
   margin-right: 25px;
   border-radius: 12px;
-  background-color: white;
+  background-color: orange;
   display: flex;
 `;
 const ContentText = styled.div`
