@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import dateFormat from "dateformat";
 
 const ContentRow = styled.div`
   display: flex;
@@ -24,32 +23,31 @@ const ContentText = styled.div`
   text-align: center;
 `;
 
-const Table = ({ date }) => (
-  <ContentRow key={date.id}>
+const Table = ({ name, birthDate, days, time, note, edit }) => (
+  <ContentRow>
     <ContentColumn color="#c3a7d8">
-      <ContentText>
-        {date.summary.substring(0, date.summary.length - 12)}
-      </ContentText>
+      <ContentText>{name}</ContentText>
     </ContentColumn>
     <ContentColumn color="#ffa7ba">
-      <ContentText>{dateFormat(date.start.dateTime, "mmmm dS")}</ContentText>
+      <ContentText>{birthDate}</ContentText>
     </ContentColumn>
     <ContentColumn color="#9dd6ee">
-      <ContentText>
-        {date.reminders.overrides && date.reminders.overrides[0].minutes}
-      </ContentText>
+      <ContentText>{days}</ContentText>
     </ContentColumn>
     <ContentColumn color="#9ad6ca">
-      <ContentText>
-        {date.reminders.overrides && date.reminders.overrides[0].minutes}
-      </ContentText>
+      <ContentText>{time}</ContentText>
     </ContentColumn>
     <ContentColumn color="#f89f9f">
-      <ContentText>{date.location}</ContentText>
+      <ContentText>{note}</ContentText>
     </ContentColumn>
     <ContentColumn color="#e37dbc">
       <ContentText>
-        <div style={{ textDecoration: "underline", color: "blue" }}>Modify</div>
+        <div
+          style={{ textDecoration: "underline", color: "blue" }}
+          onClick={edit}
+        >
+          Modify
+        </div>
       </ContentText>
     </ContentColumn>
   </ContentRow>
