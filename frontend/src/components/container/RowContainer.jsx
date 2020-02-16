@@ -43,7 +43,7 @@ class RowContainer extends Component {
           days={days}
           time={time}
           note={note}
-          edit={this.edit}
+          save={this.save}
         />
       );
     }

@@ -23,7 +23,7 @@ const ContentText = styled.div`
   text-align: center;
 `;
 
-const RowEdit = ({ name, birthDate, days, time, note, edit }) => (
+const RowEdit = ({ name, birthDate, days, time, note, save }) => (
   <ContentRow>
     <ContentColumn>
       <ContentText>{name}</ContentText>
@@ -44,7 +44,7 @@ const RowEdit = ({ name, birthDate, days, time, note, edit }) => (
       <ContentText>
         <div
           style={{ textDecoration: "underline", color: "blue" }}
-          onClick={edit}
+          onClick={save}
         >
           Save
         </div>
