@@ -30,7 +30,19 @@ class RowContainer extends Component {
     this.setState({ editing: true });
   };
   save = () => {
-    this.setState({ editing: false });
+    const { date } = this.props; // Should be axios post
+    this.setState({
+      editing: false,
+      name: date.summary.substring(0, date.summary.length - 12),
+      birthDate: moment(date.start.dateTime).format("MMM Do"),
+      days:
+        date.reminders.overrides &&
+        Math.ceil(date.reminders.overrides[0].minutes / 60 / 24),
+      time:
+        date.reminders.overrides &&
+        moment(date.start.dateTime).format("h:mm a"),
+      note: date.location
+    });
   };
 
   render() {
