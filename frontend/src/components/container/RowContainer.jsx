@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import moment from "moment";
 import Row from "../presentational/Row.jsx";
 import RowEdit from "../presentational/RowEdit.jsx";
-import moment from "moment";
+import { API_URL } from "../../utilities/URL";
 
 class RowContainer extends Component {
   state = {
@@ -30,19 +31,40 @@ class RowContainer extends Component {
     this.setState({ editing: true });
   };
   save = () => {
-    const { date } = this.props; // Should be axios post
-    this.setState({
-      editing: false,
-      name: date.summary.substring(0, date.summary.length - 12),
-      birthDate: moment(date.start.dateTime).format("MMM Do"),
-      days:
-        date.reminders.overrides &&
-        Math.ceil(date.reminders.overrides[0].minutes / 60 / 24),
-      time:
-        date.reminders.overrides &&
-        moment(date.start.dateTime).format("h:mm a"),
-      note: date.location
-    });
+    const access_token = localStorage.getItem("access_token");
+    const refresh_token = localStorage.getItem("refresh_token");
+    const scope = localStorage.getItem("scope");
+    const token_type = localStorage.getItem("token_type");
+    const expiry_date = localStorage.getItem("expiry_date");
+    axios
+      .patch(`${API_URL}/rest/birthdays/`, {
+        headers: {
+          Authorization: JSON.stringify({
+            access_token,
+            refresh_token,
+            scope,
+            token_type,
+            expiry_date
+          })
+        }
+      })
+      .then(({ data }) => {
+        this.setState({
+          editing: false,
+          name: data.summary.substring(0, data.summary.length - 12),
+          birthDate: moment(data.start.dateTime).format("MMM Do"),
+          days:
+            data.reminders.overrides &&
+            Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
+          time:
+            data.reminders.overrides &&
+            moment(data.start.dateTime).format("h:mm a"),
+          note: data.location
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   render() {
