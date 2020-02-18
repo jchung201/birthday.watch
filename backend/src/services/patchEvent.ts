@@ -10,8 +10,8 @@ export const patchEvent = async (
 ) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
-    const { date, name, description, days } = eventObj;
-    const first = new Date(date);
+    const { date, name, description, days, time } = eventObj;
+    const first = new Date(time);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;

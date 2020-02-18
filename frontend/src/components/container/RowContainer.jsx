@@ -36,18 +36,30 @@ class RowContainer extends Component {
     const scope = localStorage.getItem("scope");
     const token_type = localStorage.getItem("token_type");
     const expiry_date = localStorage.getItem("expiry_date");
+    const { date } = this.props;
+    const { birthDate, name, note, days, time } = this.state;
     axios
-      .patch(`${API_URL}/rest/birthdays/`, {
-        headers: {
-          Authorization: JSON.stringify({
-            access_token,
-            refresh_token,
-            scope,
-            token_type,
-            expiry_date
-          })
+      .patch(
+        `${API_URL}/rest/birthdays/${date.id}`,
+        {
+          date: birthDate,
+          name,
+          description: note,
+          days,
+          time
+        },
+        {
+          headers: {
+            Authorization: JSON.stringify({
+              access_token,
+              refresh_token,
+              scope,
+              token_type,
+              expiry_date
+            })
+          }
         }
-      })
+      )
       .then(({ data }) => {
         this.setState({
           editing: false,
