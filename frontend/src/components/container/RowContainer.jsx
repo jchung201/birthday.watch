@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 import Row from "../presentational/Row.jsx";
 import RowEdit from "../presentational/RowEdit.jsx";
 import { API_URL } from "../../utilities/URL";
@@ -38,15 +39,18 @@ class RowContainer extends Component {
     const expiry_date = localStorage.getItem("expiry_date");
     const { date } = this.props;
     const { birthDate, name, note, days, time } = this.state;
+    //TODO: Turn dates into dates and time into usable
     axios
       .patch(
         `${API_URL}/rest/birthdays/${date.id}`,
         {
-          date: birthDate,
-          name,
-          description: note,
-          days,
-          time
+          event: {
+            date: birthDate,
+            name,
+            description: note,
+            days: Number(days),
+            time
+          }
         },
         {
           headers: {

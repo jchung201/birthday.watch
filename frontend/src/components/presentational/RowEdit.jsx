@@ -39,7 +39,7 @@ const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
       <ContentInput value={birthDate} name="birthDate" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentInput value={days} name="days" onChange={onChange} />
+      <ContentInput value={days} type="number" name="days" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
       <ContentInput value={time} name="time" onChange={onChange} />
