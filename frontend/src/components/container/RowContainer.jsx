@@ -78,6 +78,13 @@ class RowContainer extends Component {
         console.error(error);
       });
   };
+  onChange = event => {
+    const {
+      target: { name, value }
+    } = event;
+    this.setState({ [name]: value });
+    console.log(this.state);
+  };
 
   render() {
     const { name, birthDate, days, time, note, editing } = this.state;
@@ -90,6 +97,7 @@ class RowContainer extends Component {
           time={time}
           note={note}
           save={this.save}
+          onChange={this.onChange}
         />
       );
     }

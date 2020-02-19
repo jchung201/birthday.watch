@@ -15,6 +15,13 @@ const ContentColumn = styled.div`
   background-color: orange;
   display: flex;
 `;
+const ContentInput = styled.input`
+  color: #7d7c81;
+  font-size: 20px;
+  font-family: Roboto;
+  margin: auto;
+  text-align: center;
+`;
 const ContentText = styled.div`
   color: #7d7c81;
   font-size: 20px;
@@ -23,22 +30,22 @@ const ContentText = styled.div`
   text-align: center;
 `;
 
-const RowEdit = ({ name, birthDate, days, time, note, save }) => (
+const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
   <ContentRow>
     <ContentColumn>
-      <ContentText>{name}</ContentText>
+      <ContentInput value={name} name="name" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentText>{birthDate}</ContentText>
+      <ContentInput value={birthDate} name="birthDate" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentText>{days}</ContentText>
+      <ContentInput value={days} name="days" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentText>{time}</ContentText>
+      <ContentInput value={time} name="time" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentText>{note}</ContentText>
+      <ContentInput value={note} name="note" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
       <ContentText>
