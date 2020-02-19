@@ -10,7 +10,7 @@ export const createEvent = async (auth, calendarId, timeZone, dates, cb) => {
       const second = new Date(first);
       second.setDate(first.getDate() + 1);
       const summary = `${name}'s Birthday!`;
-      var event = {
+      const event = {
         summary,
         location: description,
         start: {

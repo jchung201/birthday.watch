@@ -11,14 +11,13 @@ export const patchEvent = async (
   try {
     const calendar = google.calendar({ version: 'v3', auth });
     const { date, name, description, days, time } = eventObj;
-    const first = new Date(time);
+    const first = new Date(date);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;
-    var event = {
-      summary: summary,
-      location: 'Birthday',
-      description: description,
+    const event = {
+      summary,
+      location: description,
       start: {
         dateTime: first,
         timeZone,
