@@ -1,4 +1,5 @@
 import { google } from 'googleapis';
+import moment from 'moment';
 
 export const patchEvent = async (
   auth,
@@ -11,8 +12,15 @@ export const patchEvent = async (
   try {
     const calendar = google.calendar({ version: 'v3', auth });
     const { date, name, description, days, time } = eventObj;
-    const first = new Date(date);
-    const second = new Date(first);
+    // Calculate time
+    const end = date.substring(date.length - 2, date.length);
+    let first = new Date(moment(date + ', ' + process.env.YEAR));
+    if (end === 'st' || end === 'nd' || end == 'rd' || end === 'th') {
+      first = new Date(
+        moment(date.substring(0, date.length - 2) + ', ' + process.env.YEAR),
+      );
+    }
+    const second = new Date(first.getTime());
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;
     const event = {
@@ -41,6 +49,7 @@ export const patchEvent = async (
     const patchedDate = await calendar.events.patch(formattedInformation);
     cb(null, patchedDate.data);
   } catch (error) {
+    console.log(error);
     cb(error);
   }
 };
