@@ -87,7 +87,6 @@ class RowContainer extends Component {
       target: { name, value }
     } = event;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   render() {
