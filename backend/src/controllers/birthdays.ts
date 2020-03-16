@@ -52,8 +52,8 @@ router
   .post(
     '/',
     expressAsyncHandler(async (req: IUserRequest, res, next) => {
-      const { events } = req.body;
-      if (!events) throw httpErrors(400, 'Forgot events to be created!');
+      const { birthday } = req.body;
+      if (!birthday) throw httpErrors(400, 'Forgot to include birthday!');
       // events = [
       //   {
       //     date: "11/30/2019",
@@ -66,7 +66,7 @@ router
         req.auth,
         req.calendar.id,
         req.timeZone,
-        events,
+        birthday,
         (err, createdEvents) => {
           if (err) return next(err);
           res.send(createdEvents);

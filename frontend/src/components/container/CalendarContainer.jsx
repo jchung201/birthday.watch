@@ -6,6 +6,9 @@ import { API_URL } from "../../utilities/URL";
 class CalendarContainer extends Component {
   state = { dates: [], loading: true };
   componentDidMount() {
+    this.fetchDates();
+  }
+  fetchDates = () => {
     const access_token = localStorage.getItem("access_token");
     const refresh_token = localStorage.getItem("refresh_token");
     const scope = localStorage.getItem("scope");
@@ -35,7 +38,8 @@ class CalendarContainer extends Component {
     } else {
       this.props.logOut();
     }
-  }
+  };
+  newRow = () => {};
   render() {
     const { logOut } = this.props;
     if (this.state.loading) return <div>Loading...</div>;
