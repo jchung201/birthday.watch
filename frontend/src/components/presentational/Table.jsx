@@ -24,7 +24,7 @@ const TitleText = styled.div`
   text-align: center;
 `;
 
-const Table = ({ dates }) => (
+const Table = ({ dates, creating, fetchDates, finishCreating }) => (
   <React.Fragment>
     <TableHeader>
       <Title color="#c3a7d8">
@@ -52,6 +52,12 @@ const Table = ({ dates }) => (
     {dates.map(date => (
       <RowContainer date={date} key={date.id} />
     ))}
+    {creating && (
+      <NewRowContainer
+        fetchDates={fetchDates}
+        finishCreating={finishCreating}
+      />
+    )}
   </React.Fragment>
 );
 export default Table;

@@ -53,7 +53,14 @@ const AddButton = styled.div`
   transition: all 0.2s;
 `;
 
-const Calendar = ({ logOut, dates }) => (
+const Calendar = ({
+  logOut,
+  dates,
+  fetchDates,
+  creating,
+  startCreating,
+  finishCreating
+}) => (
   <Wrapper>
     <Header>
       <HTitle>BIRTHDAY.WATCH</HTitle>
@@ -67,9 +74,16 @@ const Calendar = ({ logOut, dates }) => (
       </AddButton>
     </Header>
     <Content>
-      <Table dates={dates} />
+      <Table
+        dates={dates}
+        creating={creating}
+        fetchDates={fetchDates}
+        finishCreating={finishCreating}
+      />
       <BottomWrapper>
-        <AddButton>Add New Birthday</AddButton>
+        {!creating && (
+          <AddButton onClick={startCreating}>Add New Birthday</AddButton>
+        )}
       </BottomWrapper>
     </Content>
   </Wrapper>
