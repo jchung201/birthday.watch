@@ -12,14 +12,18 @@ const ContentColumn = styled.div`
   height: 110px;
   margin-right: 25px;
   border-radius: 12px;
-  background-color: orange;
+  background-color: #e37dbc;
   display: flex;
 `;
 const ContentInput = styled.input`
-  color: #7d7c81;
-  font-size: 20px;
+  color: white;
   font-family: Roboto;
+  font-size: 20px;
+  width: 100%;
   margin: auto;
+  border: none !important;
+  background: transparent;
+  padding: 0 !important;
   text-align: center;
 `;
 const ContentText = styled.div`
@@ -39,7 +43,12 @@ const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
       <ContentInput value={birthDate} name="birthDate" onChange={onChange} />
     </ContentColumn>
     <ContentColumn>
-      <ContentInput value={days} type="number" name="days" onChange={onChange} />
+      <ContentInput
+        value={days}
+        type="number"
+        name="days"
+        onChange={onChange}
+      />
     </ContentColumn>
     <ContentColumn>
       <ContentInput value={time} name="time" onChange={onChange} />
@@ -50,7 +59,11 @@ const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
     <ContentColumn>
       <ContentText>
         <div
-          style={{ textDecoration: "underline", color: "blue" }}
+          style={{
+            textDecoration: "underline",
+            color: "blue",
+            cursor: "pointer"
+          }}
           onClick={save}
         >
           Save

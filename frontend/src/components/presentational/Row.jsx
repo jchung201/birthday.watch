@@ -43,7 +43,11 @@ const Row = ({ name, birthDate, days, time, note, edit }) => (
     <ContentColumn>
       <ContentText>
         <div
-          style={{ textDecoration: "underline", color: "blue" }}
+          style={{
+            textDecoration: "underline",
+            color: "blue",
+            cursor: "pointer"
+          }}
           onClick={edit}
         >
           Modify
