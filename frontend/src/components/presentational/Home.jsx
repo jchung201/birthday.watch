@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import LogoImg from "../../../public/logo.png";
 import BackgroundImg from "../../../public/background.png";
+import GoogleButton from "react-google-button";
 
 const Wrapper = styled.section`
   display: flex;
@@ -40,12 +41,7 @@ const Description = styled.div`
   font-size: 21px;
   text-align: center;
   line-height: 1.4;
-`;
-const SignInButton = styled.div`
-  width: 280px;
-  margin-top: 42px;
-  border-radius: 16.1px;
-  background-color: orange;
+  margin-bottom: 15px;
 `;
 const RightContainer = styled.div`
   flex-grow: 1;
@@ -60,7 +56,7 @@ const Home = ({ logIn }) => (
         INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY
         REMINDERS
       </Description>
-      <SignInButton onClick={logIn}>Sign In With Google</SignInButton>
+      <GoogleButton onClick={logIn}>Sign In With Google</GoogleButton>
     </LeftContainer>
     <RightContainer>Why</RightContainer>
   </Wrapper>
