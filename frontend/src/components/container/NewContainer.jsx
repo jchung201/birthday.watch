@@ -16,6 +16,11 @@ class RowContainer extends Component {
   componentDidMount() {}
 
   createRow = ({ date, name, description, days }) => {
+    const access_token = localStorage.getItem("access_token");
+    const refresh_token = localStorage.getItem("refresh_token");
+    const scope = localStorage.getItem("scope");
+    const token_type = localStorage.getItem("token_type");
+    const expiry_date = localStorage.getItem("expiry_date");
     axios
       .post(
         `${API_URL}/rest/birthdays/`,

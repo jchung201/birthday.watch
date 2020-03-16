@@ -34,7 +34,16 @@ const ContentText = styled.div`
   text-align: center;
 `;
 
-const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
+const RowEdit = ({
+  name,
+  birthDate,
+  days,
+  time,
+  note,
+  save,
+  onChange,
+  deleteBirthday
+}) => (
   <ContentRow>
     <ContentColumn>
       <ContentInput value={name} name="name" onChange={onChange} />
@@ -67,6 +76,16 @@ const RowEdit = ({ name, birthDate, days, time, note, save, onChange }) => (
           onClick={save}
         >
           Save
+        </div>
+        <div
+          style={{
+            textDecoration: "underline",
+            color: "red",
+            cursor: "pointer"
+          }}
+          onClick={deleteBirthday}
+        >
+          Delete
         </div>
       </ContentText>
     </ContentColumn>

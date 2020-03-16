@@ -50,7 +50,7 @@ const Table = ({ dates, creating, fetchDates, finishCreating }) => (
       </Title>
     </TableHeader>
     {dates.map(date => (
-      <RowContainer date={date} key={date.id} />
+      <RowContainer date={date} key={date.id} fetchDates={fetchDates} />
     ))}
     {creating && (
       <NewRowContainer

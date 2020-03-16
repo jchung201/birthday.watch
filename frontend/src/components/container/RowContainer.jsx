@@ -88,6 +88,32 @@ class RowContainer extends Component {
     } = event;
     this.setState({ [name]: value });
   };
+  deleteBirthday = () => {
+    const access_token = localStorage.getItem("access_token");
+    const refresh_token = localStorage.getItem("refresh_token");
+    const scope = localStorage.getItem("scope");
+    const token_type = localStorage.getItem("token_type");
+    const expiry_date = localStorage.getItem("expiry_date");
+    const { date, fetchDates } = this.props;
+    axios
+      .delete(`${API_URL}/rest/birthdays/${date.id}`, {
+        headers: {
+          Authorization: JSON.stringify({
+            access_token,
+            refresh_token,
+            scope,
+            token_type,
+            expiry_date
+          })
+        }
+      })
+      .then(({ data }) => {
+        fetchDates();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   render() {
     const { name, birthDate, days, time, note, editing } = this.state;
@@ -101,6 +127,7 @@ class RowContainer extends Component {
           note={note}
           save={this.save}
           onChange={this.onChange}
+          delete={this.deleteBirthday}
         />
       );
     }
