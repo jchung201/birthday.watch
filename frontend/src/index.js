@@ -7,7 +7,7 @@ import HomeContainer from "./components/container/HomeContainer.jsx";
 import CalendarContainer from "./components/container/CalendarContainer.jsx";
 
 class App extends Component {
-  state = { loggedIn: false };
+  state = { loggedIn: null };
   componentDidMount() {
     const access_token = localStorage.getItem("access_token");
     const refresh_token = localStorage.getItem("refresh_token");
@@ -47,6 +47,8 @@ class App extends Component {
             console.error(error);
             this.logOut();
           });
+      } else {
+        this.setState({ loggedIn: false });
       }
     }
   }
@@ -72,10 +74,12 @@ class App extends Component {
     const { loggedIn } = this.state;
     if (loggedIn) {
       return <CalendarContainer logOut={this.logOut} />;
+    } else if (loggedIn === false) {
+      return <HomeContainer logIn={this.logIn} />;
+    } else {
+      return <div>Loading</div>;
     }
-    return <HomeContainer logIn={this.logIn} />;
   }
 }
-console.log(API_URL);
 
 ReactDOM.render(<App />, document.getElementById("app"));

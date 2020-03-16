@@ -28,21 +28,49 @@ const Content = styled.section`
   padding-top: 50px;
 `;
 
+const BottomWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const AddButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: #7d7c81;
+    cursor: pointer;
+  }
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #7d7c81;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #7d7c81;
+  text-align: center;
+  transition: all 0.2s;
+`;
+
 const Calendar = ({ logOut, dates }) => (
   <Wrapper>
     <Header>
       <HTitle>BIRTHDAY.WATCH</HTitle>
       <HLogo src={LogoImg} alt="logo"></HLogo>
-      <button
+      <AddButton
         type="button"
         onClick={logOut}
         style={{ position: "absolute", top: "100px", right: "250px" }}
       >
         Log Out
-      </button>
+      </AddButton>
     </Header>
     <Content>
       <Table dates={dates} />
+      <BottomWrapper>
+        <AddButton>Add New Birthday</AddButton>
+      </BottomWrapper>
     </Content>
   </Wrapper>
 );
