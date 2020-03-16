@@ -4,7 +4,7 @@ import axios from "axios";
 import { API_URL } from "../../utilities/URL";
 
 class CalendarContainer extends Component {
-  state = { dates: [] };
+  state = { dates: [], loading: true };
   componentDidMount() {
     const access_token = localStorage.getItem("access_token");
     const refresh_token = localStorage.getItem("refresh_token");
@@ -26,8 +26,7 @@ class CalendarContainer extends Component {
           }
         })
         .then(({ data }) => {
-          console.log(data);
-          this.setState({ dates: data });
+          this.setState({ dates: data, loading: false });
         })
         .catch(error => {
           console.error(error);
@@ -39,6 +38,7 @@ class CalendarContainer extends Component {
   }
   render() {
     const { logOut } = this.props;
+    if (this.state.loading) return <div>Loading...</div>;
     return <Calendar logOut={logOut} dates={this.state.dates} />;
   }
 }
