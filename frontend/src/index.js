@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { API_URL, WEB_URL } from "./utilities/URL";
+import { Provider } from "mobx-react";
+import { store } from "./store/store";
 import axios from "axios";
 
 import HomeContainer from "./components/container/HomeContainer.jsx";
@@ -82,4 +84,9 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
+);
