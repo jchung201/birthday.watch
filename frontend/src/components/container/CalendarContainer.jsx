@@ -65,8 +65,8 @@ class CalendarContainer extends Component {
         dates={this.state.dates}
         fetchDates={this.fetchDates}
         creating={creating}
-        startCreating={startCreating}
-        finishCreating={finishCreating}
+        startCreating={this.startCreating}
+        finishCreating={this.finishCreating}
       />
     );
   }
