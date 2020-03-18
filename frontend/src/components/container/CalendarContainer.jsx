@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Calendar from "../presentational/Calendar.jsx";
 import axios from "axios";
 import { API_URL } from "../../utilities/URL";
+import { observer, inject } from "mobx-react";
 
 class CalendarContainer extends Component {
   state = {
@@ -15,6 +16,7 @@ class CalendarContainer extends Component {
     note: ""
   };
   componentDidMount() {
+    this.props.store.calendar.fetchBirthdays();
     this.fetchDates();
   }
   fetchDates = () => {
@@ -59,6 +61,7 @@ class CalendarContainer extends Component {
     const { logOut } = this.props;
     const { creating, loading } = this.props;
     if (loading) return <div>Loading...</div>;
+    console.log(this.props.store.calendar.birthdays[0]);
     return (
       <Calendar
         logOut={logOut}
@@ -71,4 +74,4 @@ class CalendarContainer extends Component {
     );
   }
 }
-export default CalendarContainer;
+export default inject("store")(observer(CalendarContainer));

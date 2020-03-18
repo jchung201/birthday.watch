@@ -73,11 +73,45 @@ const Birthday = types.model({
 });
 const Calendar = types
   .model({
-    birthdays: types.array(Birthday)
+    birthdays: types.optional(types.array(Birthday), []),
+    auth: types.optional(Auth, {})
   })
   .actions(self => ({
-    logIn() {
-      self.loggedIn = true;
+    fetchBirthdays() {
+      const access_token = localStorage.getItem("access_token");
+      const refresh_token = localStorage.getItem("refresh_token");
+      const scope = localStorage.getItem("scope");
+      const token_type = localStorage.getItem("token_type");
+      const expiry_date = localStorage.getItem("expiry_date");
+
+      if (access_token && refresh_token && scope && token_type && expiry_date) {
+        axios
+          .get(`${API_URL}/rest/birthdays/`, {
+            headers: {
+              Authorization: JSON.stringify({
+                access_token,
+                refresh_token,
+                scope,
+                token_type,
+                expiry_date
+              })
+            }
+          })
+          .then(({ data }) => {
+            console.log(data);
+            self.setBirthdays(data);
+            // this.setState({ dates: data, loading: false });
+          })
+          .catch(error => {
+            console.error(error);
+            self.auth.logOut();
+          });
+      } else {
+        self.auth.logOut();
+      }
+    },
+    setBirthdays(list) {
+      self.birthdays = list;
     }
   }));
 
