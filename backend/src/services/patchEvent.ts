@@ -14,10 +14,12 @@ export const patchEvent = async (
     const { date, name, description, days, time } = eventObj;
     // Calculate time
     const end = date.substring(date.length - 2, date.length);
-    let first = new Date(moment(date + ', ' + process.env.YEAR));
+    let first = new Date(moment(date + ', ' + process.env.YEAR).toDate());
     if (end === 'st' || end === 'nd' || end == 'rd' || end === 'th') {
       first = new Date(
-        moment(date.substring(0, date.length - 2) + ', ' + process.env.YEAR),
+        moment(
+          date.substring(0, date.length - 2) + ', ' + process.env.YEAR,
+        ).toDate(),
       );
     }
     const second = new Date(first.getTime());
