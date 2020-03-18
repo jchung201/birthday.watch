@@ -15,8 +15,22 @@ const Auth = types
     }
   }));
 
+const Birthday = types.model({
+  id: types.string
+});
+const Calendar = types
+  .model({
+    birthdays: types.array(Birthday)
+  })
+  .actions(self => ({
+    logIn() {
+      self.loggedIn = true;
+    }
+  }));
+
 const Root = types.model({
-  auth: types.optional(Auth, {})
+  auth: types.optional(Auth, {}),
+  calendar: types.optional(Calendar, {})
 });
 
 export const store = Root.create({
