@@ -8,6 +8,7 @@ class HomeContainer extends Component {
   }
   render() {
     const { logIn } = this.props;
+
     return <Home logIn={logIn} />;
   }
 }
