@@ -33,9 +33,7 @@ export const Calendar = types
             }
           })
           .then(({ data }) => {
-            console.log(data);
             self.setBirthdays(data);
-            // this.setState({ dates: data, loading: false });
           })
           .catch(error => {
             console.error(error);
