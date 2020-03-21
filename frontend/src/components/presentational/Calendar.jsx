@@ -6,6 +6,7 @@ import LogoImg from "../../../public/logo.png";
 const Wrapper = styled.section`
   background-color: #dff7ff;
   min-height: 100vh;
+  padding-bottom: 30px;
 `;
 const Header = styled.div`
   display: flex;
@@ -27,12 +28,7 @@ const Content = styled.section`
   padding-right: 196px;
   padding-top: 50px;
 `;
-
-const BottomWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const AddButton = styled.div`
+const LogOutButton = styled.div`
   &:hover {
     color: white;
     background-color: #7d7c81;
@@ -58,22 +54,22 @@ const Calendar = ({ logOut, birthdays, creating, startCreating }) => (
     <Header>
       <HTitle>BIRTHDAY.WATCH</HTitle>
       <HLogo src={LogoImg} alt="logo"></HLogo>
-      <AddButton
+      <LogOutButton
         type="button"
         onClick={logOut}
         style={{ position: "absolute", top: "100px", right: "250px" }}
       >
         Log Out
-      </AddButton>
+      </LogOutButton>
     </Header>
     <Content>
-      <Table birthdays={birthdays} />
-      <BottomWrapper>
-        {!creating && (
-          <AddButton onClick={startCreating}>Add New Birthday</AddButton>
-        )}
-      </BottomWrapper>
+      <Table
+        birthdays={birthdays}
+        startCreating={startCreating}
+        creating={creating}
+      />
     </Content>
   </Wrapper>
 );
+
 export default Calendar;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import RowContainer from "../container/RowContainer.jsx";
+import NewContainer from "../container/NewContainer.jsx";
 
 const TableHeader = styled.div`
   display: flex;
@@ -23,8 +24,32 @@ const TitleText = styled.div`
   margin: auto;
   text-align: center;
 `;
+const BottomWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const AddButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: #7d7c81;
+    cursor: pointer;
+  }
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #7d7c81;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #7d7c81;
+  text-align: center;
+  transition: all 0.2s;
+`;
 
-const Table = ({ birthdays, creating, fetchDates, finishCreating }) => (
+const Table = ({ birthdays, creating, startCreating }) => (
   <React.Fragment>
     <TableHeader>
       <Title color="#c3a7d8">
@@ -50,18 +75,14 @@ const Table = ({ birthdays, creating, fetchDates, finishCreating }) => (
       </Title>
     </TableHeader>
     {birthdays.map(birthday => (
-      <RowContainer
-        birthday={birthday}
-        key={birthday.id}
-        fetchDates={fetchDates}
-      />
+      <RowContainer birthday={birthday} key={birthday.id} />
     ))}
-    {creating && (
-      <NewRowContainer
-        fetchDates={fetchDates}
-        finishCreating={finishCreating}
-      />
-    )}
+    {creating && <NewContainer />}
+    <BottomWrapper>
+      {!creating && (
+        <AddButton onClick={startCreating}>Add New Birthday</AddButton>
+      )}
+    </BottomWrapper>
   </React.Fragment>
 );
 export default Table;
