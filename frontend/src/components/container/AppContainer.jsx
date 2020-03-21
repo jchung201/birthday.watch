@@ -8,7 +8,6 @@ import CalendarContainer from "./CalendarContainer.jsx";
 import { observer, inject } from "mobx-react";
 
 class App extends Component {
-  state = { loggedIn: null };
   componentDidMount() {
     const { authenticate } = this.props.store.auth;
     authenticate();
@@ -22,8 +21,8 @@ class App extends Component {
     }
   };
   render() {
-    const { loggedIn, logOut } = this.props.store.auth;
-    if (loggedIn) return <CalendarContainer logOut={logOut} />;
+    const { loggedIn } = this.props.store.auth;
+    if (loggedIn) return <CalendarContainer />;
     return <HomeContainer logIn={this.logIn} />;
   }
 }
