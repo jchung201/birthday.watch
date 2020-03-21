@@ -13,15 +13,13 @@ class App extends Component {
     const { authenticate } = this.props.store.auth;
     authenticate();
   }
-  logIn = () => {
-    axios
-      .get(`${API_URL}/rest/auth/url`)
-      .then(({ data }) => {
-        window.location = data;
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  logIn = async () => {
+    try {
+      const authUrl = await axios.get(`${API_URL}/rest/auth/url`);
+      window.location = authUrl.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
   render() {
     const { loggedIn, logOut } = this.props.store.auth;
