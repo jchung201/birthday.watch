@@ -1,6 +1,11 @@
 import { types, flow } from "mobx-state-tree";
 import { API_URL, WEB_URL } from "../utilities/URL";
 import axios from "axios";
+import {
+  authorization,
+  clearAuthorization,
+  setAuthorization
+} from "../utilities/auth";
 
 export const Auth = types
   .model({
@@ -13,11 +18,13 @@ export const Auth = types
   })
   .actions(self => ({
     authenticate: function() {
-      const access_token = localStorage.getItem("access_token");
-      const refresh_token = localStorage.getItem("refresh_token");
-      const scope = localStorage.getItem("scope");
-      const token_type = localStorage.getItem("token_type");
-      const expiry_date = localStorage.getItem("expiry_date");
+      const {
+        access_token,
+        refresh_token,
+        scope,
+        token_type,
+        expiry_date
+      } = authorization;
       if (access_token && refresh_token && scope && token_type && expiry_date) {
         self.logIn();
       } else {
@@ -27,25 +34,11 @@ export const Auth = types
         if (code) {
           axios
             .post(`${API_URL}/rest/auth/token`, { code })
-            .then(
-              ({
-                data: {
-                  access_token,
-                  refresh_token,
-                  scope,
-                  token_type,
-                  expiry_date
-                }
-              }) => {
-                localStorage.setItem("access_token", access_token);
-                localStorage.setItem("refresh_token", refresh_token);
-                localStorage.setItem("scope", scope);
-                localStorage.setItem("token_type", token_type);
-                localStorage.setItem("expiry_date", expiry_date);
-                self.logIn();
-                window.location = WEB_URL;
-              }
-            )
+            .then(({ data }) => {
+              setAuthorization(data);
+              self.logIn();
+              window.location = WEB_URL;
+            })
             .catch(error => {
               console.error(error);
               self.logOut();
@@ -59,11 +52,7 @@ export const Auth = types
       self.loggedIn = true;
     },
     logOut() {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      localStorage.removeItem("scope");
-      localStorage.removeItem("token_type");
-      localStorage.removeItem("expiry_date");
+      clearAuthorization();
       self.loggedIn = false;
     }
   }));
