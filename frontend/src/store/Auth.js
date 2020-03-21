@@ -2,7 +2,7 @@ import { types, flow } from "mobx-state-tree";
 import { API_URL, WEB_URL } from "../utilities/URL";
 import axios from "axios";
 import {
-  authorization,
+  checkAuthorization,
   clearAuthorization,
   setAuthorization
 } from "../utilities/auth";
@@ -18,35 +18,23 @@ export const Auth = types
   })
   .actions(self => ({
     authenticate: function() {
-      const {
-        access_token,
-        refresh_token,
-        scope,
-        token_type,
-        expiry_date
-      } = authorization;
-      if (access_token && refresh_token && scope && token_type && expiry_date) {
-        self.logIn();
-      } else {
-        let search = window.location.search;
-        let params = new URLSearchParams(search);
-        let code = params.get("code");
-        if (code) {
-          axios
-            .post(`${API_URL}/rest/auth/token`, { code })
-            .then(({ data }) => {
-              setAuthorization(data);
-              self.logIn();
-              window.location = WEB_URL;
-            })
-            .catch(error => {
-              console.error(error);
-              self.logOut();
-            });
-        } else {
-          self.logOut();
-        }
+      let params = new URLSearchParams(window.location.search);
+      let code = params.get("code");
+      if (code) {
+        return axios
+          .post(`${API_URL}/rest/auth/token`, { code })
+          .then(({ data }) => {
+            window.location = WEB_URL;
+            setAuthorization(data);
+            self.logIn();
+          })
+          .catch(error => {
+            console.error(error);
+            self.logOut();
+          });
       }
+      const authorization = checkAuthorization(self.logOut);
+      if (authorization) return self.logIn();
     },
     logIn() {
       self.loggedIn = true;
