@@ -3,8 +3,24 @@ import axios from "axios";
 import { API_URL } from "../utilities/URL";
 import { Auth } from "./Auth";
 
+export const Override = types.model({
+  method: types.optional(types.string, ""),
+  minutes: types.optional(types.number, 0)
+});
+export const Reminders = types.model({
+  useDefault: types.optional(types.boolean, false),
+  overrides: types.array(Override)
+});
+export const Start = types.model({
+  dateTime: types.optional(types.string, ""),
+  timeZone: types.optional(types.string, "")
+});
 export const Birthday = types.model({
-  id: types.string
+  id: types.string,
+  summary: types.optional(types.string, ""),
+  start: types.optional(Start, {}),
+  reminders: types.optional(Reminders, {}),
+  location: types.optional(types.string, "")
 });
 export const Calendar = types
   .model({
