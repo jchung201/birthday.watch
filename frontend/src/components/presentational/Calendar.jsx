@@ -55,7 +55,7 @@ const AddButton = styled.div`
 
 const Calendar = ({
   logOut,
-  dates,
+  birthdays,
   fetchDates,
   creating,
   startCreating,
@@ -75,7 +75,7 @@ const Calendar = ({
     </Header>
     <Content>
       <Table
-        dates={dates}
+        birthdays={birthdays}
         creating={creating}
         fetchDates={fetchDates}
         finishCreating={finishCreating}

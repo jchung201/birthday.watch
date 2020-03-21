@@ -24,7 +24,7 @@ const TitleText = styled.div`
   text-align: center;
 `;
 
-const Table = ({ dates, creating, fetchDates, finishCreating }) => (
+const Table = ({ birthdays, creating, fetchDates, finishCreating }) => (
   <React.Fragment>
     <TableHeader>
       <Title color="#c3a7d8">
@@ -49,8 +49,12 @@ const Table = ({ dates, creating, fetchDates, finishCreating }) => (
         <TitleText>Modify</TitleText>
       </Title>
     </TableHeader>
-    {dates.map(date => (
-      <RowContainer date={date} key={date.id} fetchDates={fetchDates} />
+    {birthdays.map(birthday => (
+      <RowContainer
+        birthday={birthday}
+        key={birthday.id}
+        fetchDates={fetchDates}
+      />
     ))}
     {creating && (
       <NewRowContainer
