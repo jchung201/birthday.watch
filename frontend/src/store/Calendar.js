@@ -24,7 +24,7 @@ export const Birthday = types.model({
 });
 export const Calendar = types
   .model({
-    birthdays: types.optional(types.array(Birthday), []),
+    birthdays: types.array(Birthday),
     auth: types.optional(Auth, {})
   })
   .actions(self => ({
