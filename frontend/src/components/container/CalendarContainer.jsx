@@ -12,15 +12,17 @@ class CalendarContainer extends Component {
   };
 
   render() {
-    const { logOut } = this.props;
-    const { birthdays } = this.props.store.calendar;
+    const {
+      calendar: { birthdays, startCreating, creating },
+      auth: { logOut }
+    } = this.props.store;
     if (birthdays.length < 1) return <div>Loading...</div>;
     return (
       <Calendar
         logOut={logOut}
         birthdays={birthdays}
-        creating={this.state.creating}
-        startCreating={this.startCreating}
+        creating={creating}
+        startCreating={startCreating}
       />
     );
   }

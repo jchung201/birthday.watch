@@ -26,26 +26,29 @@ export const Birthday = types.model({
 export const Calendar = types
   .model({
     birthdays: types.array(Birthday),
-    auth: types.optional(Auth, {})
+    auth: types.optional(Auth, {}),
+    creating: types.optional(types.boolean, false)
   })
   .actions(self => ({
-    fetchBirthdays() {
+    async fetchBirthdays() {
       const authorization = checkAuthorization(self.auth.logOut);
-      axios
-        .get(`${API_URL}/rest/birthdays/`, {
+      try {
+        const data = await axios.get(`${API_URL}/rest/birthdays/`, {
           headers: {
             Authorization: JSON.stringify(authorization)
           }
-        })
-        .then(({ data }) => {
-          self.setBirthdays(data);
-        })
-        .catch(error => {
-          self.auth.logOut();
         });
+        self.setBirthdays(data.data);
+      } catch (error) {
+        console.error(error);
+        self.auth.logOut();
+      }
     },
     setBirthdays(list) {
       self.birthdays = list;
+    },
+    startCreating() {
+      self.creating = true;
     }
   }));
 
