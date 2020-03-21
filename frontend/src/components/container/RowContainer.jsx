@@ -15,17 +15,17 @@ class RowContainer extends Component {
     note: ""
   };
   componentDidMount() {
-    const { date } = this.props;
+    const { birthday } = this.props;
     this.setState({
-      name: date.summary.substring(0, date.summary.length - 12),
-      birthDate: moment(date.start.dateTime).format("MMM Do"),
+      name: birthday.summary.substring(0, birthday.summary.length - 12),
+      birthDate: moment(birthday.start.dateTime).format("MMM Do"),
       days:
-        date.reminders.overrides &&
-        Math.ceil(date.reminders.overrides[0].minutes / 60 / 24),
+        birthday.reminders.overrides &&
+        Math.ceil(birthday.reminders.overrides[0].minutes / 60 / 24),
       time:
-        date.reminders.overrides &&
-        moment(date.start.dateTime).format("h:mm a"),
-      note: date.location
+        birthday.reminders.overrides &&
+        moment(birthday.start.dateTime).format("h:mm a"),
+      note: birthday.location
     });
   }
   edit = () => {
