@@ -1,27 +1,21 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/",
-    filename: "bundle.js"
+  mode: "none",
+  entry: {
+    app: path.join(__dirname, "src", "index.tsx")
+  },
+  target: "web",
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader"
-          }
-        ]
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: "/node_modules/"
       },
       {
         test: /.(png|jp(e*)g|svg|gif)$/,
@@ -29,10 +23,13 @@ module.exports = {
       }
     ]
   },
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist")
+  },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "src", "index.html")
     })
   ]
 };

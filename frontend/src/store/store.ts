@@ -2,11 +2,11 @@ import { types, flow } from "mobx-state-tree";
 import { Calendar } from "./Calendar";
 import { Auth } from "./Auth";
 
-const Root = types.model({
+export const RootStore = types.model({
   auth: types.optional(Auth, {}),
   calendar: types.optional(Calendar, {})
 });
 
-export const store = Root.create({
+export const store = RootStore.create({
   auth: { loggedIn: false }
 });

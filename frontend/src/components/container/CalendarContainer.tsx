@@ -1,8 +1,14 @@
 import React, { Component } from "react";
-import Calendar from "../presentational/Calendar.jsx";
+import Calendar from "../presentational/Calendar";
 import { observer, inject } from "mobx-react";
 
-class CalendarContainer extends Component {
+import { StoreInterface } from "../../interfaces/store";
+
+interface OwnProps {
+  store?: StoreInterface;
+}
+
+class CalendarContainer extends Component<OwnProps> {
   state = { creating: false };
   componentDidMount() {
     this.props.store.calendar.fetchBirthdays();

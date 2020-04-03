@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import RowContainer from "../container/RowContainer.jsx";
-import NewContainer from "../container/NewContainer.jsx";
+import RowContainer from "../container/RowContainer";
+import NewContainer from "../container/NewContainer";
 
 const TableHeader = styled.div`
   display: flex;

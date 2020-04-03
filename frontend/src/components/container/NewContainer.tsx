@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
-import RowEdit from "../presentational/RowEdit.jsx";
+import RowEdit from "../presentational/RowEdit";
 import { API_URL } from "../../utilities/URL";
 import { observer, inject } from "mobx-react";
 
@@ -62,8 +62,9 @@ class RowContainer extends Component {
         days={days}
         time={time}
         note={note}
-        // save={this.createRow}
+        save={this.onChange}
         onChange={this.onChange}
+        deleteBirthday={this.onChange}
       />
     );
   }

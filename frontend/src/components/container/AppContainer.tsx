@@ -1,13 +1,18 @@
 import React, { Component } from "react";
-
-import axios from "axios";
-import { API_URL, WEB_URL } from "../../utilities/URL";
-
-import HomeContainer from "./HomeContainer.jsx";
-import CalendarContainer from "./CalendarContainer.jsx";
 import { observer, inject } from "mobx-react";
+import axios from "axios";
 
-class App extends Component {
+import { API_URL, WEB_URL } from "../../utilities/URL";
+import { StoreInterface } from "../../interfaces/store";
+
+import HomeContainer from "./HomeContainer";
+import CalendarContainer from "./CalendarContainer";
+
+interface OwnProps {
+  store?: StoreInterface;
+}
+
+class App extends Component<OwnProps> {
   componentDidMount() {
     const { authenticate } = this.props.store.auth;
     authenticate();

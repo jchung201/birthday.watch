@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Home from "../presentational/Home.jsx";
+import Home from "../presentational/Home";
 import { observer, inject } from "mobx-react";
 
 const HomeContainer = ({ logIn }) => <Home logIn={logIn} />;

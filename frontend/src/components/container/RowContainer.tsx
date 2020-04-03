@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
-import Row from "../presentational/Row.jsx";
-import RowEdit from "../presentational/RowEdit.jsx";
+import Row from "../presentational/Row";
+import RowEdit from "../presentational/RowEdit";
 import { API_URL } from "../../utilities/URL";
 
-class RowContainer extends Component {
+class RowContainer extends Component<any> {
   state = {
     editing: false,
     name: "",
@@ -88,7 +88,7 @@ class RowContainer extends Component {
     } = event;
     this.setState({ [name]: value });
   };
-  deleteBirthday = () => {
+  delete = () => {
     const access_token = localStorage.getItem("access_token");
     const refresh_token = localStorage.getItem("refresh_token");
     const scope = localStorage.getItem("scope");
@@ -127,7 +127,7 @@ class RowContainer extends Component {
           note={note}
           save={this.save}
           onChange={this.onChange}
-          delete={this.deleteBirthday}
+          deleteBirthday={this.delete}
         />
       );
     }

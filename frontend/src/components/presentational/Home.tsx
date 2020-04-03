@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LogoImg from "../../../public/logo.png";
-import BackgroundImg from "../../../public/background.png";
+
 import GoogleButton from "react-google-button";
 
 const Wrapper = styled.section`
@@ -10,7 +9,7 @@ const Wrapper = styled.section`
   align-items: stretch;
   min-height: 100vh;
   flex-wrap: wrap;
-  background-image: url(${BackgroundImg});
+  background-image: url(${require("../../public/background.png")});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -50,7 +49,7 @@ const RightContainer = styled.div`
 const Home = ({ logIn }) => (
   <Wrapper>
     <LeftContainer>
-      <Logo src={LogoImg}></Logo>
+      <Logo src={require("../../public/logo.png")}></Logo>
       <Header>BIRTHDAY.WATCH</Header>
       <Description>
         INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY
