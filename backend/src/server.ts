@@ -13,4 +13,6 @@ app.use((_req, _res, next) => {
 import errorHandler from './lib/errorHandler';
 app.use(errorHandler);
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port: ${process.env.PORT}`);
+});
