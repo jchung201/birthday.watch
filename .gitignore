@@ -64,6 +64,8 @@ typings/
 credentials.json
 token.json
 dist
+dist/
 .DS_Store
 js/
 build
+.vscode
