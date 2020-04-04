@@ -11,7 +11,7 @@ export const ContentColumn = styled.div`
   height: 110px;
   margin-right: 25px;
   border-radius: 12px;
-  background-color: white;
+  background-color: ${(props) => props.color};
   display: flex;
 `;
 export const ContentText = styled.div`

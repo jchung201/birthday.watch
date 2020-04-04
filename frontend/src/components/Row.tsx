@@ -17,6 +17,7 @@ class Row extends Component<any> {
     days: 0,
     time: "",
     note: "",
+    color: "white",
   };
   componentDidMount() {
     const { birthday } = this.props;
@@ -34,7 +35,7 @@ class Row extends Component<any> {
     });
   }
   edit = () => {
-    this.setState({ editing: true });
+    this.setState({ editing: true, color: "orange" });
   };
   save = () => {
     const access_token = localStorage.getItem("access_token");
@@ -72,6 +73,7 @@ class Row extends Component<any> {
       .then(({ data }) => {
         this.setState({
           editing: false,
+          color: "white",
           name: data.summary.substring(0, data.summary.length - 12),
           birthDate: moment(data.start.dateTime).format("MMM Do"),
           days:
@@ -121,17 +123,17 @@ class Row extends Component<any> {
   };
 
   render() {
-    const { name, birthDate, days, time, note, editing } = this.state;
+    const { name, birthDate, days, time, note, editing, color } = this.state;
 
     return (
       <ContentRow>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentInput value={name} name="name" onChange={this.onChange} />
           )}
           {!editing && <ContentText>{name}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentInput
               value={birthDate}
@@ -141,7 +143,7 @@ class Row extends Component<any> {
           )}
           {!editing && <ContentText>{birthDate}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentInput
               value={days}
@@ -152,19 +154,19 @@ class Row extends Component<any> {
           )}
           {!editing && <ContentText>{days}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentInput value={time} name="time" onChange={this.onChange} />
           )}
           {!editing && <ContentText>{time}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentInput value={note} name="note" onChange={this.onChange} />
           )}
           {!editing && <ContentText>{note}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ContentColumn color={color}>
           {editing && (
             <ContentText>
               <div
