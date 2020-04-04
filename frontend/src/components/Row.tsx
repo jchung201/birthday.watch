@@ -1,21 +1,26 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
-import Row from "../presentational/Row";
-import RowEdit from "../presentational/RowEdit";
-import { API_URL } from "../../utilities/URL";
+import {
+  ContentRow,
+  ContentColumn,
+  ContentText,
+  ContentInput,
+} from "./styled/rowStyled";
+import { API_URL } from "../utilities/URL";
 
-class RowContainer extends Component<any> {
+class Row extends Component<any> {
   state = {
     editing: false,
     name: "",
     birthDate: "",
     days: 0,
     time: "",
-    note: ""
+    note: "",
   };
   componentDidMount() {
     const { birthday } = this.props;
+    if (birthday === null) return;
     this.setState({
       name: birthday.summary.substring(0, birthday.summary.length - 12),
       birthDate: moment(birthday.start.dateTime).format("MMM Do"),
@@ -25,7 +30,7 @@ class RowContainer extends Component<any> {
       time:
         birthday.reminders.overrides &&
         moment(birthday.start.dateTime).format("h:mm a"),
-      note: birthday.location
+      note: birthday.location,
     });
   }
   edit = () => {
@@ -49,8 +54,8 @@ class RowContainer extends Component<any> {
             name,
             description: note,
             days: Number(days),
-            time
-          }
+            time,
+          },
         },
         {
           headers: {
@@ -59,9 +64,9 @@ class RowContainer extends Component<any> {
               refresh_token,
               scope,
               token_type,
-              expiry_date
-            })
-          }
+              expiry_date,
+            }),
+          },
         }
       )
       .then(({ data }) => {
@@ -75,16 +80,16 @@ class RowContainer extends Component<any> {
           time:
             data.reminders.overrides &&
             moment(data.start.dateTime).format("h:mm a"),
-          note: data.location
+          note: data.location,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
-  onChange = event => {
+  onChange = (event) => {
     const {
-      target: { name, value }
+      target: { name, value },
     } = event;
     this.setState({ [name]: value });
   };
@@ -103,44 +108,104 @@ class RowContainer extends Component<any> {
             refresh_token,
             scope,
             token_type,
-            expiry_date
-          })
-        }
+            expiry_date,
+          }),
+        },
       })
       .then(({ data }) => {
         fetchDates();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
 
   render() {
     const { name, birthDate, days, time, note, editing } = this.state;
-    if (editing) {
-      return (
-        <RowEdit
-          name={name}
-          birthDate={birthDate}
-          days={days}
-          time={time}
-          note={note}
-          save={this.save}
-          onChange={this.onChange}
-          deleteBirthday={this.delete}
-        />
-      );
-    }
+
     return (
-      <Row
-        name={name}
-        birthDate={birthDate}
-        days={days}
-        time={time}
-        note={note}
-        edit={this.edit}
-      />
+      <ContentRow>
+        <ContentColumn>
+          {editing && (
+            <ContentInput value={name} name="name" onChange={this.onChange} />
+          )}
+          {!editing && <ContentText>{name}</ContentText>}
+        </ContentColumn>
+        <ContentColumn>
+          {editing && (
+            <ContentInput
+              value={birthDate}
+              name="birthDate"
+              onChange={this.onChange}
+            />
+          )}
+          {!editing && <ContentText>{birthDate}</ContentText>}
+        </ContentColumn>
+        <ContentColumn>
+          {editing && (
+            <ContentInput
+              value={days}
+              type="number"
+              name="days"
+              onChange={this.onChange}
+            />
+          )}
+          {!editing && <ContentText>{days}</ContentText>}
+        </ContentColumn>
+        <ContentColumn>
+          {editing && (
+            <ContentInput value={time} name="time" onChange={this.onChange} />
+          )}
+          {!editing && <ContentText>{time}</ContentText>}
+        </ContentColumn>
+        <ContentColumn>
+          {editing && (
+            <ContentInput value={note} name="note" onChange={this.onChange} />
+          )}
+          {!editing && <ContentText>{note}</ContentText>}
+        </ContentColumn>
+        <ContentColumn>
+          {editing && (
+            <ContentText>
+              <div
+                style={{
+                  textDecoration: "underline",
+                  color: "blue",
+                  cursor: "pointer",
+                }}
+                onClick={this.save}
+              >
+                Save
+              </div>
+              <div
+                style={{
+                  textDecoration: "underline",
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={this.delete}
+              >
+                Delete
+              </div>
+            </ContentText>
+          )}
+          {!editing && (
+            <ContentText>
+              <div
+                style={{
+                  textDecoration: "underline",
+                  color: "blue",
+                  cursor: "pointer",
+                }}
+                onClick={this.edit}
+              >
+                Modify
+              </div>
+            </ContentText>
+          )}
+        </ContentColumn>
+      </ContentRow>
     );
   }
 }
-export default RowContainer;
+export default Row;
