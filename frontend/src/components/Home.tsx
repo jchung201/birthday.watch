@@ -9,12 +9,11 @@ import {
 } from "./styled/homeStyled";
 import { observer, inject } from "mobx-react";
 import GoogleButton from "react-google-button";
-import LogoImage from "../public/logo.png";
 
 const Home = ({ logIn }) => (
   <Wrapper>
     <LeftContainer>
-      <Logo src={LogoImage}></Logo>
+      <Logo src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"></Logo>
       <Header>BIRTHDAY.WATCH</Header>
       <Description>
         INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY
@@ -22,7 +21,7 @@ const Home = ({ logIn }) => (
       </Description>
       <GoogleButton onClick={logIn}>Sign In With Google</GoogleButton>
     </LeftContainer>
-    <RightContainer>Why</RightContainer>
+    <RightContainer></RightContainer>
   </Wrapper>
 );
 export default inject("store")(observer(Home));

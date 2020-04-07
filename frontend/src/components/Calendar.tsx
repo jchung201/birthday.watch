@@ -9,7 +9,6 @@ import {
   LogOutButton,
 } from "./styled/calendarStyled";
 import Table from "./Table";
-import LogoImage from "../public/logo.png";
 
 import { StoreInterface } from "../interfaces/store";
 
@@ -36,7 +35,10 @@ class Calendar extends Component<OwnProps> {
       <Wrapper>
         <Header>
           <HTitle>BIRTHDAY.WATCH</HTitle>
-          <HLogo src={LogoImage} alt="logo"></HLogo>
+          <HLogo
+            src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
+            alt="logo"
+          ></HLogo>
           <LogOutButton
             onClick={logOut}
             style={{ position: "absolute", top: "100px", right: "250px" }}

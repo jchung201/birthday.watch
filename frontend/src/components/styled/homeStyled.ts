@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
   align-items: stretch;
   min-height: 100vh;
   flex-wrap: wrap;
-  background-image: url(${require("../../public/background.png")});
+  background-image: url("https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
