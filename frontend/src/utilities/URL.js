@@ -3,7 +3,7 @@ export let WEB_URL = "";
 
 switch (process.env.NODE_ENV) {
   case "production":
-    WEB_URL = "https://birthday.watch";
+    WEB_URL = "https://www.birthday.watch";
     API_URL = "https://birthday-watch.herokuapp.com";
     break;
   default:
