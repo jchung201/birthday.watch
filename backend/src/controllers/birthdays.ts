@@ -22,20 +22,25 @@ router.use(
     const token = JSON.parse(req.headers.authorization);
     // Include entire response from the POST get token response
     if (!token) throw httpErrors(400, 'Forgot token!');
-    const { client_secret, client_id, redirect_uris } = credentials.installed;
-    const oAuth2Client = new google.auth.OAuth2(
-      client_id,
-      client_secret,
-      redirect_uris[0],
-    );
-    oAuth2Client.setCredentials(token);
-    req.auth = oAuth2Client;
-    calendarCheck(req.auth, (err, calendar, timeZone) => {
-      if (err) return next(err);
-      req.calendar = calendar;
-      req.timeZone = timeZone;
-      next();
-    });
+    try {
+      const { client_secret, client_id, redirect_uris } = credentials.installed;
+      const oAuth2Client = new google.auth.OAuth2(
+        client_id,
+        client_secret,
+        redirect_uris[0],
+      );
+      oAuth2Client.setCredentials(token);
+      req.auth = oAuth2Client;
+      calendarCheck(req.auth, (err, calendar, timeZone) => {
+        if (err) return next(err);
+        req.calendar = calendar;
+        req.timeZone = timeZone;
+        next();
+      });
+    } catch (error) {
+      console.log('error', error);
+      next(error);
+    }
   }),
 );
 
