@@ -32,10 +32,10 @@ class Calendar extends Component<OwnProps> {
 
   render() {
     const {
-      calendar: { birthdays, startCreating, creating },
+      calendar: { birthdays, birthdaysFetched, startCreating, creating },
       auth: { logOut, loggedIn },
     } = this.props.store;
-    if (!loggedIn) return <div>Loading...</div>;
+    if (!birthdaysFetched) return <div>Loading...</div>;
     return (
       <Wrapper>
         <Header>

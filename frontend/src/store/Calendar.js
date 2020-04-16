@@ -26,6 +26,7 @@ export const Birthday = types.model({
 export const Calendar = types
   .model({
     birthdays: types.array(Birthday),
+    birthdaysFetched: types.optional(types.boolean, false),
     auth: types.optional(Auth, {}),
     creating: types.optional(types.boolean, false),
   })
@@ -38,8 +39,8 @@ export const Calendar = types
             Authorization: JSON.stringify(authorization),
           },
         });
-        console.log("fetchData", data);
         self.setBirthdays(data.data);
+        self.setBirthdaysFetched();
       } catch (error) {
         console.error("500 test", error);
         self.auth.logOut();
@@ -47,6 +48,9 @@ export const Calendar = types
     },
     setBirthdays(list) {
       self.birthdays = list;
+    },
+    setBirthdaysFetched() {
+      self.birthdaysFetched = true;
     },
     startCreating() {
       self.creating = true;
