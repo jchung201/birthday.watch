@@ -19,7 +19,12 @@ interface OwnProps {
 class Calendar extends Component<OwnProps> {
   state = { creating: false };
   componentDidMount() {
-    this.props.store.calendar.fetchBirthdays();
+    try {
+      this.props.store.calendar.fetchBirthdays();
+    } catch (error) {
+      console.error(error);
+      this.props.store.auth.logOut;
+    }
   }
   startCreating = () => {
     console.log("ok");
@@ -28,9 +33,9 @@ class Calendar extends Component<OwnProps> {
   render() {
     const {
       calendar: { birthdays, startCreating, creating },
-      auth: { logOut },
+      auth: { logOut, loggedIn },
     } = this.props.store;
-    if (birthdays.length < 1) return <div>Loading...</div>;
+    if (!loggedIn) return <div>Loading...</div>;
     return (
       <Wrapper>
         <Header>
