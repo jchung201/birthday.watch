@@ -23,7 +23,7 @@ class Calendar extends Component<OwnProps> {
       this.props.store.calendar.fetchBirthdays();
     } catch (error) {
       console.error(error);
-      this.props.store.auth.logOut;
+      this.props.store.auth.logOut();
     }
   }
   startCreating = () => {
