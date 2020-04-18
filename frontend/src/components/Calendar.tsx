@@ -17,7 +17,6 @@ interface OwnProps {
 }
 
 class Calendar extends Component<OwnProps> {
-  state = { creating: false };
   componentDidMount() {
     try {
       this.props.store.calendar.fetchBirthdays();
@@ -26,9 +25,6 @@ class Calendar extends Component<OwnProps> {
       this.props.store.auth.logOut();
     }
   }
-  startCreating = () => {
-    console.log("ok");
-  };
 
   render() {
     const {
@@ -52,11 +48,7 @@ class Calendar extends Component<OwnProps> {
           </LogOutButton>
         </Header>
         <Content>
-          <Table
-            birthdays={birthdays}
-            startCreating={startCreating}
-            creating={creating}
-          />
+          <Table />
         </Content>
       </Wrapper>
     );

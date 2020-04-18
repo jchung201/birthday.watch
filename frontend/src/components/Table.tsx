@@ -1,4 +1,6 @@
 import React from "react";
+import { observer, inject } from "mobx-react";
+
 import {
   TableHeader,
   Title,
@@ -8,7 +10,17 @@ import {
 } from "./styled/tableStyled";
 import Row from "./Row";
 
-const Table = ({ birthdays, creating, startCreating }) => (
+import { StoreInterface } from "../interfaces/store";
+
+interface OwnProps {
+  store?: StoreInterface;
+}
+
+const Table = ({
+  store: {
+    calendar: { creating, birthdays, startCreating },
+  },
+}: OwnProps) => (
   <React.Fragment>
     <TableHeader>
       <Title color="#c3a7d8">
@@ -44,4 +56,5 @@ const Table = ({ birthdays, creating, startCreating }) => (
     </BottomWrapper>
   </React.Fragment>
 );
-export default Table;
+
+export default inject("store")(observer(Table));
