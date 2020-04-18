@@ -3,12 +3,12 @@ import { google } from 'googleapis';
 export const calendarCheck = async (auth, cb) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
-    calendar.calendarList.list({}, (err, list) => {
+    await calendar.calendarList.list({}, async (err, list) => {
       if (err) return cb(err);
-      const primaryCalendar = list.data.items.find(calendar => {
+      const primaryCalendar = await list.data.items.find(calendar => {
         return calendar.primary === true;
       });
-      const foundCalendar = list.data.items.find(calendar => {
+      const foundCalendar = await list.data.items.find(calendar => {
         return (
           calendar.summary === 'Birthday List Reminder' &&
           calendar.description === 'Birthday Reminders'
@@ -17,14 +17,19 @@ export const calendarCheck = async (auth, cb) => {
       if (foundCalendar) {
         cb(null, foundCalendar, primaryCalendar.timeZone);
       } else {
-        const madeCalendar = calendar.calendars.insert({
-          requestBody: {
-            summary: 'Birthday List Reminder',
-            description: 'Birthday Reminders',
-            timeZone: primaryCalendar.timeZone,
+        await calendar.calendars.insert(
+          {
+            requestBody: {
+              summary: 'Birthday List Reminder',
+              description: 'Birthday Reminders',
+              timeZone: primaryCalendar.timeZone,
+            },
           },
-        });
-        cb(null, madeCalendar, primaryCalendar.timeZone);
+          (error, madeCalendar) => {
+            if (error) throw error;
+            cb(null, madeCalendar.data, primaryCalendar.timeZone);
+          },
+        );
       }
     });
   } catch (error) {
