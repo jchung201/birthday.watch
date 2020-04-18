@@ -13,7 +13,7 @@ app.use((_req, _res, next) => {
 import errorHandler from './lib/errorHandler';
 app.use(errorHandler);
 
-app.listen(process.env.PORT, (): void => {
+app.listen(process.env.now || process.env.PORT, (): void => {
   // tslint:disable-next-line: no-console
   console.log(`Listening on port: ${process.env.PORT}`);
 });

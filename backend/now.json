@@ -1,0 +1,9 @@
+{
+  "version": 2, // Tells Now which API version to use
+  "builds": [
+    {
+      "src": "build/*.js",
+      "use": "@now/node-server" // It's an application!
+    }
+  ]
+}
