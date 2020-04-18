@@ -8,6 +8,8 @@ import {
   ContentColumn,
   ContentText,
   ContentInput,
+  SaveButton,
+  DeleteButton,
 } from "./styled/rowStyled";
 import { API_URL } from "../utilities/URL";
 
@@ -24,10 +26,10 @@ class Row extends Component<any> {
   componentDidMount() {
     const { birthday } = this.props;
     if (birthday === null)
-      return this.setState({ creating: true, editing: true, color: "orange" });
+      return this.setState({ creating: true, editing: true, color: "#9ad6ca" });
     this.setState({
       name: birthday.summary.substring(0, birthday.summary.length - 12),
-      birthDate: birthday.start.dateTime,
+      birthDate: moment(birthday.start.dateTime).format("L"),
       days:
         birthday.reminders.overrides &&
         Math.ceil(birthday.reminders.overrides[0].minutes / 60 / 24),
@@ -38,7 +40,7 @@ class Row extends Component<any> {
     });
   }
   edit = () => {
-    this.setState({ editing: true, color: "orange" });
+    this.setState({ editing: true, color: "#9ad6ca" });
   };
   save = () => {
     if (this.state.creating) {
@@ -84,7 +86,7 @@ class Row extends Component<any> {
         editing: false,
         color: "white",
         name: data.summary.substring(0, data.summary.length - 12),
-        birthDate: data.start.dateTime,
+        birthDate: moment(birthday.start.dateTime).format("L"),
         days:
           data.reminders.overrides &&
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
@@ -183,7 +185,17 @@ class Row extends Component<any> {
         </ContentColumn>
         <ContentColumn color={color}>
           {editing && (
-            <DayPickerInput value={birthDate} onDayChange={this.onDayChange} />
+            <DayPickerInput
+              value={birthDate}
+              onDayChange={this.onDayChange}
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              component={(props) => <ContentInput {...props} />}
+            />
           )}
           {!editing && (
             <ContentText>{moment(birthDate).format("MMM Do")}</ContentText>
@@ -209,26 +221,8 @@ class Row extends Component<any> {
         <ContentColumn color={color}>
           {editing && (
             <ContentText>
-              <div
-                style={{
-                  textDecoration: "underline",
-                  color: "blue",
-                  cursor: "pointer",
-                }}
-                onClick={this.save}
-              >
-                Save
-              </div>
-              <div
-                style={{
-                  textDecoration: "underline",
-                  color: "red",
-                  cursor: "pointer",
-                }}
-                onClick={this.delete}
-              >
-                Delete
-              </div>
+              <SaveButton onClick={this.save}>Save</SaveButton>
+              <DeleteButton onClick={this.delete}>Delete</DeleteButton>
             </ContentText>
           )}
           {!editing && (

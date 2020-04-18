@@ -32,3 +32,39 @@ export const ContentInput = styled.input`
   padding: 0 !important;
   text-align: center;
 `;
+export const SaveButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+  }
+  padding: 0.15em 0.4em;
+  border: 0.1em solid blue;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: blue;
+  text-align: center;
+  transition: all 0.2s;
+`;
+
+export const DeleteButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: red;
+    cursor: pointer;
+  }
+  padding: 0.15em 0.4em;
+  border: 0.1em solid red;
+  margin-top: 10px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: red;
+  text-align: center;
+  transition: all 0.2s;
+`;
