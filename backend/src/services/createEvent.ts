@@ -6,6 +6,8 @@ export const createEvent = async (auth, calendarId, timeZone, birthday, cb) => {
     const insertedDates = [];
     const { date, name, description, days } = birthday;
     const first = new Date(date);
+    first.setHours(0);
+    first.setMinutes(0);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;

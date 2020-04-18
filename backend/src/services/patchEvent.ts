@@ -13,6 +13,8 @@ export const patchEvent = async (
     const calendar = google.calendar({ version: 'v3', auth });
     const { date, name, description, days } = eventObj;
     const first = new Date(date);
+    first.setHours(0);
+    first.setMinutes(0);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;
