@@ -83,6 +83,7 @@ router
     expressAsyncHandler(async (req: IUserRequest, res, next) => {
       const { event } = req.body;
       if (!event) throw httpErrors(400, 'Forgot event update details!');
+      console.log(event);
       // event = {
       //   date: "11/30/2019",
       //   name: "Jefferson Daniel",

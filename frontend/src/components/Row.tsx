@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 import {
   ContentRow,
   ContentColumn,
@@ -21,10 +23,11 @@ class Row extends Component<any> {
   };
   componentDidMount() {
     const { birthday } = this.props;
-    if (birthday === null) return this.setState({ creating: true });
+    if (birthday === null)
+      return this.setState({ creating: true, editing: true, color: "orange" });
     this.setState({
       name: birthday.summary.substring(0, birthday.summary.length - 12),
-      birthDate: moment(birthday.start.dateTime).format("MMM Do"),
+      birthDate: birthday.start.dateTime,
       days:
         birthday.reminders.overrides &&
         Math.ceil(birthday.reminders.overrides[0].minutes / 60 / 24),
@@ -62,7 +65,7 @@ class Row extends Component<any> {
         `${API_URL}/rest/birthdays/${birthday.id}`,
         {
           event: {
-            date: birthDate,
+            date: new Date(birthDate),
             name,
             description: note,
             days: Number(days),
@@ -104,11 +107,11 @@ class Row extends Component<any> {
       const expiry_date = localStorage.getItem("expiry_date");
       const { birthDate, name, note, days } = this.state;
       //TODO: Turn dates into dates and time into usable
-      const createdBirthday = await axios.post(
+      await axios.post(
         `${API_URL}/rest/birthdays/`,
         {
-          event: {
-            date: birthDate,
+          birthday: {
+            date: new Date(birthDate),
             name,
             description: note,
             days: Number(days),
@@ -126,6 +129,8 @@ class Row extends Component<any> {
           },
         }
       );
+      this.props.endCreating();
+      this.props.fetchBirthdays();
       // refetch birthdays and set creating to false
     } catch (error) {
       console.error(error);
@@ -136,6 +141,9 @@ class Row extends Component<any> {
       target: { name, value },
     } = event;
     this.setState({ [name]: value });
+  };
+  onDayChange = (day) => {
+    this.setState({ birthDate: day });
   };
   delete = async () => {
     const access_token = localStorage.getItem("access_token");
@@ -175,11 +183,7 @@ class Row extends Component<any> {
         </ContentColumn>
         <ContentColumn color={color}>
           {editing && (
-            <ContentInput
-              value={birthDate}
-              name="birthDate"
-              onChange={this.onChange}
-            />
+            <DayPickerInput value={birthDate} onDayChange={this.onDayChange} />
           )}
           {!editing && <ContentText>{birthDate}</ContentText>}
         </ContentColumn>

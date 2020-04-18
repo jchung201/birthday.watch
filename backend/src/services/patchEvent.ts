@@ -11,18 +11,9 @@ export const patchEvent = async (
 ) => {
   try {
     const calendar = google.calendar({ version: 'v3', auth });
-    const { date, name, description, days, time } = eventObj;
-    // Calculate time
-    const end = date.substring(date.length - 2, date.length);
-    let first = new Date(moment(date + ', ' + process.env.YEAR).toDate());
-    if (end === 'st' || end === 'nd' || end == 'rd' || end === 'th') {
-      first = new Date(
-        moment(
-          date.substring(0, date.length - 2) + ', ' + process.env.YEAR,
-        ).toDate(),
-      );
-    }
-    const second = new Date(first.getTime());
+    const { date, name, description, days } = eventObj;
+    const first = new Date(date);
+    const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;
     const event = {
