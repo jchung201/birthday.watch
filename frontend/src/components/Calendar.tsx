@@ -17,22 +17,10 @@ interface OwnProps {
 }
 
 class Calendar extends Component<OwnProps> {
-  componentDidMount() {
-    try {
-      this.props.store.calendar.fetchBirthdays();
-    } catch (error) {
-      //TODO: Notify logout
-      console.error(error);
-      this.props.store.auth.logOut();
-    }
-  }
-
   render() {
     const {
-      calendar: { birthdays, birthdaysFetched, startCreating, creating },
-      auth: { logOut, loggedIn },
+      auth: { logOut },
     } = this.props.store;
-    if (!birthdaysFetched) return <div>Loading...</div>;
     return (
       <Wrapper>
         <Header>
