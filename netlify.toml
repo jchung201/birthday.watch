@@ -1,6 +1,6 @@
 [build]
   command = "npm install && npm run build:prod"
-  publish="frontend/build"
+  publish="frontend/dist"
   base = "frontend"
 [[redirects]]
   from = "/*"
