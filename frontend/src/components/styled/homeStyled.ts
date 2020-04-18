@@ -13,7 +13,7 @@ export const Wrapper = styled.section`
 `;
 export const LeftContainer = styled.div`
   display: flex;
-  flex-basis: 40%;
+  flex-grow: 2;
   flex-direction: column;
   align-items: center;
 `;
@@ -21,6 +21,9 @@ export const Logo = styled.img`
   text-align: center;
   width: 120px;
   margin-top: 170px;
+  @media (max-width: 768px) {
+    width: 80px;
+  }
 `;
 export const Header = styled.div`
   text-align: center;
@@ -29,16 +32,21 @@ export const Header = styled.div`
   font-size: 60px;
   color: #c3a7d8;
   margin-top: 6px;
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
 `;
 export const Description = styled.div`
-  width: 600px;
   margin-top: 16px;
   font-family: Roboto;
   font-size: 21px;
   text-align: center;
   line-height: 1.4;
   margin-bottom: 15px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 export const RightContainer = styled.div`
-  flex-grow: 1;
+  flex-grow: 6;
 `;

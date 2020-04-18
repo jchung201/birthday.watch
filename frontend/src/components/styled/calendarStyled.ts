@@ -26,16 +26,19 @@ export const Content = styled.section`
   padding-top: 50px;
 `;
 export const LogOutButton = styled.div`
+  position: relative;
+  top: 75px;
+  left: 440px;
   &:hover {
     color: white;
     background-color: #7d7c81;
     cursor: pointer;
   }
-  display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #7d7c81;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 150px;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;

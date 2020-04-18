@@ -10,6 +10,7 @@ import {
   ContentInput,
   SaveButton,
   DeleteButton,
+  CancelButton,
 } from "./styled/rowStyled";
 import { API_URL } from "../utilities/URL";
 
@@ -18,7 +19,7 @@ class Row extends Component<any> {
     editing: false,
     name: "",
     birthDate: "",
-    days: 0,
+    days: null,
     note: "",
     color: "white",
     creating: false,
@@ -171,15 +172,31 @@ class Row extends Component<any> {
       console.error(error);
     }
   };
+  cancel = () => {
+    this.props.endCreating();
+  };
 
   render() {
-    const { name, birthDate, days, note, editing, color } = this.state;
+    const {
+      name,
+      birthDate,
+      days,
+      note,
+      editing,
+      color,
+      creating,
+    } = this.state;
 
     return (
       <ContentRow>
         <ContentColumn color={color}>
           {editing && (
-            <ContentInput value={name} name="name" onChange={this.onChange} />
+            <ContentInput
+              placeholder="Name"
+              value={name}
+              name="name"
+              onChange={this.onChange}
+            />
           )}
           {!editing && <ContentText>{name}</ContentText>}
         </ContentColumn>
@@ -206,6 +223,7 @@ class Row extends Component<any> {
             <ContentInput
               value={days}
               type="number"
+              placeholder="Days (e.g. 7)"
               name="days"
               onChange={this.onChange}
             />
@@ -214,7 +232,12 @@ class Row extends Component<any> {
         </ContentColumn>
         <ContentColumn color={color}>
           {editing && (
-            <ContentInput value={note} name="note" onChange={this.onChange} />
+            <ContentInput
+              placeholder="Note (e.g. Buy cake)"
+              value={note}
+              name="note"
+              onChange={this.onChange}
+            />
           )}
           {!editing && <ContentText>{note}</ContentText>}
         </ContentColumn>
@@ -222,7 +245,12 @@ class Row extends Component<any> {
           {editing && (
             <ContentText>
               <SaveButton onClick={this.save}>Save</SaveButton>
-              <DeleteButton onClick={this.delete}>Delete</DeleteButton>
+              {!creating && (
+                <DeleteButton onClick={this.delete}>Delete</DeleteButton>
+              )}
+              {creating && (
+                <CancelButton onClick={this.cancel}>Cancel</CancelButton>
+              )}
             </ContentText>
           )}
           {!editing && (

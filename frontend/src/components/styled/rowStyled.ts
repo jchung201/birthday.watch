@@ -68,3 +68,21 @@ export const DeleteButton = styled.div`
   text-align: center;
   transition: all 0.2s;
 `;
+export const CancelButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+  }
+  padding: 0.15em 0.4em;
+  border: 0.1em solid orange;
+  margin-top: 10px;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: orange;
+  text-align: center;
+  transition: all 0.2s;
+`;

@@ -29,12 +29,9 @@ class Calendar extends Component<OwnProps> {
             src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
             alt="logo"
           ></HLogo>
-          <LogOutButton
-            onClick={logOut}
-            style={{ position: "absolute", top: "100px", right: "250px" }}
-          >
-            Log Out
-          </LogOutButton>
+          <div style={{ position: "absolute" }}>
+            <LogOutButton onClick={logOut}>Log Out</LogOutButton>
+          </div>
         </Header>
         <Content>
           <Table />
