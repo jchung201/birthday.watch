@@ -18,7 +18,13 @@ interface OwnProps {
 
 const Table = ({
   store: {
-    calendar: { creating, birthdays, startCreating },
+    calendar: {
+      creating,
+      birthdays,
+      startCreating,
+      endCreating,
+      fetchBirthdays,
+    },
   },
 }: OwnProps) => (
   <React.Fragment>
@@ -35,9 +41,6 @@ const Table = ({
           (Days Ahead)
         </TitleText>
       </Title>
-      <Title color="#9ad6ca">
-        <TitleText>Reminder (Time)</TitleText>
-      </Title>
       <Title color="#f89f9f">
         <TitleText>Note</TitleText>
       </Title>
@@ -46,9 +49,20 @@ const Table = ({
       </Title>
     </TableHeader>
     {birthdays.map((birthday) => (
-      <Row birthday={birthday} key={birthday.id} />
+      <Row
+        birthday={birthday}
+        key={birthday.id}
+        fetchBirthdays={fetchBirthdays}
+      />
     ))}
-    {creating && <Row birthday={null} />}
+    {creating && (
+      <Row
+        birthday={null}
+        startCreating={startCreating}
+        endCreating={endCreating}
+        fetchBirthdays={fetchBirthdays}
+      />
+    )}
     <BottomWrapper>
       {!creating && (
         <AddButton onClick={startCreating}>Add New Birthday</AddButton>

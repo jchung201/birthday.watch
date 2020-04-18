@@ -34,7 +34,7 @@ export const AddButton = styled.div`
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #7d7c81;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
   border-radius: 0.12em;
   box-sizing: border-box;

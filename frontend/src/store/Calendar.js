@@ -55,6 +55,9 @@ export const Calendar = types
     startCreating() {
       self.creating = true;
     },
+    endCreating() {
+      self.creating = false;
+    },
   }));
 
 const Root = types.model({

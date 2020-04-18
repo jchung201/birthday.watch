@@ -15,13 +15,13 @@ class Row extends Component<any> {
     name: "",
     birthDate: "",
     days: 0,
-    time: "",
     note: "",
     color: "white",
+    creating: false,
   };
   componentDidMount() {
     const { birthday } = this.props;
-    if (birthday === null) return;
+    if (birthday === null) return this.setState({ creating: true });
     this.setState({
       name: birthday.summary.substring(0, birthday.summary.length - 12),
       birthDate: moment(birthday.start.dateTime).format("MMM Do"),
@@ -38,24 +38,34 @@ class Row extends Component<any> {
     this.setState({ editing: true, color: "orange" });
   };
   save = () => {
-    const access_token = localStorage.getItem("access_token");
-    const refresh_token = localStorage.getItem("refresh_token");
-    const scope = localStorage.getItem("scope");
-    const token_type = localStorage.getItem("token_type");
-    const expiry_date = localStorage.getItem("expiry_date");
-    const { date } = this.props;
-    const { birthDate, name, note, days, time } = this.state;
-    //TODO: Turn dates into dates and time into usable
-    axios
-      .patch(
-        `${API_URL}/rest/birthdays/${date.id}`,
+    try {
+      if (this.state.creating) {
+        return this.createBirthday();
+      } else {
+        return this.updateBirthday();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  updateBirthday = async () => {
+    try {
+      const access_token = localStorage.getItem("access_token");
+      const refresh_token = localStorage.getItem("refresh_token");
+      const scope = localStorage.getItem("scope");
+      const token_type = localStorage.getItem("token_type");
+      const expiry_date = localStorage.getItem("expiry_date");
+      const { birthday } = this.props;
+      const { birthDate, name, note, days } = this.state;
+      //TODO: Turn dates into dates and time into usable
+      const updatedBirthday = await axios.patch(
+        `${API_URL}/rest/birthdays/${birthday.id}`,
         {
           event: {
             date: birthDate,
             name,
             description: note,
             days: Number(days),
-            time,
           },
         },
         {
@@ -69,25 +79,57 @@ class Row extends Component<any> {
             }),
           },
         }
-      )
-      .then(({ data }) => {
-        this.setState({
-          editing: false,
-          color: "white",
-          name: data.summary.substring(0, data.summary.length - 12),
-          birthDate: moment(data.start.dateTime).format("MMM Do"),
-          days:
-            data.reminders.overrides &&
-            Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
-          time:
-            data.reminders.overrides &&
-            moment(data.start.dateTime).format("h:mm a"),
-          note: data.location,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+      );
+      const { data } = updatedBirthday;
+      this.setState({
+        editing: false,
+        color: "white",
+        name: data.summary.substring(0, data.summary.length - 12),
+        birthDate: moment(data.start.dateTime).format("MMM Do"),
+        days:
+          data.reminders.overrides &&
+          Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
+        note: data.location,
       });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  createBirthday = async () => {
+    try {
+      const access_token = localStorage.getItem("access_token");
+      const refresh_token = localStorage.getItem("refresh_token");
+      const scope = localStorage.getItem("scope");
+      const token_type = localStorage.getItem("token_type");
+      const expiry_date = localStorage.getItem("expiry_date");
+      const { birthDate, name, note, days } = this.state;
+      //TODO: Turn dates into dates and time into usable
+      const createdBirthday = await axios.post(
+        `${API_URL}/rest/birthdays/`,
+        {
+          event: {
+            date: birthDate,
+            name,
+            description: note,
+            days: Number(days),
+          },
+        },
+        {
+          headers: {
+            Authorization: JSON.stringify({
+              access_token,
+              refresh_token,
+              scope,
+              token_type,
+              expiry_date,
+            }),
+          },
+        }
+      );
+      // refetch birthdays and set creating to false
+    } catch (error) {
+      console.error(error);
+    }
   };
   onChange = (event) => {
     const {
@@ -95,15 +137,15 @@ class Row extends Component<any> {
     } = event;
     this.setState({ [name]: value });
   };
-  delete = () => {
+  delete = async () => {
     const access_token = localStorage.getItem("access_token");
     const refresh_token = localStorage.getItem("refresh_token");
     const scope = localStorage.getItem("scope");
     const token_type = localStorage.getItem("token_type");
     const expiry_date = localStorage.getItem("expiry_date");
-    const { date, fetchDates } = this.props;
-    axios
-      .delete(`${API_URL}/rest/birthdays/${date.id}`, {
+    const { birthday, fetchDates } = this.props;
+    try {
+      await axios.delete(`${API_URL}/rest/birthdays/${birthday.id}`, {
         headers: {
           Authorization: JSON.stringify({
             access_token,
@@ -113,17 +155,15 @@ class Row extends Component<any> {
             expiry_date,
           }),
         },
-      })
-      .then(({ data }) => {
-        fetchDates();
-      })
-      .catch((error) => {
-        console.error(error);
       });
+      return fetchDates();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   render() {
-    const { name, birthDate, days, time, note, editing, color } = this.state;
+    const { name, birthDate, days, note, editing, color } = this.state;
 
     return (
       <ContentRow>
@@ -153,12 +193,6 @@ class Row extends Component<any> {
             />
           )}
           {!editing && <ContentText>{days}</ContentText>}
-        </ContentColumn>
-        <ContentColumn color={color}>
-          {editing && (
-            <ContentInput value={time} name="time" onChange={this.onChange} />
-          )}
-          {!editing && <ContentText>{time}</ContentText>}
         </ContentColumn>
         <ContentColumn color={color}>
           {editing && (
