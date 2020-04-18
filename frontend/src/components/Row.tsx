@@ -88,7 +88,7 @@ class Row extends Component<any> {
         editing: false,
         color: "white",
         name: data.summary.substring(0, data.summary.length - 12),
-        birthDate: moment(data.start.dateTime).format("MMM Do"),
+        birthDate: data.start.dateTime,
         days:
           data.reminders.overrides &&
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
@@ -151,7 +151,7 @@ class Row extends Component<any> {
     const scope = localStorage.getItem("scope");
     const token_type = localStorage.getItem("token_type");
     const expiry_date = localStorage.getItem("expiry_date");
-    const { birthday, fetchDates } = this.props;
+    const { birthday, fetchBirthdays } = this.props;
     try {
       await axios.delete(`${API_URL}/rest/birthdays/${birthday.id}`, {
         headers: {
@@ -164,7 +164,7 @@ class Row extends Component<any> {
           }),
         },
       });
-      return fetchDates();
+      return fetchBirthdays();
     } catch (error) {
       console.error(error);
     }
@@ -185,7 +185,9 @@ class Row extends Component<any> {
           {editing && (
             <DayPickerInput value={birthDate} onDayChange={this.onDayChange} />
           )}
-          {!editing && <ContentText>{birthDate}</ContentText>}
+          {!editing && (
+            <ContentText>{moment(birthDate).format("MMM Do")}</ContentText>
+          )}
         </ContentColumn>
         <ContentColumn color={color}>
           {editing && (
