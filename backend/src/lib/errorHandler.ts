@@ -1,7 +1,6 @@
 import httpErrors from 'http-errors';
 
 export default (error, _req, res, _next) => {
-  console.error(error, 'fuck');
   let message;
   if (error.status) {
     message = error;

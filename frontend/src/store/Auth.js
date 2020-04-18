@@ -4,7 +4,7 @@ import axios from "axios";
 import {
   checkAuthorization,
   clearAuthorization,
-  setAuthorization
+  setAuthorization,
 } from "../utilities/auth";
 
 export const Auth = types
@@ -14,9 +14,9 @@ export const Auth = types
     refresh_token: types.optional(types.string, ""),
     scope: types.optional(types.string, ""),
     token_type: types.optional(types.string, ""),
-    expiry_date: types.optional(types.string, "")
+    expiry_date: types.optional(types.string, ""),
   })
-  .actions(self => ({
+  .actions((self) => ({
     authenticate: function() {
       let params = new URLSearchParams(window.location.search);
       let code = params.get("code");
@@ -28,7 +28,8 @@ export const Auth = types
             setAuthorization(data);
             self.logIn();
           })
-          .catch(error => {
+          .catch((error) => {
+            //TODO:Notify logout
             console.error(error);
             self.logOut();
           });
@@ -42,5 +43,5 @@ export const Auth = types
     logOut() {
       clearAuthorization();
       self.loggedIn = false;
-    }
+    },
   }));

@@ -42,7 +42,7 @@ export const Calendar = types
         self.setBirthdays(data.data);
         self.setBirthdaysFetched();
       } catch (error) {
-        console.error("500 test", error);
+        //TODO:Notify logout
         self.auth.logOut();
       }
     },

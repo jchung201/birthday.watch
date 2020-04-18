@@ -21,6 +21,7 @@ class Calendar extends Component<OwnProps> {
     try {
       this.props.store.calendar.fetchBirthdays();
     } catch (error) {
+      //TODO: Notify logout
       console.error(error);
       this.props.store.auth.logOut();
     }

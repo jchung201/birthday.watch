@@ -41,14 +41,10 @@ class Row extends Component<any> {
     this.setState({ editing: true, color: "orange" });
   };
   save = () => {
-    try {
-      if (this.state.creating) {
-        return this.createBirthday();
-      } else {
-        return this.updateBirthday();
-      }
-    } catch (error) {
-      console.error(error);
+    if (this.state.creating) {
+      return this.createBirthday();
+    } else {
+      return this.updateBirthday();
     }
   };
   updateBirthday = async () => {
@@ -94,7 +90,9 @@ class Row extends Component<any> {
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
         note: data.location,
       });
+      // TODO: notify updated birthday
     } catch (error) {
+      // TODO: notify error
       console.error(error);
     }
   };
@@ -106,7 +104,6 @@ class Row extends Component<any> {
       const token_type = localStorage.getItem("token_type");
       const expiry_date = localStorage.getItem("expiry_date");
       const { birthDate, name, note, days } = this.state;
-      //TODO: Turn dates into dates and time into usable
       await axios.post(
         `${API_URL}/rest/birthdays/`,
         {
@@ -131,8 +128,9 @@ class Row extends Component<any> {
       );
       this.props.endCreating();
       this.props.fetchBirthdays();
-      // refetch birthdays and set creating to false
+      // TODO: notify created birthday
     } catch (error) {
+      // TODO: notify error
       console.error(error);
     }
   };
@@ -164,8 +162,10 @@ class Row extends Component<any> {
           }),
         },
       });
+      // TODO: notify deleted
       return fetchBirthdays();
     } catch (error) {
+      //TODO: notify error
       console.error(error);
     }
   };

@@ -42,7 +42,6 @@ export const patchEvent = async (
     const patchedDate = await calendar.events.patch(formattedInformation);
     cb(null, patchedDate.data);
   } catch (error) {
-    console.log(error);
     cb(error);
   }
 };
