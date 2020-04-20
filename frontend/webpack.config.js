@@ -7,6 +7,10 @@ module.exports = {
   entry: {
     app: path.join(__dirname, "src", "index.tsx"),
   },
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
+  },
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
@@ -28,6 +32,7 @@ module.exports = {
               name: "public/[name].[ext]",
             },
           },
+          "image-webpack-loader",
         ],
       },
       {
@@ -43,8 +48,4 @@ module.exports = {
       favicon: path.join(__dirname, "src", "public", "favicon.ico"),
     }),
   ],
-  output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
-  },
 };
