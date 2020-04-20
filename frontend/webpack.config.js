@@ -2,27 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const VENDOR_LIBS = [
-  "axios",
-  "mobx",
-  "mobx-react",
-  "mobx-state-tree",
-  "moment",
-  "react",
-  "react-day-picker",
-  "react-dom",
-  "react-google-button",
-  "styled-components",
-];
-
 module.exports = {
   mode: process.env.NODE_ENV,
-  entry: {
-    bundle: path.join(__dirname, "src", "index.tsx"),
-    vendor: VENDOR_LIBS,
-  },
+  entry: path.join(__dirname, "src", "index.tsx"),
   output: {
-    filename: "[name].js",
+    filename: "[name].[chunkhash].js",
     path: path.resolve(__dirname, "dist"),
   },
   target: "web",
@@ -56,13 +40,14 @@ module.exports = {
     ],
   },
   optimization: {
+    moduleIds: "hashed",
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
-          chunks: "initial",
-          test: "vendor",
-          name: "vendor",
-          enforce: true,
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
         },
       },
     },
