@@ -2,10 +2,24 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const VENDOR_LIBS = [
+  "axios",
+  "mobx",
+  "mobx-react",
+  "mobx-state-tree",
+  "moment",
+  "react",
+  "react-day-picker",
+  "react-dom",
+  "react-google-button",
+  "styled-components",
+];
+
 module.exports = {
-  mode: "none",
+  mode: process.env.NODE_ENV,
   entry: {
-    app: path.join(__dirname, "src", "index.tsx"),
+    bundle: path.join(__dirname, "src", "index.tsx"),
+    vendor: VENDOR_LIBS,
   },
   output: {
     filename: "[name].js",
