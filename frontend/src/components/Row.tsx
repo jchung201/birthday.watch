@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
+import { toast } from "react-toastify";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 import {
@@ -83,6 +84,7 @@ class Row extends Component<any> {
         }
       );
       const { data } = updatedBirthday;
+      toast("Birthday updated!");
       this.setState({
         editing: false,
         color: "white",
@@ -95,6 +97,7 @@ class Row extends Component<any> {
       });
       // TODO: notify updated birthday
     } catch (error) {
+      toast.error("Error updating!");
       // TODO: notify error
       console.error(error);
     }
@@ -129,10 +132,12 @@ class Row extends Component<any> {
           },
         }
       );
+      toast("Birthday created!");
       this.props.endCreating();
       this.props.fetchBirthdays();
       // TODO: notify created birthday
     } catch (error) {
+      toast.error("Error creating birthday");
       // TODO: notify error
       console.error(error);
     }
@@ -165,10 +170,10 @@ class Row extends Component<any> {
           }),
         },
       });
-      // TODO: notify deleted
+      toast("Birthday deleted!");
       return fetchBirthdays();
     } catch (error) {
-      //TODO: notify error
+      toast.error("Error deleting birthday!");
       console.error(error);
     }
   };

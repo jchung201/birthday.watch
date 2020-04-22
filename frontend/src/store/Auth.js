@@ -1,5 +1,6 @@
 import { types, flow } from "mobx-state-tree";
 import { API_URL, WEB_URL } from "../utilities/URL";
+import { toast } from "react-toastify";
 import axios from "axios";
 import {
   checkAuthorization,
@@ -38,9 +39,11 @@ export const Auth = types
       if (authorization) return self.logIn();
     },
     logIn() {
+      toast("Logged in!");
       self.loggedIn = true;
     },
     logOut() {
+      toast.error("Logged out!");
       clearAuthorization();
       self.loggedIn = false;
     },
