@@ -1,4 +1,4 @@
-export const checkAuthorization = fail => {
+export const checkAuthorization = (fail) => {
   const access_token = localStorage.getItem("access_token");
   const refresh_token = localStorage.getItem("refresh_token");
   const scope = localStorage.getItem("scope");
@@ -18,7 +18,7 @@ export const checkAuthorization = fail => {
       refresh_token,
       scope,
       token_type,
-      expiry_date
+      expiry_date,
     };
   }
 };
@@ -27,7 +27,7 @@ export const setAuthorization = ({
   refresh_token,
   scope,
   token_type,
-  expiry_date
+  expiry_date,
 }) => {
   localStorage.setItem("access_token", access_token);
   localStorage.setItem("refresh_token", refresh_token);

@@ -1,5 +1,4 @@
 import { google } from 'googleapis';
-import moment from 'moment';
 
 export const patchEvent = async (
   auth,

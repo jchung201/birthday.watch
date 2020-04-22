@@ -42,8 +42,9 @@ export const Calendar = types
         self.setBirthdays(data.data);
         self.setBirthdaysFetched();
       } catch (error) {
-        //TODO:Notify logout
+        console.error(error);
         self.auth.logOut();
+        self.setBirthdaysFetched();
       }
     },
     setBirthdays(list) {
