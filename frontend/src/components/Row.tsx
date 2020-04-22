@@ -89,7 +89,7 @@ class Row extends Component<any> {
         editing: false,
         color: "white",
         name: data.summary.substring(0, data.summary.length - 12),
-        birthDate: moment(birthday.start.dateTime).format("L"),
+        birthDate: moment(data.start.dateTime).format("L"),
         days:
           data.reminders.overrides &&
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
