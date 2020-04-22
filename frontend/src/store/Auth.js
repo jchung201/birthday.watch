@@ -25,7 +25,6 @@ export const Auth = types
         return axios
           .post(`${API_URL}/rest/auth/token`, { code })
           .then(({ data }) => {
-            window.location = WEB_URL;
             setAuthorization(data);
             self.logIn();
           })

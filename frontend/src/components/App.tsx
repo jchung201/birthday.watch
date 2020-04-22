@@ -20,7 +20,7 @@ class App extends Component<OwnProps> {
   logIn = async () => {
     try {
       const authUrl = await axios.get(`${API_URL}/rest/auth/url`);
-      window.location = authUrl.data;
+      document.location.href = authUrl.data;
     } catch (error) {
       console.error(error);
     }
