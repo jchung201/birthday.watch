@@ -22,7 +22,6 @@ class App extends Component<OwnProps> {
       const authUrl = await axios.get(`${API_URL}/rest/auth/url`);
       window.location = authUrl.data;
     } catch (error) {
-      //TODO: Notify logi
       console.error(error);
     }
   };
