@@ -69,3 +69,5 @@ dist/
 js/
 build
 .vscode
+.now
+.serverless

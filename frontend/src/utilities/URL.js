@@ -4,7 +4,7 @@ export let WEB_URL = "";
 switch (process.env.NODE_ENV) {
   case "production":
     WEB_URL = "https://www.birthday.watch";
-    API_URL = "https://z911u4qxd5.execute-api.us-east-1.amazonaws.com/dev";
+    API_URL = "https://eyspc29ly2.execute-api.us-east-1.amazonaws.com/dev";
     // API_URL = "https://birthday-watch.herokuapp.com";
     break;
   default:
