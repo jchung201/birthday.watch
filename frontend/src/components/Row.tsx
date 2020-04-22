@@ -65,7 +65,7 @@ class Row extends Component<any> {
         `${API_URL}/rest/birthdays/${birthday.id}`,
         {
           event: {
-            date: new Date(birthDate),
+            date: new Date(birthDate).toISOString(),
             name,
             description: note,
             days: Number(days),
@@ -114,7 +114,7 @@ class Row extends Component<any> {
         `${API_URL}/rest/birthdays/`,
         {
           birthday: {
-            date: new Date(birthDate),
+            date: new Date(birthDate).toISOString(),
             name,
             description: note,
             days: Number(days),
