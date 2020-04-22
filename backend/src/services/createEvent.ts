@@ -6,8 +6,6 @@ export const createEvent = async (auth, calendarId, timeZone, birthday, cb) => {
     const insertedDates = [];
     const { date, name, description, days } = birthday;
     const first = new Date(date);
-    first.setHours(0);
-    first.setMinutes(0);
     const second = new Date(first);
     second.setDate(first.getDate() + 1);
     const summary = `${name}'s Birthday!`;
@@ -15,11 +13,11 @@ export const createEvent = async (auth, calendarId, timeZone, birthday, cb) => {
       summary,
       location: description,
       start: {
-        dateTime: first,
+        dateTime: first.toISOString(),
         timeZone,
       },
       end: {
-        dateTime: second,
+        dateTime: second.toISOString(),
         timeZone,
       },
       recurrence: ['RRULE:FREQ=YEARLY'],

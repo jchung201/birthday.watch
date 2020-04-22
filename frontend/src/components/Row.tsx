@@ -40,6 +40,7 @@ class Row extends Component<any> {
         moment(birthday.start.dateTime).format("h:mm a"),
       note: birthday.location,
     });
+    console.log(birthday.start.dateTime);
   }
   edit = () => {
     this.setState({ editing: true, color: "#9ad6ca" });
