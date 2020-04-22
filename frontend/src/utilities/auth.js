@@ -11,8 +11,17 @@ export const checkAuthorization = (fail) => {
     !token_type ||
     !expiry_date
   ) {
-    fail();
+    if (
+      !access_token &&
+      !refresh_token &&
+      !scope &&
+      !token_type &&
+      !expiry_date
+    )
+      return;
+    return fail();
   } else {
+    // check if expired... if expired... logout
     return {
       access_token,
       refresh_token,
