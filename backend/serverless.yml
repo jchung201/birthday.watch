@@ -9,7 +9,7 @@ provider:
   memorySize: 128
 functions:
   app:
-    handler: build/handler.handler
+    handler: build/serverless.handler
     events: 
       - http: 
           path: /
