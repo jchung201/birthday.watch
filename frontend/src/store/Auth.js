@@ -26,10 +26,9 @@ export const Auth = types
           .post(`${API_URL}/rest/auth/token`, { code })
           .then(({ data }) => {
             setAuthorization(data);
-            self.logIn();
+            document.location.href = WEB_URL;
           })
           .catch((error) => {
-            //TODO:Notify logout
             console.error(error);
             self.logOut();
           });
