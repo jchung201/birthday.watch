@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import axios from "axios";
 
-import { API_URL, WEB_URL } from "../utilities/URL";
+import { API_URL } from "../utilities/URL";
 import { StoreInterface } from "../interfaces/store";
 
 import Home from "./Home";

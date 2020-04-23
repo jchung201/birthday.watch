@@ -1,7 +1,7 @@
 // Import Express Instance
 import app from './lib/app';
 
-import router from './routes/router';
+import router from './lib/router';
 app.use('/rest', router);
 
 // Catch all 404 if not found

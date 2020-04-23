@@ -58,14 +58,6 @@ router
     expressAsyncHandler(async (req: IUserRequest, res, next) => {
       const { birthday } = req.body;
       if (!birthday) throw httpErrors(400, 'Forgot to include birthday!');
-      // events = [
-      //   {
-      //     date: "11/30/2019",
-      //     name: "John Daniel",
-      //     description: "description is awesome",
-      //     days: 5
-      //   }
-      // ];
       createEvent(
         req.auth,
         req.calendar.id,

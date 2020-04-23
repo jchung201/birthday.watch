@@ -21,7 +21,6 @@ export const checkAuthorization = (fail) => {
       return;
     return fail();
   } else {
-    // check if expired... if expired... logout
     return {
       access_token,
       refresh_token,

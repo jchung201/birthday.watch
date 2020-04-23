@@ -60,7 +60,6 @@ class Row extends Component<any> {
       const expiry_date = localStorage.getItem("expiry_date");
       const { birthday } = this.props;
       const { birthDate, name, note, days } = this.state;
-      //TODO: Turn dates into dates and time into usable
       const updatedBirthday = await axios.patch(
         `${API_URL}/rest/birthdays/${birthday.id}`,
         {
@@ -95,10 +94,8 @@ class Row extends Component<any> {
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
         note: data.location,
       });
-      // TODO: notify updated birthday
     } catch (error) {
       toast.error("Error updating!");
-      // TODO: notify error
       console.error(error);
     }
   };
@@ -135,10 +132,8 @@ class Row extends Component<any> {
       toast("Birthday created!");
       this.props.endCreating();
       this.props.fetchBirthdays();
-      // TODO: notify created birthday
     } catch (error) {
       toast.error("Error creating birthday");
-      // TODO: notify error
       console.error(error);
     }
   };
