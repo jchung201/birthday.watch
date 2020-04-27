@@ -31,13 +31,13 @@ class Row extends Component<any> {
       return this.setState({ creating: true, editing: true, color: "#9ad6ca" });
     this.setState({
       name: birthday.summary.substring(0, birthday.summary.length - 12),
-      birthDate: moment(birthday.start.dateTime).format("L"),
+      birthDate: moment(birthday.start.dateTime, "L"),
       days:
         birthday.reminders.overrides &&
         Math.ceil(birthday.reminders.overrides[0].minutes / 60 / 24),
       time:
         birthday.reminders.overrides &&
-        moment(birthday.start.dateTime).format("h:mm a"),
+        moment(birthday.start.dateTime, "h:mm a"),
       note: birthday.location,
     });
   }
@@ -88,7 +88,7 @@ class Row extends Component<any> {
         editing: false,
         color: "white",
         name: data.summary.substring(0, data.summary.length - 12),
-        birthDate: moment(data.start.dateTime).format("L"),
+        birthDate: moment(new Date(data.start.dateTime)).format("L"),
         days:
           data.reminders.overrides &&
           Math.ceil(data.reminders.overrides[0].minutes / 60 / 24),
