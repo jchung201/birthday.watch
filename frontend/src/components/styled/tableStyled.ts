@@ -6,11 +6,11 @@ export const TableHeader = styled.div`
   justify-content: space-between;
 `;
 export const Title = styled.div`
-  width: 220px;
-  height: 110px;
-  margin-right: 25px;
-  border-radius: 12px;
-  box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.16);
+  width: 15em;
+  height: 8em;
+  margin-right: 2.5em;
+  border-radius: 1.2em;
+  box-shadow: 0 0.7em 0.6em 0 rgba(0, 0, 0, 0.16);
   background-color: ${(props) => props.color};
   display: flex;
 `;

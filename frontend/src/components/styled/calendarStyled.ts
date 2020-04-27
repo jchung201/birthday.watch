@@ -14,16 +14,16 @@ export const Header = styled.div`
 `;
 export const HTitle = styled.div`
   margin-right: 1em;
-  font-size: 5rem;
+  font-size: 8rem;
   font-family: Roboto Slab;
 `;
 export const HLogo = styled.img`
-  width: 6em;
-  height: 6em;
+  width: 7em;
+  height: 7em;
 `;
 export const Content = styled.section`
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
   padding-top: 5%;
 `;
 export const LogOutButton = styled.div`
@@ -41,7 +41,7 @@ export const LogOutButton = styled.div`
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: #7d7c81;
   text-align: center;
   transition: all 0.2s;
