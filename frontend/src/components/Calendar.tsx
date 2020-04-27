@@ -29,9 +29,7 @@ const Calendar = ({
           src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
           alt="logo"
         ></HLogo>
-        <div style={{ position: "absolute" }}>
-          <LogOutButton onClick={logOut}>Log Out</LogOutButton>
-        </div>
+        <LogOutButton onClick={logOut}>Log Out</LogOutButton>
       </Header>
       <Content>
         <Table />
