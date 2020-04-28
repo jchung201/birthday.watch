@@ -10,6 +10,10 @@ export const Wrapper = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  @media (max-width: 425px) {
+    width: 80px;
+    background: none;
+  }
 `;
 export const LeftContainer = styled.div`
   display: flex;
@@ -49,4 +53,7 @@ export const Description = styled.div`
 `;
 export const RightContainer = styled.div`
   flex-grow: 6;
+  @media (max-width: 425px) {
+    display: none;
+  }
 `;
