@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  background-color: #dff7ff;
   min-height: 100vh;
   padding-bottom: 5em;
 `;
@@ -13,18 +12,28 @@ export const Header = styled.div`
   padding-top: 2em;
 `;
 export const HTitle = styled.div`
-  margin-right: 1em;
   font-size: 8rem;
   font-family: Roboto Slab;
+  @media (max-width: 1028px) {
+    font-size: 5rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 export const HLogo = styled.img`
   width: 7em;
   height: 7em;
-`;
-export const Content = styled.section`
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-top: 5%;
+  @media (max-width: 1028px) {
+    width: 5rem;
+    height: 5rem;
+  }
+  @media (max-width: 768px) {
+    width: 3rem;
+    height: 3rem;
+  }
+  margin-left: 2em;
+  margin-right: 4em;
 `;
 export const LogOutButton = styled.div`
   &:hover {
@@ -34,15 +43,19 @@ export const LogOutButton = styled.div`
   }
   padding: 0.35em 1.2em;
   border: 0.1em solid #7d7c81;
-  margin-left: 5em;
   margin-bottom: 1em;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
+  border-radius: 0.3em;
   font-size: 2.5rem;
   color: #7d7c81;
-  text-align: center;
-  transition: all 0.2s;
+  @media (max-width: 1028px) {
+    font-size: 1.6rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+export const Content = styled.section`
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 5%;
 `;
