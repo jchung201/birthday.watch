@@ -53,7 +53,7 @@ export const Description = styled.div`
 `;
 export const RightContainer = styled.div`
   flex-grow: 6;
-  @media (max-width: 425px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;

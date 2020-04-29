@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import axios from "axios";
 
-import { API_URL } from "../utilities/URL";
 import { StoreInterface } from "../interfaces/store";
 
 import Home from "./Home";
@@ -17,18 +15,11 @@ class App extends Component<OwnProps> {
     const { authenticate } = this.props.store.auth;
     authenticate();
   }
-  logIn = async () => {
-    try {
-      const authUrl = await axios.get(`${API_URL}/rest/auth/url`);
-      document.location.href = authUrl.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   render() {
     const { loggedIn } = this.props.store.auth;
     if (loggedIn) return <Calendar />;
-    return <Home logIn={this.logIn} />;
+    return <Home />;
   }
 }
 

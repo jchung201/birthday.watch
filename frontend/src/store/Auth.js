@@ -18,7 +18,7 @@ export const Auth = types
     expiry_date: types.optional(types.string, ""),
   })
   .actions((self) => ({
-    authenticate: function() {
+    authenticate: async function() {
       let params = new URLSearchParams(window.location.search);
       let code = params.get("code");
       if (code) {
@@ -34,7 +34,17 @@ export const Auth = types
           });
       }
       const authorization = checkAuthorization(self.logOut);
-      if (authorization) return self.logIn();
+      try {
+        await axios.get(`${API_URL}/rest/birthdays/`, {
+          headers: {
+            Authorization: JSON.stringify(authorization),
+          },
+        });
+        if (authorization) return self.logIn();
+      } catch (error) {
+        console.error(error);
+        return self.logOut();
+      }
     },
     logIn() {
       toast("Logged in!");
