@@ -43,7 +43,6 @@ export const Auth = types
         if (authorization) return self.logIn();
       } catch (error) {
         console.error(error);
-        return self.logOut();
       }
     },
     logIn() {
