@@ -45,11 +45,8 @@ class Row extends Component<any> {
     this.setState({ editing: true, color: "#9ad6ca" });
   };
   save = () => {
-    if (this.state.creating) {
-      return this.createBirthday();
-    } else {
-      return this.updateBirthday();
-    }
+    if (this.state.creating) return this.createBirthday();
+    this.updateBirthday();
   };
   updateBirthday = async () => {
     try {

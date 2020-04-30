@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { API_URL } from "../utilities/URL";
 import {
   Wrapper,
@@ -9,7 +10,6 @@ import {
   Description,
   RightContainer,
 } from "./styled/homeStyled";
-import { observer, inject } from "mobx-react";
 import GoogleButton from "react-google-button";
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
       document.location.href = authUrl.data;
     } catch (error) {
       console.error(error);
+      toast.error("Error gathering sign in link!");
     }
   };
   return (
@@ -36,4 +37,4 @@ const Home = () => {
     </Wrapper>
   );
 };
-export default inject("store")(observer(Home));
+export default Home;

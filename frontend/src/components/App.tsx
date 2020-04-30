@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { observer, inject } from "mobx-react";
 
 import { StoreInterface } from "../interfaces/store";
@@ -10,17 +10,16 @@ interface OwnProps {
   store?: StoreInterface;
 }
 
-class App extends Component<OwnProps> {
-  componentDidMount() {
-    const { authenticate } = this.props.store.auth;
+const App = ({
+  store: {
+    auth: { authenticate, loggedIn },
+  },
+}: OwnProps) => {
+  useEffect(() => {
     authenticate();
-  }
-
-  render() {
-    const { loggedIn } = this.props.store.auth;
-    if (loggedIn) return <Calendar />;
-    return <Home />;
-  }
-}
+  }, []);
+  if (loggedIn) return <Calendar />;
+  return <Home />;
+};
 
 export default inject("store")(observer(App));
