@@ -8,6 +8,7 @@ export const ContentRow = styled.div`
   background-color: ${(props) => props.color};
   border-radius: 0.4em;
   backgroundcolor: white;
+  padding: 1.3em;
 `;
 export const ContentLabel = styled.div`
   display: flex;
@@ -18,9 +19,10 @@ export const ContentLabel = styled.div`
   color: ${(props) => (props.color === "white" ? "black" : "white")};
 `;
 export const ContentColumn = styled.div`
-  width: 15em;
   margin-right: 2.5em;
+  flex-grow: 1;
   display: flex;
+  justify-content: space-between;
   height: 3em;
   margin-right: 1em;
 `;

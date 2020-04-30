@@ -13,6 +13,7 @@ export const Title = styled.div`
   box-shadow: 0 0.7em 0.6em 0 rgba(0, 0, 0, 0.16);
   background-color: ${(props) => props.color};
   display: flex;
+
   @media (max-width: 768px) {
     height: 5em;
     margin-right: 1em;
@@ -24,6 +25,9 @@ export const TitleText = styled.div`
   font-family: Roboto Slab;
   margin: auto;
   text-align: center;
+  @media (max-width: 1250px) {
+    font-size: 2rem;
+  }
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
