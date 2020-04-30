@@ -26,7 +26,7 @@ const Calendar = ({
   const { width } = windowDimensions();
   return (
     <Wrapper>
-      <Header title={width > 430 ? "full" : "mobile"}>
+      <Header title={width > 500 ? "full" : "mobile"}>
         <Fragment>
           <HLogo
             src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
@@ -36,7 +36,7 @@ const Calendar = ({
           <LogOutButton onClick={logOut}>Log Out</LogOutButton>
         </Fragment>
       </Header>
-      <Content>{width > 430 ? <Table /> : <MobileTable />}</Content>
+      <Content>{width > 500 ? <Table /> : <MobileTable />}</Content>
     </Wrapper>
   );
 };
