@@ -24,7 +24,6 @@ const Calendar = ({
   },
 }: OwnProps) => {
   const { width } = windowDimensions();
-  console.log(width, "fuck");
   return (
     <Wrapper>
       <Header title={width > 600 ? "full" : "mobile"}>
