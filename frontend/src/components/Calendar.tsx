@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { observer, inject } from "mobx-react";
 import {
   Wrapper,
@@ -9,6 +9,7 @@ import {
   LogOutButton,
 } from "./styled/calendarStyled";
 import Table from "./Table";
+import windowDimensions from "../utilities/windowDimensions";
 
 import { StoreInterface } from "../interfaces/store";
 
@@ -21,19 +22,20 @@ const Calendar = ({
     auth: { logOut },
   },
 }: OwnProps) => {
+  const { width } = windowDimensions();
   return (
     <Wrapper>
-      <Header>
-        <HTitle>BIRTHDAY.WATCH</HTitle>
-        <HLogo
-          src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
-          alt="logo"
-        ></HLogo>
-        <LogOutButton onClick={logOut}>Log Out</LogOutButton>
+      <Header title={width > 430 ? "full" : "mobile"}>
+        <Fragment>
+          <HLogo
+            src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
+            alt="logo"
+          ></HLogo>
+          <HTitle>BIRTHDAY.WATCH</HTitle>
+          <LogOutButton onClick={logOut}>Log Out</LogOutButton>
+        </Fragment>
       </Header>
-      <Content>
-        <Table />
-      </Content>
+      <Content>{width > 430 ? <Table /> : <div>Mobile Table</div>}</Content>
     </Wrapper>
   );
 };

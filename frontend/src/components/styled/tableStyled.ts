@@ -13,13 +13,20 @@ export const Title = styled.div`
   box-shadow: 0 0.7em 0.6em 0 rgba(0, 0, 0, 0.16);
   background-color: ${(props) => props.color};
   display: flex;
+  @media (max-width: 768px) {
+    height: 5em;
+    margin-right: 1em;
+  }
 `;
 export const TitleText = styled.div`
   color: white;
-  font-size: 28px;
+  font-size: 2.8rem;
   font-family: Roboto Slab;
   margin: auto;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 export const BottomWrapper = styled.div`
   display: flex;

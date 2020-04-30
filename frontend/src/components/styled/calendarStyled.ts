@@ -7,8 +7,8 @@ export const Wrapper = styled.section`
 export const Header = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  align-items: flex-end;
+  flex-direction: ${(props) => (props.title === "full" ? "row" : "column")};
+  align-items: ${(props) => (props.title === "full" ? "flex-end" : "center")};
   padding-top: 2em;
 `;
 export const HTitle = styled.div`
@@ -32,8 +32,7 @@ export const HLogo = styled.img`
     width: 3rem;
     height: 3rem;
   }
-  margin-left: 2em;
-  margin-right: 4em;
+  margin-right: 2em;
 `;
 export const LogOutButton = styled.div`
   &:hover {
@@ -47,6 +46,7 @@ export const LogOutButton = styled.div`
   border-radius: 0.3em;
   font-size: 2.5rem;
   color: #7d7c81;
+  margin-left: 2em;
   @media (max-width: 1028px) {
     font-size: 1.6rem;
   }

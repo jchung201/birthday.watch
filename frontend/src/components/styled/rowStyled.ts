@@ -13,6 +13,10 @@ export const ContentColumn = styled.div`
   border-radius: 1.2em;
   background-color: ${(props) => props.color};
   display: flex;
+  @media (max-width: 768px) {
+    height: 5em;
+    margin-right: 1em;
+  }
 `;
 export const ContentText = styled.div`
   color: #7d7c81;
@@ -20,6 +24,9 @@ export const ContentText = styled.div`
   font-family: Roboto;
   margin: auto;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 export const ContentInput = styled.input`
   color: white;
@@ -31,6 +38,9 @@ export const ContentInput = styled.input`
   background: transparent;
   padding: 0 !important;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 export const SaveButton = styled.div`
   &:hover {
@@ -46,6 +56,11 @@ export const SaveButton = styled.div`
   color: blue;
   text-align: center;
   transition: all 0.2s;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 90%;
+    height: 30%;
+  }
 `;
 
 export const DeleteButton = styled.div`
@@ -56,13 +71,18 @@ export const DeleteButton = styled.div`
   }
   padding: 0.15em 0.4em;
   border: 0.1em solid red;
-  margin-top: 10em;
+  margin-top: 1em;
   border-radius: 0.12em;
   box-sizing: border-box;
   font-weight: 300;
   color: red;
   text-align: center;
   transition: all 0.2s;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 90%;
+    height: 30%;
+  }
 `;
 export const CancelButton = styled.div`
   &:hover {
@@ -72,7 +92,7 @@ export const CancelButton = styled.div`
   }
   padding: 0.15em 0.4em;
   border: 0.1em solid orange;
-  margin-top: 10em;
+  margin-top: 1em;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -81,4 +101,9 @@ export const CancelButton = styled.div`
   color: orange;
   text-align: center;
   transition: all 0.2s;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    width: 90%;
+    height: 30%;
+  }
 `;
