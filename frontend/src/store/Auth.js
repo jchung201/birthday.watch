@@ -34,13 +34,14 @@ export const Auth = types
           });
       }
       const authorization = checkAuthorization(self.logOut);
+      if (!authorization) return;
       try {
         await axios.get(`${API_URL}/rest/birthdays/`, {
           headers: {
             Authorization: JSON.stringify(authorization),
           },
         });
-        if (authorization) return self.logIn();
+        return self.logIn();
       } catch (error) {
         console.error(error);
       }
