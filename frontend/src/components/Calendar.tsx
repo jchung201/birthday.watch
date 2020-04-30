@@ -9,6 +9,7 @@ import {
   LogOutButton,
 } from "./styled/calendarStyled";
 import Table from "./Table";
+import MobileTable from "./MobileTable";
 import windowDimensions from "../utilities/windowDimensions";
 
 import { StoreInterface } from "../interfaces/store";
@@ -35,7 +36,7 @@ const Calendar = ({
           <LogOutButton onClick={logOut}>Log Out</LogOutButton>
         </Fragment>
       </Header>
-      <Content>{width > 430 ? <Table /> : <div>Mobile Table</div>}</Content>
+      <Content>{width > 430 ? <Table /> : <MobileTable />}</Content>
     </Wrapper>
   );
 };
