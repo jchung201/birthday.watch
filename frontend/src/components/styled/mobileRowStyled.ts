@@ -7,7 +7,6 @@ export const ContentRow = styled.div`
   justify-content: space-between;
   background-color: ${(props) => props.color};
   border-radius: 0.4em;
-  backgroundcolor: white;
   padding: 1.3em;
 `;
 export const ContentLabel = styled.div`
@@ -38,19 +37,75 @@ export const ContentText = styled.div`
     font-size: 1.5rem;
   }
 `;
+export const ButtonColumn = styled.div`
+  margin-right: 2.5em;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3em;
+  margin-right: 1em;
+`;
+export const ButtonContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #7d7c81;
+  font-size: 1.5rem;
+  font-family: Roboto;
+  text-align: right;
+`;
+export const DeleteButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: red;
+    cursor: pointer;
+  }
+  padding: 0.15em 0.4em;
+  border: 0.1em solid red;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  font-weight: 300;
+  color: red;
+  text-align: center;
+  transition: all 0.2s;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 30%;
+  margin-left: 1em;
+`;
+export const CancelButton = styled.div`
+  &:hover {
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+  }
+  padding: 0.15em 0.4em;
+  border: 0.1em solid orange;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: orange;
+  text-align: center;
+  transition: all 0.2s;
+  font-size: 1.5rem;
+  width: 100%;
+  height: 30%;
+  margin-left: 1em;
+`;
+
 export const ContentInput = styled.input`
   color: white;
   font-family: Roboto;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 100%;
   margin: auto;
   border: none !important;
   background: transparent;
   padding: 0 !important;
   text-align: right;
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
 `;
 export const SaveButton = styled.div`
   &:hover {
@@ -66,54 +121,8 @@ export const SaveButton = styled.div`
   color: blue;
   text-align: center;
   transition: all 0.2s;
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
-    height: 30%;
-  }
-`;
-
-export const DeleteButton = styled.div`
-  &:hover {
-    color: white;
-    background-color: red;
-    cursor: pointer;
-  }
-  padding: 0.15em 0.4em;
-  border: 0.1em solid red;
-  margin-top: 1em;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  font-weight: 300;
-  color: red;
-  text-align: center;
-  transition: all 0.2s;
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
-    height: 30%;
-  }
-`;
-export const CancelButton = styled.div`
-  &:hover {
-    color: white;
-    background-color: orange;
-    cursor: pointer;
-  }
-  padding: 0.15em 0.4em;
-  border: 0.1em solid orange;
-  margin-top: 1em;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: orange;
-  text-align: center;
-  transition: all 0.2s;
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
-    height: 30%;
-  }
+  font-size: 1.5rem;
+  width: 100%;
+  height: 30%;
+  margin-right: 1em;
 `;

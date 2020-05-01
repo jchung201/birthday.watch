@@ -8,11 +8,13 @@ import {
   ContentRow,
   ContentColumn,
   ContentText,
-  ContentInput,
-  SaveButton,
-  DeleteButton,
-  CancelButton,
   ContentLabel,
+  ButtonContent,
+  ButtonColumn,
+  CancelButton,
+  DeleteButton,
+  SaveButton,
+  ContentInput,
 } from "./styled/mobileRowStyled";
 import { API_URL } from "../utilities/URL";
 
@@ -245,9 +247,9 @@ class Row extends Component<any> {
           )}
           {!editing && <ContentText>{note}</ContentText>}
         </ContentColumn>
-        <ContentColumn>
+        <ButtonColumn>
           {editing && (
-            <ContentText>
+            <ButtonContent>
               <SaveButton onClick={this.save}>Save</SaveButton>
               {!creating && (
                 <DeleteButton onClick={this.delete}>Delete</DeleteButton>
@@ -255,10 +257,10 @@ class Row extends Component<any> {
               {creating && (
                 <CancelButton onClick={this.cancel}>Cancel</CancelButton>
               )}
-            </ContentText>
+            </ButtonContent>
           )}
           {!editing && (
-            <ContentText>
+            <ButtonContent>
               <div
                 style={{
                   textDecoration: "underline",
@@ -269,9 +271,9 @@ class Row extends Component<any> {
               >
                 Modify
               </div>
-            </ContentText>
+            </ButtonContent>
           )}
-        </ContentColumn>
+        </ButtonColumn>
       </ContentRow>
     );
   }

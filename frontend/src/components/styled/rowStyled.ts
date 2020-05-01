@@ -35,9 +35,6 @@ export const ContentText = styled.div`
   @media (max-width: 1000px) {
     font-size: 1.7rem;
   }
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
 `;
 export const ContentInput = styled.input`
   color: white;
@@ -68,8 +65,8 @@ export const SaveButton = styled.div`
   text-align: center;
   transition: all 0.2s;
   @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
+    font-size: 1.5rem;
+    width: 100%;
     height: 30%;
   }
 `;
@@ -90,8 +87,8 @@ export const DeleteButton = styled.div`
   text-align: center;
   transition: all 0.2s;
   @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
+    font-size: 1.5rem;
+    width: 100%;
     height: 30%;
   }
 `;
@@ -113,8 +110,8 @@ export const CancelButton = styled.div`
   text-align: center;
   transition: all 0.2s;
   @media (max-width: 768px) {
-    font-size: 1rem;
-    width: 90%;
+    font-size: 1.5rem;
+    width: 100%;
     height: 30%;
   }
 `;

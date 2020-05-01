@@ -7,8 +7,9 @@ export const BottomWrapper = styled.div`
 export const AddButton = styled.div`
   &:hover {
     color: white;
-    background-color: #7d7c81;
+    background-color: #9ad6ca;
     cursor: pointer;
+    border: 0.1em solid #9ad6ca;
   }
   display: inline-block;
   padding: 0.35em 1.2em;

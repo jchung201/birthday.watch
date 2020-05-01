@@ -26,7 +26,7 @@ const Calendar = ({
   const { width } = windowDimensions();
   return (
     <Wrapper>
-      <Header title={width > 600 ? "full" : "mobile"}>
+      <Header>
         <Fragment>
           <HLogo
             src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
