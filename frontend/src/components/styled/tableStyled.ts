@@ -13,7 +13,14 @@ export const Title = styled.div`
   box-shadow: 0 0.7em 0.6em 0 rgba(0, 0, 0, 0.16);
   background-color: ${(props) => props.color};
   display: flex;
-
+  @media (max-width: 1360px) {
+    height: 7em;
+    margin-right: 1.5em;
+  }
+  @media (max-width: 1000px) {
+    height: 6em;
+    margin-right: 1.5em;
+  }
   @media (max-width: 768px) {
     height: 5em;
     margin-right: 1em;
@@ -25,8 +32,11 @@ export const TitleText = styled.div`
   font-family: Roboto Slab;
   margin: auto;
   text-align: center;
-  @media (max-width: 1250px) {
+  @media (max-width: 1360px) {
     font-size: 2rem;
+  }
+  @media (max-width: 1000px) {
+    font-size: 1.7rem;
   }
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -45,7 +55,7 @@ export const AddButton = styled.div`
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #7d7c81;
-  margin-top: 30px;
+  margin-top: 3em;
   margin-bottom: 20px;
   border-radius: 0.12em;
   box-sizing: border-box;

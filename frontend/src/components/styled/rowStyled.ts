@@ -13,6 +13,14 @@ export const ContentColumn = styled.div`
   border-radius: 1.2em;
   background-color: ${(props) => props.color};
   display: flex;
+  @media (max-width: 1360px) {
+    height: 7em;
+    margin-right: 1.5em;
+  }
+  @media (max-width: 1000px) {
+    height: 6em;
+    margin-right: 1.5em;
+  }
   @media (max-width: 768px) {
     height: 5em;
     margin-right: 1em;
@@ -24,6 +32,9 @@ export const ContentText = styled.div`
   font-family: Roboto;
   margin: auto;
   text-align: center;
+  @media (max-width: 1000px) {
+    font-size: 1.7rem;
+  }
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }

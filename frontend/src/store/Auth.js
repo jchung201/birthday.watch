@@ -30,7 +30,7 @@ export const Auth = types
           })
           .catch((error) => {
             console.error(error);
-            self.logOut();
+            // TODO: notify error
           });
       }
       const authorization = checkAuthorization(self.logOut);
