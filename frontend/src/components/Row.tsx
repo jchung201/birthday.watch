@@ -197,17 +197,18 @@ class Row extends Component<any> {
           )}
           {!editing && <ContentText>{name}</ContentText>}
         </ContentColumn>
-        <ContentColumn color={color}>
+        <ContentColumn
+          color={color}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           {editing && (
             <DayPickerInput
               value={birthDate}
               onDayChange={this.onDayChange}
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
               component={(props) => <ContentInput {...props} />}
             />
           )}

@@ -204,17 +204,19 @@ class Row extends Component<any> {
         <ContentColumn>
           <ContentLabel color={color}>Birth Date: </ContentLabel>
           {editing && (
-            <DayPickerInput
-              value={birthDate}
-              onDayChange={this.onDayChange}
+            <div
               style={{
-                width: "100%",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
-              component={(props) => <ContentInput {...props} />}
-            />
+            >
+              <DayPickerInput
+                value={birthDate}
+                onDayChange={this.onDayChange}
+                component={(props) => <ContentInput {...props} />}
+              />
+            </div>
           )}
           {!editing && (
             <ContentText>
