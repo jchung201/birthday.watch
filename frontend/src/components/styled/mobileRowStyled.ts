@@ -56,17 +56,14 @@ export const ButtonContent = styled.div`
   text-align: right;
 `;
 export const DeleteButton = styled.div`
-  &:hover {
-    color: white;
-    background-color: red;
-    cursor: pointer;
-  }
+  color: white;
+  background-color: red;
+  cursor: pointer;
   padding: 0.15em 0.4em;
   border: 0.1em solid red;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   font-weight: 300;
-  color: red;
   text-align: center;
   transition: all 0.2s;
   font-size: 1.5rem;
@@ -75,19 +72,16 @@ export const DeleteButton = styled.div`
   margin-left: 1em;
 `;
 export const CancelButton = styled.div`
-  &:hover {
-    color: white;
-    background-color: orange;
-    cursor: pointer;
-  }
+  color: white;
+  background-color: orange;
+  cursor: pointer;
   padding: 0.15em 0.4em;
   border: 0.1em solid orange;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  color: orange;
   text-align: center;
   transition: all 0.2s;
   font-size: 1.5rem;
@@ -108,17 +102,14 @@ export const ContentInput = styled.input`
   text-align: right;
 `;
 export const SaveButton = styled.div`
-  &:hover {
-    color: white;
-    background-color: blue;
-    cursor: pointer;
-  }
+  color: white;
+  background-color: blue;
+  cursor: pointer;
   padding: 0.15em 0.4em;
   border: 0.1em solid blue;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   font-weight: 300;
-  color: blue;
   text-align: center;
   transition: all 0.2s;
   font-size: 1.5rem;

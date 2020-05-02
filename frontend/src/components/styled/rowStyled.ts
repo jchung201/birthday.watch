@@ -58,7 +58,7 @@ export const SaveButton = styled.div`
   }
   padding: 0.15em 0.4em;
   border: 0.1em solid blue;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   font-weight: 300;
   color: blue;
@@ -80,7 +80,7 @@ export const DeleteButton = styled.div`
   padding: 0.15em 0.4em;
   border: 0.1em solid red;
   margin-top: 1em;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   font-weight: 300;
   color: red;
@@ -101,7 +101,7 @@ export const CancelButton = styled.div`
   padding: 0.15em 0.4em;
   border: 0.1em solid orange;
   margin-top: 1em;
-  border-radius: 0.12em;
+  border-radius: 0.3em;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Roboto", sans-serif;
