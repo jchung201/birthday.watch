@@ -12,6 +12,9 @@ module.exports = {
   target: "web",
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
+    alias: {
+      moment: "moment/moment.js",
+    },
   },
   module: {
     rules: [
