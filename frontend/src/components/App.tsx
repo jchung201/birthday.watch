@@ -12,12 +12,13 @@ interface OwnProps {
 
 const App = ({
   store: {
-    auth: { authenticate, loggedIn },
+    auth: { authenticate, loggedIn, authenticating },
   },
 }: OwnProps) => {
   useEffect(() => {
     authenticate();
   }, []);
+  if (authenticating) return <div>Loading...</div>;
   if (loggedIn) return <Calendar />;
   return <Home />;
 };
