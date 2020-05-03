@@ -13,6 +13,7 @@ import {
   DeleteButton,
   CancelButton,
 } from "./styled/rowStyled";
+import DateInput from "./utils/DateInput";
 import validateEvent from "./utils/validateEvent";
 import { API_URL } from "../utilities/URL";
 
@@ -212,7 +213,7 @@ class Row extends Component<any> {
             <DayPickerInput
               value={birthDate}
               onDayChange={this.onDayChange}
-              component={(props) => <ContentInput {...props} />}
+              component={DateInput}
             />
           )}
           {!editing && (
@@ -275,4 +276,5 @@ class Row extends Component<any> {
     );
   }
 }
+
 export default Row;

@@ -16,6 +16,7 @@ import {
   SaveButton,
   ContentInput,
 } from "./styled/mobileRowStyled";
+// import DateInput from "./utils/DateInput";
 import validateEvent from "./utils/validateEvent";
 import { API_URL } from "../utilities/URL";
 
@@ -210,8 +211,8 @@ class Row extends Component<any> {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <DayPickerInput
