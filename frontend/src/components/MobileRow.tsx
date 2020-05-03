@@ -16,6 +16,7 @@ import {
   SaveButton,
   ContentInput,
 } from "./styled/mobileRowStyled";
+import validateEvent from "./utils/validateEvent";
 import { API_URL } from "../utilities/URL";
 
 class Row extends Component<any> {
@@ -60,6 +61,7 @@ class Row extends Component<any> {
       const expiry_date = localStorage.getItem("expiry_date");
       const { birthday } = this.props;
       const { birthDate, name, note, days } = this.state;
+      if (validateEvent({ birthDate, name, note, days: Number(days) })) return;
       const updatedBirthday = await axios.patch(
         `${API_URL}/rest/birthdays/${birthday.id}`,
         {
@@ -107,6 +109,7 @@ class Row extends Component<any> {
       const token_type = localStorage.getItem("token_type");
       const expiry_date = localStorage.getItem("expiry_date");
       const { birthDate, name, note, days } = this.state;
+      if (validateEvent({ birthDate, name, note, days: Number(days) })) return;
       await axios.post(
         `${API_URL}/rest/birthdays/`,
         {
