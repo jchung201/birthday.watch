@@ -25,6 +25,9 @@ export const Title = styled.div`
     height: 5em;
     margin-right: 1em;
   }
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 export const TitleText = styled.div`
   color: white;
@@ -53,7 +56,7 @@ export const AddButton = styled.div`
     cursor: pointer;
     border: 0.1em solid #9ad6ca;
   }
-  font-size: 2rem !important;
+  font-size: 3rem !important;
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #7d7c81;

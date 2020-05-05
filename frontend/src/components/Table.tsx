@@ -32,6 +32,11 @@ const Table = ({
     fetchBirthdays();
   }, []);
   if (!birthdaysFetched) return <div>Loading...</div>;
+  const sortedBirthdays = birthdays.sort(
+    (a, b) =>
+      new Date(a.start.dateTime).setFullYear(2020) -
+      new Date(b.start.dateTime).setFullYear(2020)
+  );
   return (
     <React.Fragment>
       <TableHeader>
@@ -54,7 +59,7 @@ const Table = ({
           <TitleText>Modify</TitleText>
         </Title>
       </TableHeader>
-      {birthdays.map((birthday) => (
+      {sortedBirthdays.map((birthday) => (
         <Row
           birthday={birthday}
           key={birthday.id}

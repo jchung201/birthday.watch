@@ -25,6 +25,9 @@ export const ContentColumn = styled.div`
     height: 5em;
     margin-right: 1em;
   }
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 export const ContentText = styled.div`
   color: #7d7c81;
