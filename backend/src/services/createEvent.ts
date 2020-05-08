@@ -23,7 +23,7 @@ export const createEvent = async (auth, calendarId, timeZone, birthday, cb) => {
       recurrence: ['RRULE:FREQ=YEARLY'],
       reminders: {
         useDefault: false,
-        overrides: [{ method: 'email', minutes: 24 * days * 60 }],
+        overrides: [{ method: 'email', minutes: 24 * days * 60 - 600 }],
       },
     };
     const formattedInformation = {
