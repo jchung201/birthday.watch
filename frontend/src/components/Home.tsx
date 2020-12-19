@@ -26,7 +26,7 @@ const Home = () => {
     <Wrapper>
       <LeftContainer>
         <Logo src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"></Logo>
-        <Header>BIRTHDAY.WATCH</Header>
+        <Header>Birthday Watch</Header>
         <Description>
           INTEGRATE YOUR GOOGLE CALENDAR <br /> TO QUICKLY ADD/EDIT BIRTHDAY
           REMINDERS

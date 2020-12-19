@@ -32,7 +32,7 @@ const Calendar = ({
             src="https://townbbpublic.s3.us-east-2.amazonaws.com/birthday_logo.png"
             alt="logo"
           ></HLogo>
-          <HTitle>BIRTHDAY.WATCH</HTitle>
+          <HTitle>Birthday Watch</HTitle>
           <LogOutButton onClick={logOut}>Log Out</LogOutButton>
         </Fragment>
       </Header>

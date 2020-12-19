@@ -1,6 +1,6 @@
 # Birthday Watch
 
-[Birthday Watch](https://birthday.watch/) is a birthday reminder platform that integrates with Google Calendar.
+[Birthday Watch](https://mergedpr.com/) is a birthday reminder platform that integrates with Google Calendar.
 
 ## Table of Contents
 

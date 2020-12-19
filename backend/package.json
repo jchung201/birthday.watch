@@ -30,7 +30,6 @@
     "http-errors": "^1.7.3",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
-    "serverless": "^2.16.0",
     "serverless-http": "^2.3.2"
   },
   "devDependencies": {
@@ -39,6 +38,7 @@
     "@types/node": "^13.7.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
+    "serverless": "^1.70.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
