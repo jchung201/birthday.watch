@@ -8,6 +8,7 @@
     "postinstall": "npm run build",
     "start": "node build/server.js",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts",
+    "serverless": "serverless deploy",
     "tslint": "tslint --project tsconfig.json"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "http-errors": "^1.7.3",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
+    "serverless": "^2.16.0",
     "serverless-http": "^2.3.2"
   },
   "devDependencies": {
