@@ -28,7 +28,7 @@
     "express-async-handler": "^1.1.4",
     "googleapis": "^39.2.0",
     "http-errors": "^1.7.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "morgan": "^1.9.1",
     "serverless-http": "^2.3.2"
   },
