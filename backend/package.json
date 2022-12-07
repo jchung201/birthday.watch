@@ -38,7 +38,7 @@
     "@types/node": "^13.7.0",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1",
-    "serverless": "^1.70.0",
+    "serverless": "^3.25.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
